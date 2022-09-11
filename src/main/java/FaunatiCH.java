@@ -26,7 +26,7 @@ public class FaunatiCH {
             case 2 -> mostrarEstadisticas();
             case 3 -> salirDelJuego();
             default -> {
-                System.out.println("Por favor ingrese una número válido:");
+                System.out.println("Por favor ingrese un número válido:");
                 opcionesMenu(ingresar());
             }
         }
@@ -51,7 +51,7 @@ public class FaunatiCH {
             case 2 -> mostrarAnimalesZonaCentral();
             case 3 -> mostrarAnimalesZonaSur();
             default -> {
-                System.out.println("Por favor ingrese una número válido:");
+                System.out.println("Por favor ingrese un número válido:");
                 opcionesMapa(ingresar());
             }
         }
