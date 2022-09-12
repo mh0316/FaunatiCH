@@ -97,11 +97,45 @@ public class FaunatiCH {
     }
 
     private static String[][] opcionesAnimalesZonaCentral(int opcionIngresada){
-        return null;
+        String[][] caracteristicasZorroCulpeo = {{"Vida","Mordedura"},{"30","5","3"}};
+        String[][] caracteristicasPuma = {{"Vida","Mortizco","Embestida"},{"30","5","3"}};
+        String[][] caracteristicasAguilaMora = {{"Vida", "Garras", "En Picada"},{"30","4","4"}};
+
+        switch (opcionIngresada) {
+            case 1:
+                return caracteristicasZorroCulpeo;
+            case 2:
+                return caracteristicasPuma;
+            case 3:
+                return caracteristicasAguilaMora;
+            default:
+                System.out.println("Por favor ingrese un número válido:");
+                opcionesAnimalesZonaCentral(ingresar());
+        }
+
+        // retorno momentáneo, nunca se debería llegar hasta aquí
+        return caracteristicasZorroCulpeo;
     }
 
     private static String[][] opcionesAnimalesZonaSur(int opcionIngresada){
-        return null;
+        String[][] caracteristicasPinguino = {{"Vida","Picar","Aletazo"},{"30","5","3"}};
+        String[][] caracteristicasZorroPatagonico = {{"Vida","Mortizco"},{"30","5","3"}};
+        String[][] caracteristicasÑandu = {{"Vida", "Aleteo", "Patada"},{"30","4","4"}};
+
+        switch (opcionIngresada) {
+            case 1:
+                return caracteristicasPinguino;
+            case 2:
+                return caracteristicasZorroPatagonico;
+            case 3:
+                return caracteristicasÑandu;
+            default:
+                System.out.println("Por favor ingrese un número válido:");
+                opcionesAnimalesZonaSur(ingresar());
+        }
+
+        // retorno momentáneo, nunca se debería llegar hasta aquí
+        return caracteristicasPinguino;
     }
 
     private static void mostrarAnimalesZonaNorte() {
