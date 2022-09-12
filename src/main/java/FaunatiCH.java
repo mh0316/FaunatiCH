@@ -26,7 +26,7 @@ public class FaunatiCH {
             case 2 -> mostrarEstadisticas();
             case 3 -> salirDelJuego();
             default -> {
-                System.out.println("Por favor ingrese una número válido:");
+                System.out.println("Por favor ingrese un número válido:");
                 opcionesMenu(ingresar());
             }
         }
@@ -36,6 +36,21 @@ public class FaunatiCH {
         System.out.println("\nA continuación elija la zona geográfica con la que desea empezar:");
         mostrarMapaGeografico();
         opcionesMapa(ingresar());
+        opcionesPorZonaElegida(ingresar());
+    }
+
+    private static void opcionesPorZonaElegida(int opcionIngresada){
+        switch (opcionIngresada){
+            case 1:
+                opcionesAnimalesZonaNorte(opcionIngresada);
+                break;
+            case 2:
+                opcionesAnimalesZonaCentral(opcionIngresada);
+                break;
+            case 3:
+                opcionesAnimalesZonaSur(opcionIngresada);
+                break;
+        }
     }
 
     private static void mostrarMapaGeografico(){
@@ -51,50 +66,95 @@ public class FaunatiCH {
             case 2 -> mostrarAnimalesZonaCentral();
             case 3 -> mostrarAnimalesZonaSur();
             default -> {
-                System.out.println("Por favor ingrese una número válido:");
+                System.out.println("Por favor ingrese un número válido:");
                 opcionesMapa(ingresar());
             }
         }
     }
 
+    private static String[][] opcionesAnimalesZonaNorte(int opcionIngresada){
+        String[][] caracteristicasAlpaca = {{"Vida","Espupitazo"},{"30","5","3"}};
+        String[][] caracteristicasVicuña = {{"Vida","Mortizco","Patada"},{"30","5","3"}};
+        String[][] caracteristicasGuanaco = {{"Vida", "Escupo", "Patada"},{"30","4","4"}};
+        String[][] caracteristicasLlama = {{"Vida","Escupo","Silbar"},{"30","5","5"}};
+
+        switch (opcionIngresada) {
+            case 1:
+                return caracteristicasAlpaca;
+            case 2:
+                return caracteristicasVicuña;
+            case 3:
+                return caracteristicasGuanaco;
+            case 4:
+                return caracteristicasLlama;
+            default:
+                System.out.println("Por favor ingrese un número válido:");
+                opcionesAnimalesZonaNorte(ingresar());
+        }
+
+        // retorno momentáneo, nunca se debería llegar hasta aquí
+        return caracteristicasLlama;
+    }
+
+    private static String[][] opcionesAnimalesZonaCentral(int opcionIngresada){
+        return null;
+    }
+
+    private static String[][] opcionesAnimalesZonaSur(int opcionIngresada){
+        return null;
+    }
+
     private static void mostrarAnimalesZonaNorte() {
         System.out.println("""
-                Estos son los animales que puede usar en esta zona:
+                Estos son los animales que puede usar en esta zona.
+                Elija alguno:
                 1. Guanaco
                 2. Vicuña
                 3. Alpaca.
                 4. Llama.""");
     }
 
-    private static int[] puntajeGuanaco(int[] puntaje){
-        int[] guanaco = new int[0];
-        return guanaco;
-    }
-
     private static void mostrarAnimalesZonaCentral() {
         System.out.println("""
-                Estos son los animales que puede usar en esta zona:
+                Estos son los animales que puede usar en esta zona.
+                Elija alguno:
                 1. Zorro Culpeo.
                 2. Puma.
-                3. Águila Mora.
-                4. Codorniz.""");
+                3. Águila Mora.""");
     }
 
     private static void mostrarAnimalesZonaSur() {
         System.out.println("""
-                Estos son los animales que puede usar en esta zona:
+                Estos son los animales que puede usar en esta zona.
+                Elija alguno:
                 1. Pingüino.
                 2. Zorro de la Patagonia.
-                3. Ñandú.
-                4. Huemul.""");
+                3. Ñandú.""");
     }
 
     private static void mostrarEstadisticas(){
         System.out.println("""
-                        Sus estadísticas de juego son las siguientes:
-                        Nivel 1: .....
-                        Nivel 2: .....
-                        Nivel 3: .....""");
+                Sus estadísticas de juego son las siguientes:
+                Nivel 1: .....
+                Nivel 2: .....
+                Nivel 3: .....""");
+    }
+
+    private static String[][] caracteristicasAnimalesZonaNorte(){
+        String[][] caracteristicasAlpaca = {{"Vida","Espupitazo"},{"30","5","3"}};
+
+        String[][] caracteristicasVicuña = {{"Vida","Mortizco","Patada"},{"30","5","3"}};
+
+        String[][] caracteristicasGuanaco = {{"Vida", "Escupo", "Patada"},{"30","4","4"}};
+
+        String[][] caracteristicasLlama = {{"Vida","Escupo","Silbar"},{"30","5","5"}};
+
+        return caracteristicasLlama;
+    }
+
+    private static String[][] caracteristicasAnimalInicial(){
+        String[][] caractteristicasQuiltro = {{"Vida","Mordizco","Ladrido"},{"30","6","2"}};
+        return caractteristicasQuiltro;
     }
 
     private static void salirDelJuego(){
