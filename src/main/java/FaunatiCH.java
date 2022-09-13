@@ -37,6 +37,19 @@ public class FaunatiCH {
         mostrarMapaGeografico();
         opcionesMapa(ingresar());
         opcionesPorZonaElegida(ingresar());
+
+        String[][] animalUsuario = generarAnimalUsuario();
+
+        //combate(animalUsuario, );
+    }
+
+    private static String[][] generarAnimalUsuario() {
+        String[][] caracteristicasCondor = {{"Vida","Espupitazo"},{"30","5","3"}};
+        return caracteristicasCondor;
+    }
+
+    private static void combate(String[][] animalDelUsuario, String[][] animalElegidoEnZona) {
+
     }
 
     private static void opcionesPorZonaElegida(int opcionIngresada){
@@ -73,7 +86,7 @@ public class FaunatiCH {
     }
 
     private static String[][] opcionesAnimalesZonaNorte(int opcionIngresada){
-        String[][] caracteristicasAlpaca = {{"Vida","Espupitazo"},{"30","5","3"}};
+        String[][] caracteristicasAlpaca = {{"Vida","Espupitazo","Patada"},{"30","5","3"}};
         String[][] caracteristicasVicuña = {{"Vida","Mortizco","Patada"},{"30","5","3"}};
         String[][] caracteristicasGuanaco = {{"Vida", "Escupo", "Patada"},{"30","4","4"}};
         String[][] caracteristicasLlama = {{"Vida","Escupo","Silbar"},{"30","5","5"}};
