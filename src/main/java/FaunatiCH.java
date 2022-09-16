@@ -33,7 +33,6 @@ public class FaunatiCH {
     }
 
     private static void empezar(){
-        System.out.println("\nA continuación elija la zona geográfica con la que desea empezar:");
         mostrarMapaGeografico();
         opcionesMapa(ingresar());
         opcionesPorZonaElegida(ingresar());
@@ -68,6 +67,8 @@ public class FaunatiCH {
 
     private static void mostrarMapaGeografico(){
         System.out.println("""
+                A continuación elija la zona geográfica con la que desea empezar:
+                
                 1. Zona norte.
                 2. Zona central.
                 3. Zona sur.""");
