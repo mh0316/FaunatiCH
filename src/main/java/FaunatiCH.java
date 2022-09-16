@@ -7,6 +7,7 @@ public class FaunatiCH {
 
     public static void iniciarJuego(){
         System.out.println("BIENVENIDO A FAUNATICH ");
+        System.out.println("Linea agregada para probar el pull");
         System.out.println("Este juego te ayudará a aprender sobre la fauna Chilena de una manera muy entretenida.");
         mostrarMenu();
     }
