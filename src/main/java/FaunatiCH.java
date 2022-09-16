@@ -109,10 +109,11 @@ public class FaunatiCH {
     private static void mostrarNivelDeVidaAnimales(String[][] animalElegidoEnZonaJugando, String[][] animalUsuarioJugando) {
         System.out.println("Vida de " + animalElegidoEnZonaJugando[0][0] + ": " + animalElegidoEnZonaJugando[1][0]);
         System.out.println("Vida de " + animalUsuarioJugando[0][0] + ": " + animalUsuarioJugando[1][0]);
+        System.out.println();
     }
 
     private static String[][] generarAnimalUsuario() {
-        String[][] caracteristicasCondor = {{"Condor","Vida","Espupitazo"},{"666","666","666"}};
+        String[][] caracteristicasCondor = {{"Condor"},{"50"},{"Picoton","Intimidacion","Mordida"},{"5","3","4"}};
         return caracteristicasCondor;
     }
 
@@ -268,11 +269,6 @@ public class FaunatiCH {
         String[][] caracteristicasLlama = {{"Vida","Escupo","Silbar"},{"30","5","5"}};
 
         return caracteristicasLlama;
-    }
-
-    private static String[][] caracteristicasAnimalInicial(){
-        String[][] caractteristicasQuiltro = {{"Vida","Mordizco","Ladrido"},{"30","6","2"}};
-        return caractteristicasQuiltro;
     }
 
     private static void salirDelJuego(){
