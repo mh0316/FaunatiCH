@@ -53,7 +53,7 @@ public class FaunatiCH {
         int vidaAnimalElegidoEnZonaJugando =  Integer.parseInt(animalElegidoEnZonaJugando[1][0]);
         System.out.println("vidaAnimalElegidoEnZonaJugando = " + vidaAnimalElegidoEnZonaJugando); //borrar
         int vidaAnimalUsuarioJugando =  Integer.parseInt(animalUsuarioJugando[1][0]);
-        System.out.println("vidaAnimalUsuarioJugando = " + vidaAnimalUsuarioJugando); //borrar
+        System.out.println("vidaAnimalUsuarioJugando =  " + vidaAnimalUsuarioJugando); //borrar
 
         while (vidaAnimalUsuarioJugando >=0 || vidaAnimalElegidoEnZonaJugando >= 0){ //probablemente sea un &&
             mostrarNivelDeVidaAnimales(animalElegidoEnZonaJugando, animalUsuarioJugando);
