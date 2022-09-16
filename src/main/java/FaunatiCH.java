@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FaunatiCH {
@@ -6,7 +7,7 @@ public class FaunatiCH {
     }
 
     public static void iniciarJuego(){
-        System.out.println("BIENVENIDO A FAUNATICH");
+        System.out.println("BIENVENIDO A FAUNATICH ");
         System.out.println("Este juego te ayudará a aprender sobre la fauna Chilena de una manera muy entretenida.");
         mostrarMenu();
     }
@@ -33,28 +34,43 @@ public class FaunatiCH {
     }
 
     private static void empezar(){
-        System.out.println("\nA continuación elija la zona geográfica con la que desea empezar:");
         mostrarMapaGeografico();
         opcionesMapa(ingresar());
-        opcionesPorZonaElegida(ingresar());
+
+        String[][] animalElegidoEnZona = opcionesPorZonaElegida(ingresar());
+        String[][] animalUsuario = generarAnimalUsuario();
+        mostrarCombate(animalUsuario, animalElegidoEnZona);
+
+        //combate(animalUsuario, );
     }
 
-    private static void opcionesPorZonaElegida(int opcionIngresada){
+    private static String[][] generarAnimalUsuario() {
+        String[][] caracteristicasCondor = {{"Condor","Vida","Espupitazo"},{"666","666","666"}};
+        return caracteristicasCondor;
+    }
+
+    private static void mostrarCombate(String[][] animalDelUsuario, String[][] animalElegidoEnZona) {
+        System.out.println("El combate será de "+ animalDelUsuario[0][0] + " vs " + animalElegidoEnZona[0][0]);
+    }
+
+    private static String[][] opcionesPorZonaElegida(int opcionIngresada){
         switch (opcionIngresada){
             case 1:
-                opcionesAnimalesZonaNorte(opcionIngresada);
-                break;
+                return opcionesAnimalesZonaNorte(opcionIngresada);
             case 2:
-                opcionesAnimalesZonaCentral(opcionIngresada);
-                break;
+                return opcionesAnimalesZonaCentral(opcionIngresada);
+
             case 3:
-                opcionesAnimalesZonaSur(opcionIngresada);
-                break;
+                return  opcionesAnimalesZonaSur(opcionIngresada);
+            default:
+                return opcionesPorZonaElegida(ingresar());
         }
+
     }
 
     private static void mostrarMapaGeografico(){
         System.out.println("""
+                A continuación elija la zona geográfica con la que desea empezar:
                 1. Zona norte.
                 2. Zona central.
                 3. Zona sur.""");
@@ -73,7 +89,7 @@ public class FaunatiCH {
     }
 
     private static String[][] opcionesAnimalesZonaNorte(int opcionIngresada){
-        String[][] caracteristicasAlpaca = {{"Vida","Espupitazo"},{"30","5","3"}};
+        String[][] caracteristicasAlpaca = {{"Alpaca","Vida","Espupitazo","Patada"},{"30","5","3"}};
         String[][] caracteristicasVicuña = {{"Vida","Mortizco","Patada"},{"30","5","3"}};
         String[][] caracteristicasGuanaco = {{"Vida", "Escupo", "Patada"},{"30","4","4"}};
         String[][] caracteristicasLlama = {{"Vida","Escupo","Silbar"},{"30","5","5"}};
@@ -142,9 +158,9 @@ public class FaunatiCH {
         System.out.println("""
                 Estos son los animales que puede usar en esta zona.
                 Elija alguno:
-                1. Guanaco
+                1. Alpaca
                 2. Vicuña
-                3. Alpaca.
+                3. Guanaco.
                 4. Llama.""");
     }
 
