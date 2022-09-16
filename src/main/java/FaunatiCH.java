@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FaunatiCH {
@@ -35,34 +36,36 @@ public class FaunatiCH {
     private static void empezar(){
         mostrarMapaGeografico();
         opcionesMapa(ingresar());
-        opcionesPorZonaElegida(ingresar());
 
+        String[][] animalElegidoEnZona = opcionesPorZonaElegida(ingresar());
         String[][] animalUsuario = generarAnimalUsuario();
+        mostrarCombate(animalUsuario, animalElegidoEnZona);
 
         //combate(animalUsuario, );
     }
 
     private static String[][] generarAnimalUsuario() {
-        String[][] caracteristicasCondor = {{"Vida","Espupitazo"},{"30","5","3"}};
+        String[][] caracteristicasCondor = {{"Condor","Vida","Espupitazo"},{"666","666","666"}};
         return caracteristicasCondor;
     }
 
-    private static void combate(String[][] animalDelUsuario, String[][] animalElegidoEnZona) {
-
+    private static void mostrarCombate(String[][] animalDelUsuario, String[][] animalElegidoEnZona) {
+        System.out.println(animalDelUsuario[0][0] + " vs " + animalElegidoEnZona[0][0]);
     }
 
-    private static void opcionesPorZonaElegida(int opcionIngresada){
+    private static String[][] opcionesPorZonaElegida(int opcionIngresada){
         switch (opcionIngresada){
             case 1:
-                opcionesAnimalesZonaNorte(opcionIngresada);
-                break;
+                return opcionesAnimalesZonaNorte(opcionIngresada);
             case 2:
-                opcionesAnimalesZonaCentral(opcionIngresada);
-                break;
+                return opcionesAnimalesZonaCentral(opcionIngresada);
+
             case 3:
-                opcionesAnimalesZonaSur(opcionIngresada);
-                break;
+                return  opcionesAnimalesZonaSur(opcionIngresada);
+            default:
+                return opcionesPorZonaElegida(ingresar());
         }
+
     }
 
     private static void mostrarMapaGeografico(){
@@ -87,7 +90,7 @@ public class FaunatiCH {
     }
 
     private static String[][] opcionesAnimalesZonaNorte(int opcionIngresada){
-        String[][] caracteristicasAlpaca = {{"Vida","Espupitazo","Patada"},{"30","5","3"}};
+        String[][] caracteristicasAlpaca = {{"Alpaca","Vida","Espupitazo","Patada"},{"30","5","3"}};
         String[][] caracteristicasVicuña = {{"Vida","Mortizco","Patada"},{"30","5","3"}};
         String[][] caracteristicasGuanaco = {{"Vida", "Escupo", "Patada"},{"30","4","4"}};
         String[][] caracteristicasLlama = {{"Vida","Escupo","Silbar"},{"30","5","5"}};
