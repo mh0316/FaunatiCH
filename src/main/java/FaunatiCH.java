@@ -6,18 +6,8 @@ public class FaunatiCH {
     }
 
     public static void iniciarJuego(){
-        System.out.println("BIENVENIDO A FAUNATICH ");
-        System.out.println("Linea agregada para probar el pull");
-        System.out.println("Este juego te ayudará a aprender sobre la fauna Chilena de una manera muy entretenida.");
+        mostrarTextoDeBienvenida();
         mostrarMenu();
-    }
-
-    private static void mostrarMenu(){
-        System.out.println("""
-                Ingrese una opción:
-                1. Empezar.
-                2. Mostrar estadísticas.
-                3. Salir del juego.""");
         opcionesMenu(ingresar());
     }
 
@@ -293,5 +283,18 @@ public class FaunatiCH {
             }
         } while (true);
         return entrada;
+    }
+
+    private static void mostrarMenu(){
+        System.out.println("""
+                Ingrese una opción:
+                1. Empezar.
+                2. Mostrar estadísticas.
+                3. Salir del juego.""");
+    }
+
+    private static void mostrarTextoDeBienvenida() {
+        System.out.println("BIENVENIDO A FAUNATICH!");
+        System.out.println("Este juego te ayudará a aprender sobre la fauna Chilena de una manera muy entretenida.");
     }
 }
