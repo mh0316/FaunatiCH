@@ -46,40 +46,45 @@ public class FaunatiCH {
         //combate(animalUsuario, );
     }
 
-    private static void iniciarCombate(String[][] animalElegidoEnZona,String[][] animalUsuario) {
+    public static void iniciarCombate(String[][] animalElegidoEnZona,String[][] animalUsuario) {
         String[][] animalElegidoEnZonaJugando = animalElegidoEnZona;
         String[][] animalUsuarioJugando = animalUsuario;
+        int ataqueAnimalUsuarioJugando = 10000;
+        int ataqueAnimalElegidoEnZonaJugando = 1000;
 
         int vidaAnimalElegidoEnZonaJugando =  Integer.parseInt(animalElegidoEnZonaJugando[1][0]);
-        System.out.println("vidaAnimalElegidoEnZonaJugando = " + vidaAnimalElegidoEnZonaJugando); //borrar
         int vidaAnimalUsuarioJugando =  Integer.parseInt(animalUsuarioJugando[1][0]);
-        System.out.println("vidaAnimalUsuarioJugando = " + vidaAnimalUsuarioJugando); //borrar
 
-        while (vidaAnimalUsuarioJugando >=0 || vidaAnimalElegidoEnZonaJugando >= 0){ //probablemente sea un &&
+
+        while (vidaAnimalUsuarioJugando >=0 && vidaAnimalElegidoEnZonaJugando >= 0){ //probablemente sea un &&
             mostrarNivelDeVidaAnimales(animalElegidoEnZonaJugando, animalUsuarioJugando);
-            jugadaDeUsuario(animalUsuarioJugando, vidaAnimalElegidoEnZonaJugando);
+
+            ataqueAnimalUsuarioJugando = jugadaDeUsuario(animalUsuarioJugando);
+            vidaAnimalElegidoEnZonaJugando -= ataqueAnimalUsuarioJugando;
+
             if (!(vidaAnimalElegidoEnZonaJugando >= 0)){
                 break;
             }else {
-                jugadaDeCPU(animalElegidoEnZonaJugando, vidaAnimalUsuarioJugando);
+                ataqueAnimalElegidoEnZonaJugando = jugadaDeCPU(animalElegidoEnZonaJugando);
+                vidaAnimalUsuarioJugando -= ataqueAnimalElegidoEnZonaJugando;
             }
         }
     }
 
-    public static void jugadaDeCPU(String[][] animalElegidoEnZonaJugando, int vidaAnimalUsuarioJugando) {
+    public static int jugadaDeCPU(String[][] animalUsuarioJugando) {
         int numeroRandom = (int) ((Math.random()*3));
-        int ataqueAnimalElegidoEnZonaJugando = Integer.parseInt(animalElegidoEnZonaJugando[3][numeroRandom]);
 
-        vidaAnimalUsuarioJugando = vidaAnimalUsuarioJugando - ataqueAnimalElegidoEnZonaJugando;
+        int ataqueAnimalElegidoEnZonaJugando = Integer.parseInt(animalUsuarioJugando[3][numeroRandom]);
+        return ataqueAnimalElegidoEnZonaJugando;
     }
 
 
-    public static void jugadaDeUsuario(String[][] animalUsuarioJugando, int vidaAnimalElegidoEnZonaJugando) {
+    public static int jugadaDeUsuario(String[][] animalUsuarioJugando) {
         mostrarOpcionesDeAtaque(animalUsuarioJugando);
         int opcionDeAtaqueIngresada = pedirOpcionDeAtaque(ingresar()); //recibe la opcion de ataque seleccionada por el usuario
         int ataqueAnimalUsuarioJugando = Integer.parseInt(animalUsuarioJugando[3][opcionDeAtaqueIngresada]);
 
-        vidaAnimalElegidoEnZonaJugando = vidaAnimalElegidoEnZonaJugando - ataqueAnimalUsuarioJugando;
+        return ataqueAnimalUsuarioJugando;
     }
 
     private static int pedirOpcionDeAtaque(int opcionIngresada) {
@@ -203,7 +208,7 @@ public class FaunatiCH {
 
     private static String[][] opcionesAnimalesZonaSur(int opcionIngresada){
         String[][] caracteristicasPinguino = {{"Pinguino"},{"30"},{"Picar","Aletazo", "Ataque random", "Ataque random"},{"4","5","3"}};
-        String[][] caracteristicasZorroPatagonico = {{"ZorroPatagonico"},{"30"},{"Mordizo", "Ataque random", "Ataque random 2"},{"3","5","6"}};
+        String[][] caracteristicasZorroPatagonico = {{"Zorro Patagonico"},{"30"},{"Mordizo", "Ataque random", "Ataque random 2"},{"3","5","6"}};
         String[][] caracteristicasÑandu = {{"Ñandu"},{"31"},{"Aleteo","Patada", "ataque random"},{"7","4","4"}};
 
 
