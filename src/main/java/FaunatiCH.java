@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FaunatiCH {
@@ -6,24 +8,31 @@ public class FaunatiCH {
     }
 
     public static void iniciarJuego() {
+        ArrayList<String[][]> coleccionAnimales = new ArrayList<>();
+
         mostrarTextoDeBienvenida();
-        mostrarMenu();
-        opcionesMenu(ingresar());
+        int opcion;
+
+        do {
+            mostrarMenu();
+            opcion = opcionesMenu(ingresar(), coleccionAnimales);
+        } while (opcion != 3);
     }
 
-    private static void opcionesMenu(int opcionIngresada) {
+    private static int opcionesMenu(int opcionIngresada, ArrayList<String[][]> coleccionAnimales) {
         switch (opcionIngresada) {
-            case 1 -> comenzarJuego();
-            case 2 -> mostrarEstadisticas();
+            case 1 -> comenzarJuego(coleccionAnimales);
+            case 2 -> mostrarEstadisticas(coleccionAnimales);
             case 3 -> salirDelJuego();
             default -> {
                 System.out.println("Por favor ingrese un número válido:");
-                opcionesMenu(ingresar());
+                opcionesMenu(ingresar(), coleccionAnimales);
             }
         }
+        return opcionIngresada;
     }
 
-    private static void comenzarJuego() {
+    private static void comenzarJuego(ArrayList<String[][]> coleccionAnimales) {
         mostrarMapaGeografico();
         int zona = elegirZona(ingresar());
         mostrarAnimalesZonaElegida(zona);
@@ -31,34 +40,47 @@ public class FaunatiCH {
         String[][] animalEnemigo = elegirAnimalPorZona(zona);
         String[][] animalJugador = generarAnimalUsuario();
 
-        mostrarCombate(animalEnemigo, animalJugador);
-        combatir(animalEnemigo, animalJugador);
-    }
+        coleccionAnimales.add(animalJugador);
 
-    private static void mostrarAnimalesZonaElegida(int zona) {
-        switch (zona) {
-            case 1 -> mostrarAnimalesZonaNorte();
-            case 2 -> mostrarAnimalesZonaCentral();
-            case 3 -> mostrarAnimalesZonaSur();
+        mostrarCombate(animalEnemigo, animalJugador);
+        int ptsDeVidaJugador = combatir(animalEnemigo, animalJugador);
+
+        mostrarResultadoCombate(animalEnemigo, ptsDeVidaJugador);
+
+        if (esGanador(ptsDeVidaJugador)) {
+            agregarAnimalAColeccion(coleccionAnimales, animalEnemigo);
         }
     }
 
-    public static void combatir(String[][] animalEnemigo, String[][] animalJugador) {
+    private static void agregarAnimalAColeccion(ArrayList<String[][]> coleccionAnimales, String[][] animalEnemigo) {
+        coleccionAnimales.add(animalEnemigo);
+    }
+
+    private static boolean esGanador(int puntosDeVidaJugador) {
+        return puntosDeVidaJugador > 0;
+    }
+
+    public static int combatir(String[][] animalEnemigo, String[][] animalJugador) {
         int vidaAnimalEnemigo = Integer.parseInt(animalEnemigo[1][0]);
         int vidaAnimalJugador = Integer.parseInt(animalJugador[1][0]);
 
-        while (vidaAnimalJugador >= 0 && vidaAnimalEnemigo >= 0) {
+        while (true) {
             mostrarNivelDeVidaAnimales(animalEnemigo, animalJugador, vidaAnimalJugador, vidaAnimalEnemigo);
 
             int ataqueJugador = jugadaDeUsuario(animalJugador);
             vidaAnimalEnemigo -= ataqueJugador;
 
-            if (!(vidaAnimalEnemigo >= 0)) {
-                break;
-            } else {
-                int ataqueAnimalEnemigo = jugadaDeCPU(animalEnemigo);
-                vidaAnimalJugador -= ataqueAnimalEnemigo;
+            if (vidaAnimalEnemigo <= 0) {
+                return vidaAnimalJugador;
             }
+
+            int ataqueAnimalEnemigo = jugadaDeCPU(animalEnemigo);
+            vidaAnimalJugador -= ataqueAnimalEnemigo;
+
+            if (vidaAnimalJugador <= 0) {
+                return vidaAnimalJugador;
+            }
+
         }
     }
 
@@ -73,16 +95,6 @@ public class FaunatiCH {
         int opcionDeAtaque = pedirOpcionDeAtaque(ingresar(), animalJugador);
         mostrarAtaque(animalJugador, opcionDeAtaque - 1);
         return Integer.parseInt(animalJugador[3][opcionDeAtaque - 1]);
-    }
-
-    private static void mostrarAtaque(String[][] animal, int opcionDeAtaque) {
-        String nombreAnimal = animal[0][0];
-        String ataque = animal[2][opcionDeAtaque];
-        String puntosDeVida = animal[3][opcionDeAtaque];
-
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println(nombreAnimal + " ha usado " + ataque + ", y ha quitado " + puntosDeVida + " puntos de vida!");
-        System.out.println("---------------------------------------------------------------------------------------------");
     }
 
     private static int pedirOpcionDeAtaque(int opcionIngresada, String[][] animalJugador) {
@@ -176,18 +188,6 @@ public class FaunatiCH {
         }
     }
 
-    private static String[][] caracteristicasAnimalesZonaNorte() {
-        String[][] caracteristicasAlpaca = {{"Vida", "Espupitazo"}, {"30", "5", "3"}};
-
-        String[][] caracteristicasVicuña = {{"Vida", "Mortizco", "Patada"}, {"30", "5", "3"}};
-
-        String[][] caracteristicasGuanaco = {{"Vida", "Escupo", "Patada"}, {"30", "4", "4"}};
-
-        String[][] caracteristicasLlama = {{"Vida", "Escupo", "Silbar"}, {"30", "5", "5"}};
-
-        return caracteristicasLlama;
-    }
-
     private static int ingresar() {
         Scanner teclado = new Scanner(System.in);
         int entrada;
@@ -203,6 +203,36 @@ public class FaunatiCH {
         return entrada;
     }
 
+    private static void mostrarResultadoCombate(String[][] animalEnemigo, int ptsDeVidaJugador) {
+        System.out.println("---------------------------------------------------------------------------------------------");
+        if (esGanador(ptsDeVidaJugador)) {
+            System.out.println("Felicidades! Has vencido a tu rival: " + animalEnemigo[0][0] +
+                    ", ahora son amigos y será añadido a tu colección");
+        } else {
+            System.out.println("Lo sentimos, has perdido este duelo pero puedes volver a intentarlo." +
+                    " Suerte para la proxima!");
+        }
+        System.out.println("---------------------------------------------------------------------------------------------");
+    }
+
+    private static void mostrarAtaque(String[][] animal, int opcionDeAtaque) {
+        String nombreAnimal = animal[0][0];
+        String ataque = animal[2][opcionDeAtaque];
+        String puntosDeVida = animal[3][opcionDeAtaque];
+
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println(nombreAnimal + " ha usado " + ataque + ", y ha quitado " + puntosDeVida + " puntos de vida!");
+        System.out.println("---------------------------------------------------------------------------------------------");
+    }
+
+    private static void mostrarAnimalesZonaElegida(int zona) {
+        switch (zona) {
+            case 1 -> mostrarAnimalesZonaNorte();
+            case 2 -> mostrarAnimalesZonaCentral();
+            case 3 -> mostrarAnimalesZonaSur();
+        }
+    }
+
     private static void mostrarOpcionesDeAtaque(String[][] animalJugador) {
         System.out.println("¿Que ataque deberia hacer " + animalJugador[0][0] + "?:");
 
@@ -212,14 +242,14 @@ public class FaunatiCH {
     }
 
 
-    private static void mostrarNivelDeVidaAnimales(String[][] animalElegidoEnZonaJugando, String[][] animalUsuarioJugando, int vidaAnimalJugador, int vidaAnimalEnemigo) {
-        System.out.println("Vida de " + animalElegidoEnZonaJugando[0][0] + ": " + vidaAnimalEnemigo);
-        System.out.println("Vida de " + animalUsuarioJugando[0][0] + ": " + vidaAnimalJugador);
+    private static void mostrarNivelDeVidaAnimales(String[][] animalEnemigo, String[][] animalJugador, int vidaAnimalJugador, int vidaAnimalEnemigo) {
+        System.out.println("Vida de " + animalEnemigo[0][0] + ": " + vidaAnimalEnemigo);
+        System.out.println("Vida de " + animalJugador[0][0] + ": " + vidaAnimalJugador);
         System.out.println();
     }
 
     private static void mostrarCombate(String[][] animalDelUsuario, String[][] animalElegidoEnZona) {
-        System.out.println("El combate será " + animalDelUsuario[0][0] + " vs " + animalElegidoEnZona[0][0]);
+        System.out.println("El combate es " + animalDelUsuario[0][0] + " vs " + animalElegidoEnZona[0][0]);
     }
 
     private static void salirDelJuego() {
@@ -262,12 +292,21 @@ public class FaunatiCH {
                 3. Zona sur.""");
     }
 
-    private static void mostrarEstadisticas() {
-        System.out.println("""
+    private static void mostrarEstadisticas(ArrayList<String[][]> coleccionAnimales) {
+        if (coleccionAnimales.size() == 0) {
+            System.out.println("Coleccion vacia");
+            return;
+        }
+
+        System.out.println("Coleccion de Animales Amigos");
+        for (String[][] animal : coleccionAnimales) {
+            System.out.println(Arrays.toString(animal[0]));
+        }
+        /*System.out.println("""
                 Sus estadísticas de juego son las siguientes:
                 Nivel 1: .....
                 Nivel 2: .....
-                Nivel 3: .....""");
+                Nivel 3: .....""");*/
     }
 
     private static void mostrarMenu() {
