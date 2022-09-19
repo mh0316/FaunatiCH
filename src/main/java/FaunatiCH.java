@@ -40,7 +40,7 @@ public class FaunatiCH {
         String[][] animalEnemigo = elegirAnimalPorZona(zona);
         String[][] animalJugador = generarAnimalUsuario();
 
-        coleccionAnimales.add(animalJugador);
+        agregarAnimalAColeccion(coleccionAnimales,animalJugador);
 
         mostrarCombate(animalEnemigo, animalJugador);
         int ptsDeVidaJugador = combatir(animalEnemigo, animalJugador);
@@ -52,8 +52,19 @@ public class FaunatiCH {
         }
     }
 
-    private static void agregarAnimalAColeccion(ArrayList<String[][]> coleccionAnimales, String[][] animalEnemigo) {
-        coleccionAnimales.add(animalEnemigo);
+    private static void agregarAnimalAColeccion(ArrayList<String[][]> coleccionAnimales, String[][] animal) {
+        if (!animalEstaEnColeccion(animal, coleccionAnimales)) {
+            coleccionAnimales.add(animal);
+        }
+    }
+
+    private static boolean animalEstaEnColeccion(String[][] animal, ArrayList<String[][]> coleccion) {
+        for (String[][] animales : coleccion) {
+            if (Arrays.equals(animales[0], animal[0])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean esGanador(int puntosDeVidaJugador) {
