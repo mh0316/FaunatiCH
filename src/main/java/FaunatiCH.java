@@ -1,4 +1,3 @@
-import java.text.MessageFormat;
 import java.util.Scanner;
 
 public class FaunatiCH {
@@ -116,15 +115,6 @@ public class FaunatiCH {
         }
     }
 
-    private static void
-    mostrarOpcionesDeAtaque(String[][] animalUsuarioJugando) {
-        System.out.println("¿Que ataque deberia hacer " + animalUsuarioJugando[0][0] + "?:");
-        System.out.println("1. " + animalUsuarioJugando[2][0]);
-        System.out.println("2. " + animalUsuarioJugando[2][1]);
-        System.out.println("3. " + animalUsuarioJugando[2][2]);
-    }
-
-
     private static void mostrarNivelDeVidaAnimales(int vidaAnimalElegidoEnZonaJugando, int vidaAnimalUsuarioJugando) {
         System.out.println("Vida del animal de la zona: "+ vidaAnimalElegidoEnZonaJugando);
         System.out.println("Vida de tu animal: " + vidaAnimalUsuarioJugando);
@@ -171,7 +161,7 @@ public class FaunatiCH {
     private static String[][] opcionesAnimalesZonaNorte(int opcionIngresada){
 
         String[][] caracteristicasAlpaca = {{"Alpaca"},{"30"},{"Escupitazo","Patada","Mordida"},{"5","3","4"}};
-        String[][] caracteristicasVicuña = {{"Vicuña"},{"30"},{"Mordizco","Patada","Ataque random"},{"5","3","4"}};
+        String[][] caracteristicasVicunia = {{"Vicuña"},{"30"},{"Mordizco","Patada","Ataque random"},{"5","3","4"}};
         String[][] caracteristicasGuanaco = {{"Guanaco"},{"30"},{"Escupo","Patada","Ataque random"},{"5","3","4"}};
         String[][] caracteristicasLlama = {{"Llama"},{"30"},{"Escupo","Silbar","Ataque random"},{"5","3","4"}};
 
@@ -179,7 +169,7 @@ public class FaunatiCH {
             case 1:
                 return caracteristicasAlpaca;
             case 2:
-                return caracteristicasVicuña;
+                return caracteristicasVicunia;
             case 3:
                 return caracteristicasGuanaco;
             case 4:
@@ -211,7 +201,7 @@ public class FaunatiCH {
     private static String[][] opcionesAnimalesZonaSur(int opcionIngresada){
         String[][] caracteristicasPinguino = {{"Pinguino"},{"30"},{"Picar","Aletazo", "Ataque random", "Ataque random"},{"4","5","3"}};
         String[][] caracteristicasZorroPatagonico = {{"Zorro Patagonico"},{"30"},{"Mordizo", "Ataque random", "Ataque random 2"},{"3","5","6"}};
-        String[][] caracteristicasÑandu = {{"Ñandu"},{"31"},{"Aleteo","Patada", "ataque random"},{"7","4","4"}};
+        String[][] caracteristicasNiandu = {{"Ñandu"},{"31"},{"Aleteo","Patada", "ataque random"},{"7","4","4"}};
 
 
         switch (opcionIngresada) {
@@ -220,7 +210,7 @@ public class FaunatiCH {
             case 2:
                 return caracteristicasZorroPatagonico;
             case 3:
-                return caracteristicasÑandu;
+                return caracteristicasNiandu;
             default:
                 System.out.println("Por favor ingrese un número válido:");
                 return opcionesAnimalesZonaSur(ingresar());
@@ -261,18 +251,6 @@ public class FaunatiCH {
                 Nivel 1: .....
                 Nivel 2: .....
                 Nivel 3: .....""");
-    }
-
-    private static String[][] caracteristicasAnimalesZonaNorte(){
-        String[][] caracteristicasAlpaca = {{"Vida","Espupitazo"},{"30","5","3"}};
-
-        String[][] caracteristicasVicuña = {{"Vida","Mortizco","Patada"},{"30","5","3"}};
-
-        String[][] caracteristicasGuanaco = {{"Vida", "Escupo", "Patada"},{"30","4","4"}};
-
-        String[][] caracteristicasLlama = {{"Vida","Escupo","Silbar"},{"30","5","5"}};
-
-        return caracteristicasLlama;
     }
 
     private static void salirDelJuego(){
