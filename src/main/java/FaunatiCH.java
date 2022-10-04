@@ -1,3 +1,4 @@
+import java.text.MessageFormat;
 import java.util.Scanner;
 
 public class FaunatiCH {
@@ -7,8 +8,8 @@ public class FaunatiCH {
 
     public static void iniciarJuego(){
         System.out.println("BIENVENIDO A FAUNATICH ");
-        System.out.println("Linea agregada para probar el pull");
-        System.out.println("Este juego te ayudará a aprender sobre la fauna Chilena de una manera muy entretenida.");
+
+        System.out.println("Este juego te ayudará a aprender sobre la fauna Chilena de una manera muy entretenida.\n");
         mostrarMenu();
     }
 
@@ -40,49 +41,68 @@ public class FaunatiCH {
         String[][] animalElegidoEnZona = opcionesPorZonaElegida(ingresar());
         String[][] animalUsuario = generarAnimalUsuario();
 
-        mostrarCombate(animalElegidoEnZona, animalUsuario); //muestra entre quieres es el combate
         iniciarCombate(animalElegidoEnZona, animalUsuario);
 
         //combate(animalUsuario, );
     }
 
-    private static void iniciarCombate(String[][] animalElegidoEnZona,String[][] animalUsuario) {
-        String[][] animalElegidoEnZonaJugando = animalElegidoEnZona;
-        String[][] animalUsuarioJugando = animalUsuario;
+    public static void iniciarCombate(String[][] animalElegidoEnZona,String[][] animalUsuario) {
+        String[][] animalElegidoEnZonaJugando = animalElegidoEnZona.clone();
+        String[][] animalUsuarioJugando = animalUsuario.clone();
 
         int vidaAnimalElegidoEnZonaJugando =  Integer.parseInt(animalElegidoEnZonaJugando[1][0]);
-        System.out.println("vidaAnimalElegidoEnZonaJugando = " + vidaAnimalElegidoEnZonaJugando); //borrar
         int vidaAnimalUsuarioJugando =  Integer.parseInt(animalUsuarioJugando[1][0]);
-        System.out.println("vidaAnimalUsuarioJugando =  " + vidaAnimalUsuarioJugando); //borrar
 
-        while (vidaAnimalUsuarioJugando >=0 || vidaAnimalElegidoEnZonaJugando >= 0){ //probablemente sea un &&
-            mostrarNivelDeVidaAnimales(animalElegidoEnZonaJugando, animalUsuarioJugando);
-            jugadaDeUsuario(animalUsuarioJugando, vidaAnimalElegidoEnZonaJugando);
-            if (!(vidaAnimalElegidoEnZonaJugando >= 0)){
+        int ataqueAnimalElegidoEnZonaJugando;
+
+        mostrarCombate(animalUsuario, animalElegidoEnZona);
+        mostrarNivelDeVidaAnimales(vidaAnimalElegidoEnZonaJugando, vidaAnimalUsuarioJugando);
+
+
+        while (vidaAnimalElegidoEnZonaJugando > 0 || vidaAnimalUsuarioJugando > 0){
+
+            int ataqueAnimalUsuarioJugando = jugadaDeUsuario(animalUsuarioJugando);
+            vidaAnimalElegidoEnZonaJugando -= jugadaDeUsuario(animalUsuarioJugando);
+            mostrarNivelDeVidaAnimales(vidaAnimalElegidoEnZonaJugando, vidaAnimalUsuarioJugando);
+
+            if (vidaAnimalElegidoEnZonaJugando <= 0){
                 break;
             }else {
-                jugadaDeCPU(animalElegidoEnZonaJugando, vidaAnimalUsuarioJugando);
+                ataqueAnimalElegidoEnZonaJugando = jugadaDeCPU(animalElegidoEnZonaJugando);
+                vidaAnimalUsuarioJugando -= ataqueAnimalElegidoEnZonaJugando;
             }
+
+            mostrarNivelDeVidaAnimales(vidaAnimalElegidoEnZonaJugando, vidaAnimalUsuarioJugando);
+
         }
     }
 
-    public static void jugadaDeCPU(String[][] animalElegidoEnZonaJugando, int vidaAnimalUsuarioJugando) {
-        int numeroRandom = (int) ((Math.random()*3));
-        int ataqueAnimalElegidoEnZonaJugando = Integer.parseInt(animalElegidoEnZonaJugando[3][numeroRandom]);
-
-        vidaAnimalUsuarioJugando = vidaAnimalUsuarioJugando - ataqueAnimalElegidoEnZonaJugando;
-    }
 
 
-    public static void jugadaDeUsuario(String[][] animalUsuarioJugando, int vidaAnimalElegidoEnZonaJugando) {
-        mostrarOpcionesDeAtaque(animalUsuarioJugando);
+
+    public static int jugadaDeUsuario(String[][] animalUsuarioJugando) {
         int opcionDeAtaqueIngresada = pedirOpcionDeAtaque(ingresar()); //recibe la opcion de ataque seleccionada por el usuario
         int ataqueAnimalUsuarioJugando = Integer.parseInt(animalUsuarioJugando[3][opcionDeAtaqueIngresada]);
 
-        vidaAnimalElegidoEnZonaJugando = vidaAnimalElegidoEnZonaJugando - ataqueAnimalUsuarioJugando;
+        System.out.println("\n" + animalUsuarioJugando[0][0] + " utilizó " + animalUsuarioJugando[2][opcionDeAtaqueIngresada]);
+
+        return ataqueAnimalUsuarioJugando;
     }
 
+    public static int jugadaDeCPU(String[][] animalElegidoEnZonaJugando) {
+        int numeroRandom = (int) ((Math.random()*3));
+        int ataqueAnimalElegidoEnZonaJugando = Integer.parseInt(animalElegidoEnZonaJugando[3][numeroRandom]);
+
+        System.out.println("\n" + animalElegidoEnZonaJugando[0][0] + " utilizó " + animalElegidoEnZonaJugando[2][numeroRandom]);
+
+        return ataqueAnimalElegidoEnZonaJugando;
+    }
+
+
+
+
     private static int pedirOpcionDeAtaque(int opcionIngresada) {
+
         switch (opcionIngresada){
             case 1:
                 return 1;
@@ -92,13 +112,12 @@ public class FaunatiCH {
                 return 3;
             default:
                 System.out.println("Por favor ingrese un número válido:");
-                pedirOpcionDeAtaque(ingresar());
-
+                return pedirOpcionDeAtaque(ingresar());
         }
-        return 4; //retorno temporal BORRAR CUANDO ENCUENTRE SOLUCION pide un retorno entero incluso teniendo un default
     }
 
-    private static void mostrarOpcionesDeAtaque(String[][] animalUsuarioJugando) {
+    private static void
+    mostrarOpcionesDeAtaque(String[][] animalUsuarioJugando) {
         System.out.println("¿Que ataque deberia hacer " + animalUsuarioJugando[0][0] + "?:");
         System.out.println("1. " + animalUsuarioJugando[2][0]);
         System.out.println("2. " + animalUsuarioJugando[2][1]);
@@ -106,15 +125,13 @@ public class FaunatiCH {
     }
 
 
-    private static void mostrarNivelDeVidaAnimales(String[][] animalElegidoEnZonaJugando, String[][] animalUsuarioJugando) {
-        System.out.println("Vida de " + animalElegidoEnZonaJugando[0][0] + ": " + animalElegidoEnZonaJugando[1][0]);
-        System.out.println("Vida de " + animalUsuarioJugando[0][0] + ": " + animalUsuarioJugando[1][0]);
-        System.out.println();
+    private static void mostrarNivelDeVidaAnimales(int vidaAnimalElegidoEnZonaJugando, int vidaAnimalUsuarioJugando) {
+        System.out.println("Vida del animal de la zona: "+ vidaAnimalElegidoEnZonaJugando);
+        System.out.println("Vida de tu animal: " + vidaAnimalUsuarioJugando);
     }
 
     private static String[][] generarAnimalUsuario() {
-        String[][] caracteristicasCondor = {{"Condor"},{"50"},{"Picoton","Intimidacion","Mordida"},{"5","3","4"}};
-        return caracteristicasCondor;
+        return new String[][]{{"Condor"},{"50"},{"Picoton","Intimidacion","Mordida"},{"5","3","4"}};
     }
 
     private static void mostrarCombate(String[][] animalDelUsuario, String[][] animalElegidoEnZona) {
@@ -122,17 +139,12 @@ public class FaunatiCH {
     }
 
     private static String[][] opcionesPorZonaElegida(int opcionIngresada){
-        switch (opcionIngresada){
-            case 1:
-                return opcionesAnimalesZonaNorte(opcionIngresada);
-            case 2:
-                return opcionesAnimalesZonaCentral(opcionIngresada);
-
-            case 3:
-                return  opcionesAnimalesZonaSur(opcionIngresada);
-            default:
-                return opcionesPorZonaElegida(ingresar());
-        }
+        return switch (opcionIngresada) {
+            case 1 -> opcionesAnimalesZonaNorte(opcionIngresada);
+            case 2 -> opcionesAnimalesZonaCentral(opcionIngresada);
+            case 3 -> opcionesAnimalesZonaSur(opcionIngresada);
+            default -> opcionesPorZonaElegida(ingresar());
+        };
 
     }
 
@@ -157,6 +169,7 @@ public class FaunatiCH {
     }
 
     private static String[][] opcionesAnimalesZonaNorte(int opcionIngresada){
+
         String[][] caracteristicasAlpaca = {{"Alpaca"},{"30"},{"Escupitazo","Patada","Mordida"},{"5","3","4"}};
         String[][] caracteristicasVicuña = {{"Vicuña"},{"30"},{"Mordizco","Patada","Ataque random"},{"5","3","4"}};
         String[][] caracteristicasGuanaco = {{"Guanaco"},{"30"},{"Escupo","Patada","Ataque random"},{"5","3","4"}};
@@ -173,11 +186,8 @@ public class FaunatiCH {
                 return caracteristicasLlama;
             default:
                 System.out.println("Por favor ingrese un número válido:");
-                opcionesAnimalesZonaNorte(ingresar());
+                return opcionesAnimalesZonaNorte(ingresar());
         }
-
-        // retorno momentáneo, nunca se debería llegar hasta aquí
-        return caracteristicasAlpaca;
     }
 
     private static String[][] opcionesAnimalesZonaCentral(int opcionIngresada){
@@ -194,16 +204,13 @@ public class FaunatiCH {
                 return caracteristicasAguilaMora;
             default:
                 System.out.println("Por favor ingrese un número válido:");
-                opcionesAnimalesZonaCentral(ingresar());
+                return opcionesAnimalesZonaCentral(ingresar());
         }
-
-        // retorno momentáneo, nunca se debería llegar hasta aquí
-        return caracteristicasZorroCulpeo;
     }
 
     private static String[][] opcionesAnimalesZonaSur(int opcionIngresada){
         String[][] caracteristicasPinguino = {{"Pinguino"},{"30"},{"Picar","Aletazo", "Ataque random", "Ataque random"},{"4","5","3"}};
-        String[][] caracteristicasZorroPatagonico = {{"ZorroPatagonico"},{"30"},{"Mordizo", "Ataque random", "Ataque random 2"},{"3","5","6"}};
+        String[][] caracteristicasZorroPatagonico = {{"Zorro Patagonico"},{"30"},{"Mordizo", "Ataque random", "Ataque random 2"},{"3","5","6"}};
         String[][] caracteristicasÑandu = {{"Ñandu"},{"31"},{"Aleteo","Patada", "ataque random"},{"7","4","4"}};
 
 
@@ -216,11 +223,8 @@ public class FaunatiCH {
                 return caracteristicasÑandu;
             default:
                 System.out.println("Por favor ingrese un número válido:");
-                opcionesAnimalesZonaSur(ingresar());
+                return opcionesAnimalesZonaSur(ingresar());
         }
-
-        // retorno momentáneo, nunca se debería llegar hasta aquí
-        return caracteristicasPinguino;
     }
 
     private static void mostrarAnimalesZonaNorte() {
