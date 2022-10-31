@@ -14,6 +14,7 @@ public class Jugador {
         this.contraseña = contraseña;
     }
 
+
     public String getNombre() {
         return nombre;
     }
