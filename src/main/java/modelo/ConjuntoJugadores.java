@@ -1,5 +1,7 @@
 package modelo;
 
+import dato.VerificadorRut;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class ConjuntoJugadores {
         String rut = jugador.getRut();
 
         //TODO agregar validacion del dígito verificador quedaria algo así ->  if(!jugadorExiste(rut) && DigitoVerificador.validarRut(rut)) {
-        if(!jugadorExiste(rut) ) {
+        if(!jugadorExiste(rut) && VerificadorRut.validarRut(rut)){
             jugadores.add(jugador); //el index 0 es para que lo agregue en la primera posicion
             return true;
         }
@@ -37,12 +39,17 @@ public class ConjuntoJugadores {
     }
 
     public Jugador buscarJugadorPorRut(String rut) throws JugadorNoEncontradoException {
-        for (Jugador e : this.jugadores) {
-            if (e.getRut().equals(rut)) {
-                return e;
+        for (Jugador j : this.jugadores) {
+            if (j.getRut().equals(rut)) {
+                return j;
             }
         }
         throw new JugadorNoEncontradoException();
+    }
+
+    //Verificar si será
+    public boolean esContrasenaCorrecta(){
+        return true;
     }
 
 
