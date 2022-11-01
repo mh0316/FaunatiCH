@@ -113,11 +113,6 @@ public class PortalDeInicio {
             System.out.println("No existe un usuario registrado con este rut, intente nuevamente");
             iniciarSesion(conjuntoJugadores);
         }
-
-        //rut esta registrado
-        //contraseña correcta
-        //contraseña incorrecta
-        //rut no esta registrado
     }
 
     private static int ingresar() {
