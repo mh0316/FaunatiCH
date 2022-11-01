@@ -102,7 +102,7 @@ public class PortalDeInicio {
         try{
             var jugadorRegistrado = conjuntoJugadores.buscarJugadorPorRut(rut);
             if (jugadorRegistrado.getContraseña().equals(contraseña)){
-                System.out.println("Bienvenido "+jugadorRegistrado.getNombre());
+                System.out.println("\nHola "+jugadorRegistrado.getNombre());
                 MenuJuego.mostrarMenu(jugadorRegistrado);
                 //TODO agregar metodo que lleve al juego
             }else {
