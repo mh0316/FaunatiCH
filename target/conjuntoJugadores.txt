@@ -1,0 +1,6 @@
+ABC;123456;GHDSFA
+nicolas;210241507;nicopass
+marcelo;104553559;marcepass
+hugo;119088143;hugopass
+nicolas;210241507;nicopass
+coni;221171233;conipass
