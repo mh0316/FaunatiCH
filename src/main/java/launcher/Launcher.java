@@ -11,9 +11,6 @@ public class Launcher {
         DatosJugadores.leerArchivoJugador(conjuntoJugadores, "C:\\Users\\npach\\IdeaProjects\\JuegoFaunatich\\conjuntoJugadores.txt");
         PortalDeInicio.mostrarTextoDeBienvenida();
         PortalDeInicio.mostrarOpcionesPortalInicio(conjuntoJugadores);
-
-
-
     }
 
 

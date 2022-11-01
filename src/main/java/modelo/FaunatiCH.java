@@ -3,10 +3,6 @@ package modelo;
 import java.util.Scanner;
 
 public class FaunatiCH {
-    public static void main(String[] args) {
-        iniciarJuego();
-    }
-
     public static void iniciarJuego(){
         System.out.println("BIENVENIDO A FAUNATICH ");
 
