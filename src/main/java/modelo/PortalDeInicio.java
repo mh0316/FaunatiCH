@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class PortalDeInicio {
     public static void mostrarTextoDeBienvenida() {
         System.out.println("BIENVENIDO/A A FAUNATICH!");
-        System.out.println("Este juego te ayudará a aprender sobre la fauna Chilena de una manera muy entretenida.\n");
+        System.out.println("Este juego te ayudará a aprender sobre la fauna chilena de una manera muy entretenida.\n");
     }
 
 
@@ -34,18 +34,18 @@ public class PortalDeInicio {
         }
     }
 
-    public static void crearCuenta(ConjuntoJugadores conjuntoJugadores){
+    public static void crearCuenta(ConjuntoJugadores conjuntoJugadores) {
         String nombre = pedirNombre();
         String rut = pedirRut();
         String contrasena = pedirContraseña();
         Jugador jugador = new Jugador(nombre, rut, contrasena);
-        if(conjuntoJugadores.agregarJugador(jugador)){
+
+        if (conjuntoJugadores.agregarJugador(jugador)) {
             DatosJugadores.registrarDatos(jugador, "C:\\Users\\npach\\IdeaProjects\\JuegoFaunatich\\conjuntoJugadores.txt");
-        }else {
+        } else {
             System.out.println("Esta cuenta ya existe");
 
         }
-
     }
 
     //TODO reparar logica, nunca llegará al ultimo return eso es bueno pero hay HORROR de logica
@@ -53,44 +53,36 @@ public class PortalDeInicio {
         Scanner teclado = new Scanner(System.in);
         System.out.print("Ingrese un nombre de jugador: ");
         String nombre = teclado.nextLine();
-        if(VerificadorNombre.validarNombre(nombre)){
+        if (VerificadorNombre.validarNombre(nombre)) {
             return nombre;
-        }else {
-            nombre = pedirNombre();
         }
-        return nombre;
+        return pedirNombre();
     }
 
-    private static String pedirRut(){
+    private static String pedirRut() {
         System.out.println("A continuación deberá ingresar su rut, sin puntos ni guión y con dígito verificador.");
         System.out.print("Ingrese su rut: ");
         String rut = ingresarDatos();
-        if(VerificadorRut.validarRut(rut) == true){
+        if (VerificadorRut.validarRut(rut)) {
             return rut;
-        }else{
-            System.out.print("Error, el rut no es válido, ingréselo nuavamente. \n");
-            rut = pedirRut();
         }
-
-        return rut;
+        System.out.print("Error, el rut no es válido, ingréselo nuavamente. \n");
+        return pedirRut();
     }
 
-    private static String pedirContraseña(){
+    private static String pedirContraseña() {
         System.out.println("A continuación deberá ingresar una contraseña, la cual deberá tener letras y números y debe tener por lo menos 5 caracteres y máximo 10.");
         System.out.print("Ingrese una contraseña: ");
         String contrasena = ingresarDatos();
-        VerificadorContraseña.verificarContraseña(contrasena);
-        if(VerificadorContraseña.verificarContraseña(contrasena) == true){
-            return contrasena;
-        }else{
-            System.out.println("Error, la contraseña no es válida, inténtelo nuevamente. ");
-            contrasena = pedirContraseña();
-        }
 
-        return contrasena;
+        if (VerificadorContraseña.verificarContraseña(contrasena)) {
+            return contrasena;
+        }
+        System.out.println("Error, la contraseña no es válida, inténtelo nuevamente. ");
+        return pedirContraseña();
     }
 
-    private static String ingresarDatos(){
+    private static String ingresarDatos() {
         Scanner teclado = new Scanner(System.in);
         String ingreso = teclado.nextLine();
         return ingreso;
@@ -99,24 +91,25 @@ public class PortalDeInicio {
     private static void iniciarSesion(ConjuntoJugadores conjuntoJugadores) { //borré el throw considerar para futuros errores
         String rut = pedirRut();
         String contraseña = pedirContraseña();
-        try{
+        try {
             var jugadorRegistrado = conjuntoJugadores.buscarJugadorPorRut(rut);
-            if (jugadorRegistrado.getContraseña().equals(contraseña)){
-                System.out.println("\nHola "+jugadorRegistrado.getNombre());
+
+            if (jugadorRegistrado.getContrasenia().equals(contraseña)) {
+                System.out.println("\nHola " + jugadorRegistrado.getNombre());
                 MenuJuego.mostrarMenu(jugadorRegistrado);
                 //TODO agregar metodo que lleve al juego
-            }else {
+            } else {
                 System.out.println("Contraseña incorrecta intente iniciar sesion nuevamente");
                 iniciarSesion(conjuntoJugadores);
             }
-        }catch (Exception JugadorNoEncontradoException){
+        } catch (Exception JugadorNoEncontradoException) {
             System.out.println("No existe un usuario registrado con este rut, intente nuevamente");
             iniciarSesion(conjuntoJugadores);
         }
 
         //rut esta registrado
-            //contraseña correcta
-            //contraseña incorrecta
+        //contraseña correcta
+        //contraseña incorrecta
         //rut no esta registrado
     }
 

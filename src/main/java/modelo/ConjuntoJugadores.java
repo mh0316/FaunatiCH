@@ -25,13 +25,16 @@ public class ConjuntoJugadores {
     }
 
     private boolean jugadorExiste(String rut) {
-        for (Jugador j: this.jugadores) {
-            if(j.getRut().equals(rut)) {
-                return true;
-            }
-        }
 
-        return false;
+        //for (Jugador j: this.jugadores) {
+        //    if(j.getRut().equals(rut)) {
+        //        return true;
+        //    }
+        //}
+        //return false;
+
+        return jugadores.stream().anyMatch(jugador -> jugador.getRut().equals(rut));
+
     }
 
     public List<Jugador> getJugadores() {
@@ -39,12 +42,20 @@ public class ConjuntoJugadores {
     }
 
     public Jugador buscarJugadorPorRut(String rut) throws JugadorNoEncontradoException {
-        for (Jugador j : this.jugadores) {
-            if (j.getRut().equals(rut)) {
-                return j;
-            }
+
+        //for (Jugador j : this.jugadores) {
+        //    if (j.getRut().equals(rut)) {
+        //        return j;
+        //    }
+        //}
+        //throw new JugadorNoEncontradoException();
+
+        if(!jugadorExiste(rut)) {
+            throw new JugadorNoEncontradoException(rut);
         }
-        throw new JugadorNoEncontradoException();
+
+        return jugadores.stream().filter(jugador -> jugador.getRut().equals(rut))
+                .findFirst().get();
     }
 
     //Verificar si será

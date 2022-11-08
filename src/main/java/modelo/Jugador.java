@@ -3,15 +3,15 @@ package modelo;
 import java.util.ArrayList;
 
 public class Jugador {
-    private ArrayList<Animal> listaAnimal;
+    private ArrayList<Animal> animales;
     private String nombre;
     private String rut;
-    private String contraseña;
+    private String contrasenia;
 
-    public Jugador(String nombre, String rut, String contraseña) {
+    public Jugador(String nombre, String rut, String contrasenia) {
         this.nombre = nombre;
         this.rut = rut;
-        this.contraseña = contraseña;
+        this.contrasenia = contrasenia;
     }
 
 
@@ -23,19 +23,19 @@ public class Jugador {
         return rut;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
     public String toString() {
-        return nombre +";"+rut+";"+contraseña;
+        return nombre +";"+rut+";"+ contrasenia;
     }
 
     public void agregarPokemon(Animal animal){
-        listaAnimal.add(animal);
+        animales.add(animal);
     }
 
-    public void agregarPokemon(ArrayList<Animal> listaAnimal){
-        this.listaAnimal = listaAnimal;
+    public void agregarPokemones(ArrayList<Animal> listaAnimal){
+        this.animales = listaAnimal;
     }
 }
