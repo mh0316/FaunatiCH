@@ -16,6 +16,7 @@ public class DatosJugadores {
 
             while ((textoArchivo = memoria.readLine()) != null) {
                 String[] data = textoArchivo.split(";");
+                //TODO incluir agregar animales a la lista de animales del usuario
                 conjuntoJugadores.getJugadores().add(new Jugador(data[0], data[1], data[2]));
             }
         } catch (Exception e) {

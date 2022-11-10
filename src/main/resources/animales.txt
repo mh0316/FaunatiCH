@@ -1,0 +1,4 @@
+id;nombreDelAnimal;vida;ataque1,ataque2;ataque3
+quiltro;35;5;4;2
+alpaca;40;4;3;1
+condor;30;4;3;6
