@@ -41,6 +41,7 @@ public class PortalDeInicio {
         Jugador jugador = new Jugador(nombre, rut, contrasena);
 
         if (conjuntoJugadores.agregarJugador(jugador)) {
+            //TODO agregar direccion relativa como en linux ./carpeta
             DatosJugadores.registrarDatos(jugador, "C:\\Users\\npach\\IdeaProjects\\JuegoFaunatich\\conjuntoJugadores.txt");
         } else {
             System.out.println("Esta cuenta ya existe");
@@ -48,7 +49,7 @@ public class PortalDeInicio {
         }
     }
 
-    //TODO reparar logica, nunca llegará al ultimo return eso es bueno pero hay HORROR de logica
+
     private static String pedirNombre() {
         Scanner teclado = new Scanner(System.in);
         System.out.print("Ingrese un nombre de jugador: ");
