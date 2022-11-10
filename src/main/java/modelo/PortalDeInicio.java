@@ -1,7 +1,7 @@
 package modelo;
 
 import dato.DatosJugadores;
-import dato.VerificadorContraseña;
+import dato.VerificadorContrasenia;
 import dato.VerificadorNombre;
 import dato.VerificadorRut;
 
@@ -75,7 +75,7 @@ public class PortalDeInicio {
         System.out.print("Ingrese una contraseña: ");
         String contrasena = ingresarDatos();
 
-        if (VerificadorContraseña.verificarContraseña(contrasena)) {
+        if (VerificadorContrasenia.verificarContrasenia(contrasena)) {
             return contrasena;
         }
         System.out.println("Error, la contraseña no es válida, inténtelo nuevamente. ");

@@ -31,17 +31,17 @@ public class DatosJugadores {
                 file.createNewFile();
                 lineaVacia = true;
             }
-            FileWriter fw = new FileWriter(file, true); //este true es el que permite anxar contenido al archivo en vez de borrar lo que existe
+            FileWriter fw = new FileWriter(file, true); // true permite anxar contenido al archivo en vez de borrar lo que existe
             BufferedWriter bw = new BufferedWriter(fw);
 
             if (!lineaVacia) {
                 bw.newLine();
             }
-            bw.write(objeto.toString()); //bw.write(objeto.toString());
+            bw.write(objeto.toString());
             bw.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Error al ingresar datos de estudiante");
+            System.out.println("Error al ingresar datos del jugador");
             return false;
         }
     }
