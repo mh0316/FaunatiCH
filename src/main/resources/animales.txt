@@ -1,4 +1,5 @@
-id;nombreDelAnimal;vida;ataque1,ataque2;ataque3
-quiltro;35;5;4;2
-alpaca;40;4;3;1
-condor;30;4;3;6
+1;quiltro;35;5;4;2
+2;alpaca;40;4;3;1
+3;condor;30;4;3;6
+4;chinchilla;15;4;3;2
+5;zorro;3;2;3;2

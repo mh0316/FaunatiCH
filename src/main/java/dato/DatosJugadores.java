@@ -1,9 +1,11 @@
 package dato;
 
+import modelo.Animal;
 import modelo.ConjuntoJugadores;
 import modelo.Jugador;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class DatosJugadores {
     public static void leerArchivoJugador(ConjuntoJugadores conjuntoJugadores, String direccionArchivo) {
@@ -16,15 +18,37 @@ public class DatosJugadores {
 
             while ((textoArchivo = memoria.readLine()) != null) {
                 String[] data = textoArchivo.split(";");
+                ArrayList<Animal> animalesDelJugador = new ArrayList<>();
+                ArrayList<Animal> animalesDelJuego = new ArrayList<>();
                 //TODO incluir agregar animales a la lista de animales del usuario
-                conjuntoJugadores.getJugadores().add(new Jugador(data[0], data[1], data[2]));
+                //quitar este //cuando pruebe escribir
+                //conjuntoJugadores.getJugadores().add(new Jugador(data[0], data[1], data[2]));
+
+                DatosAnimales.leerArchivoAnimales(animalesDelJuego, "./src/main/resources/animales.txt");
+                System.out.println(animalesDelJuego.get(1).getNombre());
+                convetirNombreAAnimal(data, animalesDelJugador, animalesDelJuego);
+
+                conjuntoJugadores.getJugadores().add(new Jugador(data[0], data[1], data[2], animalesDelJugador));
             }
         } catch (Exception e) {
             System.out.println("Documento no disponible");
         }
     }
 
-    public static boolean registrarDatos(Jugador objeto, String direccionArchivo) {
+    private static ArrayList<Animal> convetirNombreAAnimal(String[] data, ArrayList<Animal> animalesDelJugador, ArrayList<Animal> animalesDelJuego) {
+        System.out.println("................................................");
+        for (int i = 3; i < data.length; i++) {
+            for (int j = 0; j < animalesDelJuego.size(); j++) {
+                if (Integer.parseInt(data[i]) == Integer.parseInt(animalesDelJuego.get(j).getId())){
+                    animalesDelJugador.add(animalesDelJuego.get(j));
+                    System.out.print(j);
+                }
+            }
+        }
+        return animalesDelJugador;
+    }
+
+    public static boolean registrarDatos(Jugador jugador, String direccionArchivo) {
         boolean lineaVacia = false;
         try {
             File file = new File(direccionArchivo);
@@ -38,7 +62,7 @@ public class DatosJugadores {
             if (!lineaVacia) {
                 bw.newLine();
             }
-            bw.write(objeto.toString());
+            bw.write(jugador.toString());
             bw.close();
             return true;
         } catch (Exception e) {
@@ -46,6 +70,13 @@ public class DatosJugadores {
             return false;
         }
     }
+
+    public static void main(String[] args) {
+        ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
+        DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
+        System.out.println(conjuntoJugadores.getJugadores().get(1).getAnimales());
+    }
+
 
 
 }

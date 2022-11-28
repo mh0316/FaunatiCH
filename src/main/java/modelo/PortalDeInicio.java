@@ -5,6 +5,7 @@ import dato.VerificadorContrasenia;
 import dato.VerificadorNombre;
 import dato.VerificadorRut;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PortalDeInicio {
@@ -38,7 +39,9 @@ public class PortalDeInicio {
         String nombre = pedirNombre();
         String rut = pedirRut();
         String contrasena = pedirContraseña();
-        Jugador jugador = new Jugador(nombre, rut, contrasena);
+        var animalinicial = Animal.crearAnimalInicial();
+        var animales = new ArrayList<Animal>(); animales.add(animalinicial);
+        Jugador jugador = new Jugador(nombre, rut, contrasena, animales);
 
         if (conjuntoJugadores.agregarJugador(jugador)) {
             //TODO agregar direccion relativa como en linux ./carpeta
