@@ -32,9 +32,7 @@ public class Jugador {
         return contrasenia;
     }
 
-    //public String toString() {
-        //return nombre +";"+rut+";"+ contrasenia;
-    //}
+
 
 
     public ArrayList<Animal> getAnimales() {
@@ -75,4 +73,5 @@ public class Jugador {
         System.out.println(animalesArrayList.toString().
                 replace("[","").replace("]","").replace(",",";").replace(" ",""));
     }
+
 }

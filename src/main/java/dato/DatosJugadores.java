@@ -20,12 +20,9 @@ public class DatosJugadores {
                 String[] data = textoArchivo.split(";");
                 ArrayList<Animal> animalesDelJugador = new ArrayList<>();
                 ArrayList<Animal> animalesDelJuego = new ArrayList<>();
-                //TODO incluir agregar animales a la lista de animales del usuario
-                //quitar este //cuando pruebe escribir
-                //conjuntoJugadores.getJugadores().add(new Jugador(data[0], data[1], data[2]));
 
                 DatosAnimales.leerArchivoAnimales(animalesDelJuego, "./src/main/resources/animales.txt");
-                System.out.println(animalesDelJuego.get(1).getNombre());
+
                 convetirNombreAAnimal(data, animalesDelJugador, animalesDelJuego);
 
                 conjuntoJugadores.getJugadores().add(new Jugador(data[0], data[1], data[2], animalesDelJugador));
@@ -41,7 +38,7 @@ public class DatosJugadores {
             for (int j = 0; j < animalesDelJuego.size(); j++) {
                 if (Integer.parseInt(data[i]) == Integer.parseInt(animalesDelJuego.get(j).getId())){
                     animalesDelJugador.add(animalesDelJuego.get(j));
-                    System.out.print(j);
+                    System.out.println("Se agregó: "+animalesDelJuego.get(j).getNombre()+ " Id: "+animalesDelJuego.get(j).getId());
                 }
             }
         }
@@ -74,8 +71,13 @@ public class DatosJugadores {
     public static void main(String[] args) {
         ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
         DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
-        System.out.println(conjuntoJugadores.getJugadores().get(1).getAnimales());
+        System.out.println(conjuntoJugadores.getJugadores().toString());
+        /*var animalesDelJuego = new ArrayList<Animal>();
+        DatosAnimales.leerArchivoAnimales(animalesDelJuego, "src/main/resources/conjuntoJugadores.txt");*/
+
     }
+
+
 
 
 

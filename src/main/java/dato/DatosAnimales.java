@@ -36,14 +36,31 @@ public class DatosAnimales {
         var id_animales = new ArrayList<String>();
         id_animales.add("1");id_animales.add("2");id_animales.add("4");
 
-        for (int i = 0; i < id_animales.size(); i++) {
+        /*for (int i = 0; i < id_animales.size(); i++) {
             for (int j = 0; j < animalesDelJuego.size(); j++) {
                 if(Integer.parseInt(animalesDelJuego.get(i).getId()) == Integer.parseInt(id_animales.get(i))){
                     animalesDelJugador.add(animalesDelJuego.get(j));
                     System.out.println("Se agregó: "+animalesDelJugador.get(j).getNombre() + " id: "+animalesDelJugador.get(j).getId());
                 }
             }
+        }*/
+
+        for (int i = 0; i < id_animales.size(); i++) {
+            for (int j = 0; j < animalesDelJuego.size(); j++) {
+                if ((Integer.parseInt(id_animales.get(i))) == (Integer.parseInt(animalesDelJuego.get(j).getId()))){
+                    animalesDelJugador.add(animalesDelJuego.get(j));
+                    System.out.println("Se agregó: "+animalesDelJuego.get(j).getNombre()+ " Id: "+animalesDelJuego.get(j).getId());
+                }
+            }
+        }
+
+        System.out.println("AHORA LA LISTA EFECTIVA DE ANIMALES DEL JUGADOR");
+        for (Animal animal: animalesDelJugador) {
+            System.out.println(animal);
         }
     }
+    
+    
+    
 
 }
