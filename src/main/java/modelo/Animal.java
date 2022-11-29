@@ -65,8 +65,10 @@ public class Animal {
         return new Animal("1","quiltro","666","555","444","333");
     }
 
-    @Override
-    public String toString() {
-        return nombre;
+
+    public String toString_Id() {
+        return id;
     }
+
+
 }

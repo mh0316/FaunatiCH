@@ -1,5 +1,5 @@
 ABC;123456;GHDSFA;5
 nicolas;210241507;nicopass;1;2;4;5
-marcelo;104553559;marcepass;1
+marcelo;104553559;marcepass;1;3
 hugo;119088143;hugopass;2
 coni;221171233;conipass;3

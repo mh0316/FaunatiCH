@@ -74,6 +74,7 @@ public class DatosJugadores {
         System.out.println(conjuntoJugadores.getJugadores().toString());
         /*var animalesDelJuego = new ArrayList<Animal>();
         DatosAnimales.leerArchivoAnimales(animalesDelJuego, "src/main/resources/conjuntoJugadores.txt");*/
+        System.out.println(conjuntoJugadores.getJugadores().get(2).toString());
 
     }
 

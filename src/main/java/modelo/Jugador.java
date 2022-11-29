@@ -41,14 +41,26 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return nombre+";"+rut+";"+contrasenia+";"+animales.toString();
+        return nombre+";"+rut+";"+contrasenia+";"+ obtenerIdsAnimales(animales);
     }
 
-    public void agregarPokemon(Animal animal){
+    public String obtenerIdsAnimales(ArrayList<Animal> animales) {
+        String ids_Animales = "";
+        for (int i = 0; i < this.animales.size()-1 ; i++) {
+            if (i != 0){
+                ids_Animales.concat(";" + this.animales.get(i).getId());
+            }else {
+                ids_Animales.concat(this.animales.get(i).getId());
+            }
+        }
+        return ids_Animales;
+    }
+
+    public void agregarAnimal(Animal animal){
         animales.add(animal);
     }
 
-    public void agregarPokemones(ArrayList<Animal> listaAnimal){
+    public void agregarAnimal(ArrayList<Animal> listaAnimal){
         this.animales = listaAnimal;
     }
 
@@ -72,6 +84,8 @@ public class Jugador {
         System.out.println("-------------------");
         System.out.println(animalesArrayList.toString().
                 replace("[","").replace("]","").replace(",",";").replace(" ",""));
+        System.out.println("......");
+        System.out.println(animalesArrayList.toString());
     }
 
 }
