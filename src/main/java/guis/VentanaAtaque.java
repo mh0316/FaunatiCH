@@ -5,7 +5,6 @@ import javax.swing.*;
 public class VentanaAtaque extends JFrame {
     FondoVentanaAtaque fondoAtaque = new FondoVentanaAtaque();
     private JPanel panel;
-
     public VentanaAtaque(){
         setSize(700,500);
         setLocationRelativeTo(null);
