@@ -23,7 +23,7 @@ public class DatosJugadores {
 
                 DatosAnimales.leerArchivoAnimales(animalesDelJuego, "./src/main/resources/animales.txt");
 
-                convetirNombreAAnimal(data, animalesDelJugador, animalesDelJuego);
+                convetirIdAAnimal(data, animalesDelJugador, animalesDelJuego);
 
                 conjuntoJugadores.getJugadores().add(new Jugador(data[0], data[1], data[2], animalesDelJugador));
             }
@@ -32,7 +32,7 @@ public class DatosJugadores {
         }
     }
 
-    private static ArrayList<Animal> convetirNombreAAnimal(String[] data, ArrayList<Animal> animalesDelJugador, ArrayList<Animal> animalesDelJuego) {
+    private static ArrayList<Animal> convetirIdAAnimal(String[] data, ArrayList<Animal> animalesDelJugador, ArrayList<Animal> animalesDelJuego) {
         System.out.println("................................................");
         for (int i = 3; i < data.length; i++) {
             for (int j = 0; j < animalesDelJuego.size(); j++) {
@@ -60,7 +60,7 @@ public class DatosJugadores {
                 bw.newLine();
             }
             bw.write(jugador.toString());
-            bw.close();
+            bw.close(); //sino cierro jamás será escrito en el txt
             return true;
         } catch (Exception e) {
             System.out.println("Error al ingresar datos del jugador");
@@ -72,9 +72,7 @@ public class DatosJugadores {
         ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
         DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
         System.out.println(conjuntoJugadores.getJugadores().toString());
-        /*var animalesDelJuego = new ArrayList<Animal>();
-        DatosAnimales.leerArchivoAnimales(animalesDelJuego, "src/main/resources/conjuntoJugadores.txt");*/
-        System.out.println(conjuntoJugadores.getJugadores().get(2).toString());
+        System.out.println(conjuntoJugadores.getJugadores().get(1).toString());
 
     }
 

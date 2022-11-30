@@ -41,19 +41,20 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return nombre+";"+rut+";"+contrasenia+";"+ obtenerIdsAnimales(animales);
+        return nombre+";"+rut+";"+contrasenia+";"+ obtenerIdsAnimales();
     }
 
-    public String obtenerIdsAnimales(ArrayList<Animal> animales) {
-        String ids_Animales = "";
-        for (int i = 0; i < this.animales.size()-1 ; i++) {
-            if (i != 0){
-                ids_Animales.concat(";" + this.animales.get(i).getId());
+    private String obtenerIdsAnimales() {
+        StringBuilder ids_Animales = new StringBuilder();
+        for (int i = 0; i < this.animales.size() ; i++) {
+            if (i != this.animales.size() - 1 ){
+                ids_Animales = new StringBuilder(ids_Animales + this.animales.get(i).getId()+";");
+
             }else {
-                ids_Animales.concat(this.animales.get(i).getId());
+                ids_Animales = new StringBuilder(ids_Animales + this.animales.get(i).getId());
             }
         }
-        return ids_Animales;
+        return String.valueOf(ids_Animales);
     }
 
     public void agregarAnimal(Animal animal){
