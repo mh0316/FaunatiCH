@@ -103,7 +103,7 @@ public class PortalDeInicio {
             var jugadorRegistrado = conjuntoJugadores.buscarJugadorPorRut(rut);
             if (jugadorRegistrado.getContraseña().equals(contraseña)){
                 System.out.println("Bienvenido "+jugadorRegistrado.getNombre());
-                MenuJuego.mostrarMenu(jugadorRegistrado);
+                //MenuJuego.mostrarMenu(jugadorRegistrado);
                 //TODO agregar metodo que lleve al juego
             }else {
                 System.out.println("Contraseña incorrecta intente iniciar sesion nuevamente");
