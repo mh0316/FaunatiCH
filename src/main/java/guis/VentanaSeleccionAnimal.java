@@ -1,5 +1,7 @@
 package guis;
 
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,19 +10,21 @@ import java.io.IOException;
 
 public class VentanaSeleccionAnimal extends JFrame implements ActionListener {
     FondoVentanaSeleccionAnimal fondo = new FondoVentanaSeleccionAnimal();
+    Jugador jugador;
     private JComboBox botonListaAnimales;
     private JButton botonVolver;
     private JButton botonAceptar;
     //private ImageIcon imagen;
     private JPanel panel;
 
-    public VentanaSeleccionAnimal(){
+    public VentanaSeleccionAnimal(Jugador jugador){
+        this.jugador = jugador;
         this.setTitle("Selección de Animal");
-        setSize(700,500);
-        setLocationRelativeTo(null);
+        this.setSize(700,500);
+        this.setLocationRelativeTo(null);
         this.setLayout(null);
-        //this.getContentPane().add(fondo);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.getContentPane().add(fondo);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         agregarPartes();
     }
@@ -62,14 +66,14 @@ public class VentanaSeleccionAnimal extends JFrame implements ActionListener {
         if(e.getSource() == botonVolver){
             this.dispose();
             try {
-                new VentanaSeleccionDeZona().setVisible(true);
+                new VentanaSeleccionDeZona(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         } else if(e.getSource() == botonAceptar) {
             this.dispose();
             try {
-                new VentanaSeleccionDeZona().setVisible(true);
+                new VentanaSeleccionDeZona(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

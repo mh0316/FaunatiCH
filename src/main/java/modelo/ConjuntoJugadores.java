@@ -1,6 +1,6 @@
 package modelo;
 
-import dato.VerificadorRut;
+import utils.VerificadorRut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ConjuntoJugadores {
         return false;
     }
 
-    private boolean jugadorExiste(String rut) {
+    public boolean jugadorExiste(String rut) {
         for (Jugador j: this.jugadores) {
             if(j.getRut().equals(rut)) {
                 return true;

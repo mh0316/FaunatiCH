@@ -1,5 +1,7 @@
 package guis;
 
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,7 @@ import java.io.IOException;
 
 public class VentanaGanarVida extends JFrame implements ActionListener {
     FondoVentanaGanarVida fondo = new FondoVentanaGanarVida();
+    Jugador jugador;
     private JPanel panel;
     private JButton botonVolver;
     private JLabel pregunta;
@@ -18,7 +21,8 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
     private JButton botonAlternativaIncorrecta1;
     private JButton botonAlternativaIncorrecta2;
 
-    public VentanaGanarVida(){
+    public VentanaGanarVida(Jugador jugador){
+        this.jugador = jugador;
         this.setTitle("Preguntas para Ganar Vidas");
         this.setSize(700,500);
         this.setLocationRelativeTo(null);
@@ -95,7 +99,7 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaMenuPrincipal().setVisible(true);
+                new VentanaMenuPrincipal(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -105,7 +109,7 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
                     "", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             try {
-                new VentanaMenuPrincipal().setVisible(true);
+                new VentanaMenuPrincipal(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -114,7 +118,7 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
                     "", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             try {
-                new VentanaMenuPrincipal().setVisible(true);
+                new VentanaMenuPrincipal(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -123,7 +127,7 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
                     "", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             try {
-                new VentanaMenuPrincipal().setVisible(true);
+                new VentanaMenuPrincipal(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

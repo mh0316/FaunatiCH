@@ -1,5 +1,8 @@
 package guis;
 
+import modelo.ConjuntoJugadores;
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,13 +11,15 @@ import java.io.IOException;
 
 public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     FondoVentanaPrincipal fondo = new FondoVentanaPrincipal();
+    Jugador jugador;
     private JPanel panel;
     public JButton botonStart;
     public JButton botonEstadisticas;
     public JButton botonGanarVidas;
     public JButton botonSalir;
 
-    public VentanaMenuPrincipal() throws IOException {
+    public VentanaMenuPrincipal(Jugador jugador) throws IOException {
+        this.jugador = jugador;
         this.setTitle("Menú Principal");
         setSize(700,500);
         setLocationRelativeTo(null);
@@ -84,16 +89,16 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonStart){
             try {
-                new VentanaSeleccionDeZona().setVisible(true);
+                new VentanaSeleccionDeZona(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             this.dispose();
         } else if (e.getSource() == botonEstadisticas) {
-            new VentanaEstadisticas().setVisible(true);
+            new VentanaEstadisticas(jugador).setVisible(true);
             this.dispose();
         } else if (e.getSource() == botonGanarVidas) {
-            new VentanaGanarVida().setVisible(true);
+            new VentanaGanarVida(jugador).setVisible(true);
             this.dispose();
         }else if(e.getSource() == botonSalir) {
             if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea salir del juego?", "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {

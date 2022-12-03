@@ -40,7 +40,7 @@ public class DatosJugadores {
             bw.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Error al ingresar datos de estudiante");
+            System.out.println("Error al registrar los datos del usuario.");
             return false;
         }
     }

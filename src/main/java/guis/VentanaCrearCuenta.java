@@ -1,5 +1,7 @@
 package guis;
 
+import dato.DatosJugadores;
+import modelo.Jugador;
 import utils.VerificadorContrasena;
 import utils.VerificadorNombre;
 import utils.VerificadorRut;
@@ -164,12 +166,14 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
             limpiarCajasDeTexto();
 
         } else if(e.getSource() == botonRegistrar && VerificadorNombre.validarNombre(String.valueOf(cajaDeTextoNombre.getText()))
-                  && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
+                  && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContraseña(cajaDeTextoContrasena.getText())) {
+            DatosJugadores.registrarDatos(new Jugador(cajaDeTextoNombre.getText(),cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText()),
+                    "D:\\Marcelo 2022\\UFRO\\Ingeniería civil informática\\Segundo Semestre 2022\\Asignaturas\\Programación\\Programas IntelliJ\\FaunatiCH\\src\\conjuntoJugadores.txt");
             JOptionPane.showMessageDialog(this,"USUARIO REGISTRADO");
             this.dispose();
             new VentanaInicioDeSesion().setVisible(true);
         } else if(e.getSource() == botonRegistrar && (!VerificadorNombre.validarNombre(cajaDeTextoNombre.getText()) ||
-                !VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
+                !VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContraseña(cajaDeTextoContrasena.getText()))) {
             JOptionPane.showMessageDialog(this,"ERROR, ingrese los datos correctamente");
             limpiarCajasDeTexto();
         }

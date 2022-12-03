@@ -1,5 +1,7 @@
 package guis;
 
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,10 +10,12 @@ import java.io.IOException;
 
 public class VentanaEstadisticas extends JFrame implements ActionListener {
     FondoVentanaEstadisticas fondo = new FondoVentanaEstadisticas();
+    Jugador jugador;
     private JPanel panel;
     private JButton botonVolver;
 
-    public VentanaEstadisticas(){
+    public VentanaEstadisticas(Jugador jugador){
+        this.jugador = jugador;
         this.setTitle("Estadísticas");
         this.setSize(700,500);
         this.setLocationRelativeTo(null);
@@ -48,7 +52,7 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaMenuPrincipal().setVisible(true);
+                new VentanaMenuPrincipal(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -1,6 +1,7 @@
 package guis;
 
 import modelo.ConjuntoJugadores;
+import modelo.Jugador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,20 +11,21 @@ import java.io.IOException;
 
 public class VentanaSeleccionDeZona extends JFrame implements ActionListener {
     FondoVentanaSeleccionZona fondo = new FondoVentanaSeleccionZona();
+    Jugador jugador;
     public JPanel panel;
     private JButton botonZonaNorte;
     private JButton botonZonaCentro;
     private JButton botonZonaSur;
     private JButton botonVolver;
-    private ConjuntoJugadores jugador;
 
-    public VentanaSeleccionDeZona() throws IOException {
+    public VentanaSeleccionDeZona(Jugador jugador) throws IOException {
+        this.jugador = jugador;
         this.setTitle("Selección de Zonas");
-        setSize(700,500);
-        setLocationRelativeTo(null);
-        fondo.setLayout(null);
+        this.setSize(700,500);
+        this.setLocationRelativeTo(null);
+        this.fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         agregarPartes();
     }
@@ -84,24 +86,24 @@ public class VentanaSeleccionDeZona extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaMenuPrincipal().setVisible(true);
+                new VentanaMenuPrincipal(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             this.dispose();
         } else if (e.getSource() == botonZonaNorte) {
             try {
-                new VentanaAnimalesZonaNorte().setVisible(true);
+                new VentanaAnimalesZonaNorte(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             this.dispose();
         } else if (e.getSource() == botonZonaCentro){
-            new VentanaAnimalesZonaCentro().setVisible(true);
+            new VentanaAnimalesZonaCentro(jugador).setVisible(true);
             this.dispose();
         } else if (e.getSource() == botonZonaSur) {
             try {
-                new VentanaAnimalesZonaSur().setVisible(true);
+                new VentanaAnimalesZonaSur(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -1,9 +1,9 @@
 package modelo;
 
 import dato.DatosJugadores;
-import dato.VerificadorContraseña;
-import dato.VerificadorNombre;
-import dato.VerificadorRut;
+import utils.VerificadorContrasena;
+import utils.VerificadorNombre;
+import utils.VerificadorRut;
 
 import java.util.Scanner;
 
@@ -79,8 +79,8 @@ public class PortalDeInicio {
         System.out.println("A continuación deberá ingresar una contraseña, la cual deberá tener letras y números y debe tener por lo menos 5 caracteres y máximo 10.");
         System.out.print("Ingrese una contraseña: ");
         String contrasena = ingresarDatos();
-        VerificadorContraseña.verificarContraseña(contrasena);
-        if(VerificadorContraseña.verificarContraseña(contrasena) == true){
+        VerificadorContrasena.verificarContraseña(contrasena);
+        if(VerificadorContrasena.verificarContraseña(contrasena) == true){
             return contrasena;
         }else{
             System.out.println("Error, la contraseña no es válida, inténtelo nuevamente. ");
@@ -113,6 +113,23 @@ public class PortalDeInicio {
             System.out.println("No existe un usuario registrado con este rut, intente nuevamente");
             iniciarSesion(conjuntoJugadores);
         }
+    }
+
+    public static boolean validarContrasenaCorrecta(ConjuntoJugadores conjuntoJugadores, String rut, String contrasenia) { //borré el throw considerar para futuros errores
+        try{
+            var jugadorRegistrado = conjuntoJugadores.buscarJugadorPorRut(rut);
+            if (jugadorRegistrado.getContraseña().equals(contrasenia)){
+                //MenuJuego.mostrarMenu(jugadorRegistrado);
+                //TODO agregar metodo que lleve al juego
+                return true;
+            }else {
+                System.out.println("Contraseña incorrecta intente iniciar sesion nuevamente");
+                return false;
+            }
+        }catch (Exception JugadorNoEncontradoException){
+            System.out.println("No existe un usuario registrado con este rut, intente nuevamente");
+        }
+        return false;
     }
 
     private static int ingresar() {

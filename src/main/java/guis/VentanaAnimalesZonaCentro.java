@@ -1,5 +1,7 @@
 package guis;
 
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,18 +10,20 @@ import java.io.IOException;
 
 public class VentanaAnimalesZonaCentro extends JFrame implements ActionListener {
     FondoVentanaAnimalesZonaCentro fondo = new FondoVentanaAnimalesZonaCentro();
+    Jugador jugador;
     private JPanel panel;
     private JButton botonZorroCulpeo;
     private JButton botonAguilaMora;
     private JButton botonPuma;
     private JButton botonVolver;
 
-    public VentanaAnimalesZonaCentro(){
-        setSize(700,500);
-        setLocationRelativeTo(null);
-        fondo.setLayout(null);
+    public VentanaAnimalesZonaCentro(Jugador jugador){
+        this.jugador = jugador;
+        this.setSize(700,500);
+        this.setLocationRelativeTo(null);
+        this.fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         agregarPartes();
     }
@@ -76,13 +80,13 @@ public class VentanaAnimalesZonaCentro extends JFrame implements ActionListener 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaSeleccionDeZona().setVisible(true);
+                new VentanaSeleccionDeZona(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             this.dispose();
         } else if(e.getSource() == botonPuma) {
-            new VentanaCombate().setVisible(true);
+            new VentanaCombate(jugador).setVisible(true);
             this.dispose();
         }
     }

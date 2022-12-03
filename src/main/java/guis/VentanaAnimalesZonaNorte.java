@@ -1,5 +1,7 @@
 package guis;
 
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,7 @@ import java.io.IOException;
 
 public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
     FondoVentanaAnimalesZonaNorte fondo = new FondoVentanaAnimalesZonaNorte();
+    Jugador jugador;
     private JPanel panel;
     private JButton botonAlpaca;
     private JButton botonGuanaco;
@@ -15,12 +18,13 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
     private JButton botonLlama;
     private JButton botonVolver;
 
-    public VentanaAnimalesZonaNorte() throws IOException {
-        setSize(700,500);
-        setLocationRelativeTo(null);
-        fondo.setLayout(null);
+    public VentanaAnimalesZonaNorte(Jugador jugador) throws IOException {
+        this.jugador = jugador;
+        this.setSize(700,500);
+        this.setLocationRelativeTo(null);
+        this.fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         añadirPartes();
     }
@@ -86,7 +90,7 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaSeleccionDeZona().setVisible(true);
+                new VentanaSeleccionDeZona(jugador).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

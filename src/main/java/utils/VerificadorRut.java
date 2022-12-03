@@ -1,4 +1,4 @@
-package dato;
+package utils;
 
 public class VerificadorRut {
     private static String limpiarRut(String input) {
