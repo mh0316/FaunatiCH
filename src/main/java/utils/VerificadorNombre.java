@@ -1,4 +1,4 @@
-package dato;
+package utils;
 
 public class VerificadorNombre {
     public static boolean validarNombre(String nombre){

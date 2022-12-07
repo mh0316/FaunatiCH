@@ -1,4 +1,4 @@
-package dato;
+package utils;
 
 public class VerificadorRut {
 

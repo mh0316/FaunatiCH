@@ -1,6 +1,6 @@
 package modelo;
 
-import dato.VerificadorRut;
+import utils.VerificadorRut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +25,13 @@ public class ConjuntoJugadores {
     }
 
     public boolean jugadorExiste(String rut) {
+        for (Jugador j: this.jugadores) {
+            if(j.getRut().equals(rut)) {
+                return true;
+            }
+        }
 
-        //for (Jugador j: this.jugadores) {
-        //    if(j.getRut().equals(rut)) {
-        //        return true;
-        //    }
-        //}
-        //return false;
-
-        return jugadores.stream().anyMatch(jugador -> jugador.getRut().equals(rut));
-
+        return false;
     }
 
     public List<Jugador> getJugadores() {
@@ -42,43 +39,18 @@ public class ConjuntoJugadores {
     }
 
     public Jugador buscarJugadorPorRut(String rut) throws JugadorNoEncontradoException {
-
-        //for (Jugador j : this.jugadores) {
-        //    if (j.getRut().equals(rut)) {
-        //        return j;
-        //    }
-        //}
-        //throw new JugadorNoEncontradoException();
-
-        if(!jugadorExiste(rut)) {
-            throw new JugadorNoEncontradoException();
+        for (Jugador j : this.jugadores) {
+            if (j.getRut().equals(rut)) {
+                return j;
+            }
         }
-
-        return jugadores.stream().filter(jugador -> jugador.getRut().equals(rut))
-                .findFirst().get();
+        throw new JugadorNoEncontradoException();
     }
-
-   public int buscarPosicionJugador(String rut) throws JugadorNoEncontradoException {
-       for (int i = 0; i < this.jugadores.size(); i++) {
-           if (this.jugadores.get(i).getRut().equals(rut)){
-               return i;
-           }
-       }
-       throw new JugadorNoEncontradoException();
-   }
 
     //Verificar si será
     public boolean esContrasenaCorrecta(){
         return true;
     }
-
-
-    public void actualizarDatosJugador(Jugador jugador) throws JugadorNoEncontradoException {
-        int posicion = buscarPosicionJugador(jugador.getRut());
-        this.jugadores.remove(posicion);
-        this.jugadores.add(posicion, jugador);
-    }
-
 
 
 

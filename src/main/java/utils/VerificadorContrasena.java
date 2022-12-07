@@ -1,12 +1,6 @@
-package dato;
+package utils;
 
-public class VerificadorContraseña {
-    public static void main(String[] args) {
-        System.out.println(esAlfaNumerico("kjhdhskjhsk"));
-        System.out.println(esAlfaNumerico("122438743298234"));
-
-    }
-
+public class VerificadorContrasena {
     public static boolean verificarContraseña(String contrasena){
         if(esAlfaNumerico(contrasena) && !esEspacioVacio(contrasena) && esLongitudCorrecta(contrasena)){
             return true;
