@@ -1,7 +1,7 @@
 package utils;
 
 public class VerificadorContrasena {
-    public static boolean verificarContraseña(String contrasena){
+    public static boolean verificarContrasena(String contrasena){
         if(esAlfaNumerico(contrasena) && !esEspacioVacio(contrasena) && esLongitudCorrecta(contrasena)){
             return true;
         }else {

@@ -22,6 +22,8 @@ public class Jugador {
         this.animales = animales;
     }
 
+
+
     public String getNombre() {
         return nombre;
     }

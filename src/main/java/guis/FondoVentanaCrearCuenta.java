@@ -10,7 +10,7 @@ import java.io.IOException;
 public class FondoVentanaCrearCuenta extends JPanel {
     @Override
     public void paint (Graphics g){
-        File archivo = new File("D:\\Marcelo 2022\\UFRO\\Ingeniería civil informática\\Segundo Semestre 2022\\Asignaturas\\Programación\\Imágenes proyecto grupal\\Fondo ventana crear cuenta.jpeg");
+        File archivo = new File("./src/main/resources/FondoVentanaCrearCuenta.jpeg");
         BufferedImage bufferedImage = null;
         try {
             bufferedImage = ImageIO.read((archivo));

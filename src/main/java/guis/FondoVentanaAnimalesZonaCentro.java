@@ -10,7 +10,7 @@ import java.io.IOException;
 public class FondoVentanaAnimalesZonaCentro extends JPanel{
     @Override
     public void paint (Graphics g){
-        File archivo = new File("D:\\Marcelo 2022\\UFRO\\Ingeniería civil informática\\Segundo Semestre 2022\\Asignaturas\\Programación\\Imágenes proyecto grupal\\Fondo Animales Zona Centro.jpeg");
+        File archivo = new File("./src/main/resources/FondoAnimalesZonaCentro.jpeg");
         BufferedImage bufferedImage = null;
         try {
             bufferedImage = ImageIO.read((archivo));

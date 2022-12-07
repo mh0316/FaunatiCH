@@ -102,7 +102,7 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
         }else if (e.getSource() == botonAceptar && cajasDeTextoVacias()){
             JOptionPane.showMessageDialog(this,"Por favor, no deje campos de texto vacíos");
             limpiarCajasDeTexto();
-        } else if(e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContraseña(cajaDeTextoContrasena.getText())) {
+        } else if(e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
             ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
             DatosJugadores.leerArchivoJugador(conjuntoJugadores,"D:\\Marcelo 2022\\UFRO\\Ingeniería civil informática\\Segundo Semestre 2022\\Asignaturas\\Programación\\Programas IntelliJ\\FaunatiCH\\src\\conjuntoJugadores.txt");
             PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores,cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText());
@@ -115,7 +115,7 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
             }
 
             this.dispose();
-        } else if(e.getSource() == botonAceptar && (!VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContraseña(cajaDeTextoContrasena.getText()))) {
+        } else if(e.getSource() == botonAceptar && (!VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
             JOptionPane.showMessageDialog(this,"ERROR, ingrese los datos correctamente");
             limpiarCajasDeTexto();
         } else if(e.getSource() == botonRegistrarse) {
