@@ -119,6 +119,15 @@ public class PortalDeInicio {
         //rut no esta registrado
     }
 
+    public static Jugador crearCuentaParaVentana(String  nombre, String rut, String contrasena) {
+
+        var animalinicial = Animal.crearAnimalInicial();
+        var animales = new ArrayList<Animal>(); animales.add(animalinicial);
+        var parcheCurita = "0";
+        return new Jugador(nombre, rut, contrasena, parcheCurita, animales);
+
+    }
+
     private static int ingresar() {
         Scanner teclado = new Scanner(System.in);
         int entrada;
