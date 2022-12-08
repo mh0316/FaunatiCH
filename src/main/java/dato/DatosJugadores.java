@@ -78,7 +78,7 @@ public class DatosJugadores {
 
 
             var conjuntoJugadores = new ConjuntoJugadores();
-            DatosJugadores.leerArchivoJugador(conjuntoJugadores, "src/main/resources/conjuntoJugadores.txt");
+            DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
 
             if (conjuntoJugadores.jugadorExiste(jugador.getRut())){
                 FileWriter fw = new FileWriter(file); // true permite anxar contenido al archivo en vez de borrar lo que existe
@@ -158,7 +158,7 @@ public class DatosJugadores {
 
     public static void main(String[] args) {
         ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
-        DatosJugadores.leerArchivoJugador(conjuntoJugadores, "C:\\Users\\npach\\IdeaProjects\\FaunatiCH\\src\\main\\resources\\conjuntoJugadores.txt");
+        DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
         conjuntoJugadores.getJugadores().get(1).setParcheCuritas("3");
         DatosJugadores.registrarDatos(conjuntoJugadores.getJugadores().get(1), "./src/main/resources/conjuntoJugadores.txt");
     }

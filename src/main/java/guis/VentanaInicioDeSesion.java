@@ -104,7 +104,7 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
             limpiarCajasDeTexto();
         } else if(e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
             ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
-            DatosJugadores.leerArchivoJugador(conjuntoJugadores,"D:\\Marcelo 2022\\UFRO\\Ingeniería civil informática\\Segundo Semestre 2022\\Asignaturas\\Programación\\Programas IntelliJ\\FaunatiCH\\src\\conjuntoJugadores.txt");
+            DatosJugadores.leerArchivoJugador(conjuntoJugadores,"./src/main/resources/conjuntoJugadores.txt");
             PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores,cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText());
             try {
                 var jugador = conjuntoJugadores.buscarJugadorPorRut(cajaDeTextoRut.getText());

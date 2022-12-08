@@ -1,6 +1,5 @@
 package guis;
 
-import modelo.ConjuntoJugadores;
 import modelo.Jugador;
 
 import javax.swing.*;
@@ -17,6 +16,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     public JButton botonEstadisticas;
     public JButton botonGanarVidas;
     public JButton botonSalir;
+    private JLabel etiquetaJugador;
 
     public VentanaMenuPrincipal(Jugador jugador) throws IOException {
         this.jugador = jugador;
@@ -31,18 +31,20 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     }
 
     private void agregarPartes(){
-        añadirBotones(fondo);
-        añadirPanel();
+        agregarBotones(fondo);
+        agregarPanel();
+        agregarEtiqueta();
+
     }
 
-    private void añadirPanel(){
+    private void agregarPanel(){
         panel = new JPanel();
         panel.setLayout(null);
         //panel.setBackground(Color.BLUE);
         //this.getContentPane().add(panel);
     }
 
-    public void añadirBotones(FondoVentanaPrincipal fondo){
+    public void agregarBotones(FondoVentanaPrincipal fondo){
         botonStart = new JButton();
         botonStart.setText("START");
         botonStart.setBounds(290,220,130,50);
@@ -85,6 +87,15 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
         botonSalir.addActionListener(this);
     }
 
+    public void agregarEtiqueta(){
+        etiquetaJugador = new JLabel();
+        etiquetaJugador.setText(jugador.getNombre());
+        etiquetaJugador.setBounds(30,30,100,30);
+        etiquetaJugador.setFont(new Font("arial",Font.BOLD,20));
+        etiquetaJugador.setForeground(Color.WHITE);
+        fondo.add(etiquetaJugador);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonStart){
@@ -101,9 +112,8 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
             new VentanaGanarVida(jugador).setVisible(true);
             this.dispose();
         }else if(e.getSource() == botonSalir) {
-            if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea salir del juego?", "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {
-                System.exit(0);
-            }
+            if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea salir del juego?",
+                    "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {System.exit(0);}
         }
     }
 }

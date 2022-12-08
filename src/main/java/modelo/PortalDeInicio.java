@@ -40,7 +40,8 @@ public class PortalDeInicio {
         String rut = pedirRut();
         String contrasena = pedirContraseña();
         var animalinicial = Animal.crearAnimalInicial();
-        var animales = new ArrayList<Animal>(); animales.add(animalinicial);
+        var animales = new ArrayList<Animal>();
+        animales.add(animalinicial);
         var parcheCurita = "0";
         Jugador jugador = new Jugador(nombre, rut, contrasena, parcheCurita, animales);
 
@@ -52,6 +53,16 @@ public class PortalDeInicio {
             System.out.println("Esta cuenta ya existe");
 
         }
+    }
+
+    public static Jugador crearCuentaParaVentana(String nombre, String rut, String contrasena) {
+
+        var animalinicial = Animal.crearAnimalInicial();
+        var animales = new ArrayList<Animal>();
+        animales.add(animalinicial);
+        var parcheCurita = "0";
+        return new Jugador(nombre, rut, contrasena, parcheCurita, animales);
+
     }
 
 
@@ -119,15 +130,6 @@ public class PortalDeInicio {
         //rut no esta registrado
     }
 
-    public static Jugador crearCuentaParaVentana(String  nombre, String rut, String contrasena) {
-
-        var animalinicial = Animal.crearAnimalInicial();
-        var animales = new ArrayList<Animal>(); animales.add(animalinicial);
-        var parcheCurita = "0";
-        return new Jugador(nombre, rut, contrasena, parcheCurita, animales);
-
-    }
-
     private static int ingresar() {
         Scanner teclado = new Scanner(System.in);
         int entrada;
@@ -141,5 +143,23 @@ public class PortalDeInicio {
             }
         } while (true);
         return entrada;
+    }
+
+    public static boolean validarContrasenaCorrecta(ConjuntoJugadores conjuntoJugadores, String rut, String contrasenia) { //borré el throw considerar para futuros errores
+        try {
+            var jugadorRegistrado = conjuntoJugadores.buscarJugadorPorRut(rut);
+            if (jugadorRegistrado.getContrasenia().equals(contrasenia)) {
+                //MenuJuego.mostrarMenu(jugadorRegistrado);
+                //TODO agregar metodo que lleve al juego
+                return true;
+            } else {
+                System.out.println("Contraseña incorrecta intente iniciar sesion nuevamente");
+                return false;
+            }
+        } catch (Exception JugadorNoEncontradoException) {
+            System.out.println("No existe un usuario registrado con este rut, intente nuevamente");
+        }
+        return false;
+
     }
 }
