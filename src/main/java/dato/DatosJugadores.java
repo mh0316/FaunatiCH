@@ -156,12 +156,12 @@ public class DatosJugadores {
   }
 */
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
         DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
-        conjuntoJugadores.getJugadores().get(1).setParcheCuritas("3");
+        conjuntoJugadores.getJugadores().get(1).setParcheCuritas("1000");
         DatosJugadores.registrarDatos(conjuntoJugadores.getJugadores().get(1), "./src/main/resources/conjuntoJugadores.txt");
-    }
+    }*/
 
 
 

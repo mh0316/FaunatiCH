@@ -150,6 +150,7 @@ public class PortalDeInicio {
             var jugadorRegistrado = conjuntoJugadores.buscarJugadorPorRut(rut);
             if (jugadorRegistrado.getContrasenia().equals(contrasenia)) {
                 //MenuJuego.mostrarMenu(jugadorRegistrado);
+                System.out.println(contrasenia);
                 //TODO agregar metodo que lleve al juego
                 return true;
             } else {

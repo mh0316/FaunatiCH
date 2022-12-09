@@ -170,8 +170,10 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
                   && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
             DatosJugadores.registrarDatos(PortalDeInicio.crearCuentaParaVentana(cajaDeTextoNombre.getText(),
                     cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt");
+            System.out.println(DatosJugadores.registrarDatos(PortalDeInicio.crearCuentaParaVentana(cajaDeTextoNombre.getText(),
+                    cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt"));
 
-            JOptionPane.showMessageDialog(this,"USUARIO REGISTRADO");
+            JOptionPane.showMessageDialog(this,"USUARIO REGISTRADO :)");
             this.dispose();
             new VentanaInicioDeSesion().setVisible(true);
         } else if(e.getSource() == botonRegistrar && (!VerificadorNombre.validarNombre(cajaDeTextoNombre.getText()) ||

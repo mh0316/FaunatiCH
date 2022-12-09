@@ -25,7 +25,7 @@ public class DatosAnimales {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         var animalesDelJuego = new ArrayList<Animal>();
         var animalesDelJugador = new ArrayList<Animal>();
         DatosAnimales.leerArchivoAnimales(animalesDelJuego, "./src/main/resources/animales.txt");
@@ -50,7 +50,7 @@ public class DatosAnimales {
         for (Animal animal: animalesDelJugador) {
             System.out.println(animal);
         }
-    }
+    }*/
 
 
 }

@@ -1,5 +1,8 @@
 package guis;
 
+import dato.DatosJugadores;
+import dato.DatosPreguntas;
+import modelo.Cuestionario;
 import modelo.Jugador;
 
 import javax.swing.*;
@@ -14,7 +17,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     private JPanel panel;
     public JButton botonStart;
     public JButton botonEstadisticas;
-    public JButton botonGanarVidas;
+    public JButton botonGanarParcheCuritas;
     public JButton botonSalir;
     private JLabel etiquetaJugador;
 
@@ -66,15 +69,15 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
         botonEstadisticas.setForeground(Color.WHITE);
         botonEstadisticas.addActionListener(this);
 
-        botonGanarVidas = new JButton();
-        botonGanarVidas.setText("Ganar Vidas");
-        botonGanarVidas.setBounds(466,230,130,30);
-        botonGanarVidas.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonGanarVidas);
-        botonGanarVidas.setOpaque(true);
-        botonGanarVidas.setBackground(Color.GREEN);
-        botonGanarVidas.setForeground(Color.WHITE);
-        botonGanarVidas.addActionListener(this);
+        botonGanarParcheCuritas = new JButton();
+        botonGanarParcheCuritas.setText("Ganar Parche Curitas");
+        botonGanarParcheCuritas.setBounds(466,230,170,30);
+        botonGanarParcheCuritas.setHorizontalAlignment(SwingConstants.CENTER);
+        fondo.add(botonGanarParcheCuritas);
+        botonGanarParcheCuritas.setOpaque(true);
+        botonGanarParcheCuritas.setBackground(Color.GREEN);
+        botonGanarParcheCuritas.setForeground(Color.WHITE);
+        botonGanarParcheCuritas.addActionListener(this);
 
         botonSalir = new JButton();
         botonSalir.setText("Salir");
@@ -108,12 +111,15 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
         } else if (e.getSource() == botonEstadisticas) {
             new VentanaEstadisticas(jugador).setVisible(true);
             this.dispose();
-        } else if (e.getSource() == botonGanarVidas) {
-            new VentanaGanarVida(jugador).setVisible(true);
+        } else if (e.getSource() == botonGanarParcheCuritas) {
+            Cuestionario cuestionario = new Cuestionario();
+            DatosPreguntas.leerArchivoCuestionario(cuestionario, "./src/main/resources/cuestionario.txt");
+            new VentanaGanarVida(jugador, cuestionario.obtenerPregunta()).setVisible(true);
             this.dispose();
         }else if(e.getSource() == botonSalir) {
             if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea salir del juego?",
                     "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {System.exit(0);}
+            DatosJugadores.registrarDatos(jugador, "./src/main/resources/conjuntoJugadores.txt");
         }
     }
 }

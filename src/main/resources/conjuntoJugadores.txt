@@ -1,5 +1,5 @@
-nicorvus;210241507;camaron2;0;1
-silvia;104553559;silvipass;3;1
+nico;210241507;xd103;0;1
+silvia;104553559;silvipass;1000;3;3;3;3;3;3;1
 jaime;206664851;jaim3pas;0;1
 alexis;10623518k;lepeg0;0;1
 camar0n;8784532k;camar0n;0;1

@@ -72,6 +72,10 @@ public class Jugador {
         this.animales = listaAnimal;
     }
 
+    public void agregarUnParcheCuritas() {
+        int numeroDeParchecuritas = Integer.parseInt(this.parcheCuritas) + 1;
+        this.parcheCuritas = String.valueOf(numeroDeParchecuritas);
+    }
 
 
 
