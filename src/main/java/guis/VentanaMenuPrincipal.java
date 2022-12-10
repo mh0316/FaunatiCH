@@ -17,6 +17,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     public JButton botonEstadisticas;
     public JButton botonGanarVidas;
     public JButton botonSalir;
+    private JLabel etiquetaJugador;
 
     public VentanaMenuPrincipal(Jugador jugador) throws IOException {
         this.jugador = jugador;
@@ -83,6 +84,11 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
         botonSalir.setBackground(Color.RED);
         botonSalir.setForeground(Color.WHITE);
         botonSalir.addActionListener(this);
+    }
+
+    public void agregarEtiqueta(){
+        etiquetaJugador = new JLabel();
+
     }
 
     @Override
