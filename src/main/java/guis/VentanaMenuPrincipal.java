@@ -28,7 +28,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         agregarPartes();
     }
@@ -80,8 +80,8 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
         botonGanarParcheCuritas.addActionListener(this);
 
         botonSalir = new JButton();
-        botonSalir.setText("Salir");
-        botonSalir.setBounds(580,10,100,23);
+        botonSalir.setText("Cerrar sesión");
+        botonSalir.setBounds(575,10,120,23);
         botonSalir.setHorizontalAlignment(SwingConstants.CENTER);
         fondo.add(botonSalir);
         botonSalir.setOpaque(true);
@@ -117,9 +117,14 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
             new VentanaGanarVida(jugador, cuestionario.obtenerPregunta()).setVisible(true);
             this.dispose();
         }else if(e.getSource() == botonSalir) {
-            if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea salir del juego?",
-                    "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {System.exit(0);}
-            DatosJugadores.registrarDatos(jugador, "./src/main/resources/conjuntoJugadores.txt");
+            if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea cerrar sesión?",
+                    "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {
+                DatosJugadores.registrarDatos(jugador, "./src/main/resources/conjuntoJugadores.txt");
+                this.dispose();
+                new VentanaInicioDeSesion().setVisible(true);
+
+            }
+
         }
     }
 }

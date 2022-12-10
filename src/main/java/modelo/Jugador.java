@@ -77,6 +77,19 @@ public class Jugador {
         this.parcheCuritas = String.valueOf(numeroDeParchecuritas);
     }
 
+    public String obtenerNombresAnimales() {
+        StringBuilder nombresDeAnimalesUsuario = new StringBuilder();
+        for (int i = 0; i < this.animales.size() ; i++) {
+            if (i != this.animales.size() - 1 ){
+                nombresDeAnimalesUsuario = new StringBuilder(nombresDeAnimalesUsuario + this.animales.get(i).getNombre()+" ");
+
+            }else {
+                nombresDeAnimalesUsuario = new StringBuilder(nombresDeAnimalesUsuario + this.animales.get(i).getNombre());
+            }
+        }
+        return String.valueOf(nombresDeAnimalesUsuario);
+    }
+
 
 
 }

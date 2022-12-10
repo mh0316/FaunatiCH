@@ -85,6 +85,16 @@ public class VentanaAnimalesZonaSur extends JFrame implements ActionListener {
                 throw new RuntimeException(ex);
             }
             this.dispose();
+        } else if(e.getSource() == botonPingüino) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
+        }
+        else if(e.getSource() == botonÑandu) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
+        }else if(e.getSource() == botonZorroPatagonico) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
         }
     }
 }

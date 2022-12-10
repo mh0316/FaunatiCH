@@ -269,4 +269,8 @@ public class FaunatiCH {
         } while (true);
         return entrada;
     }
+
+    public static void main(String[] args) {
+        iniciarJuego();
+    }
 }

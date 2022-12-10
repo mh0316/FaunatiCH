@@ -85,8 +85,15 @@ public class VentanaAnimalesZonaCentro extends JFrame implements ActionListener 
                 throw new RuntimeException(ex);
             }
             this.dispose();
-        } else if(e.getSource() == botonPuma) {
-            new VentanaCombate(jugador).setVisible(true);
+        } else if(e.getSource() == botonZorroCulpeo) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
+        }
+        else if(e.getSource() == botonAguilaMora) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
+        }else if(e.getSource() == botonPuma) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
             this.dispose();
         }
     }

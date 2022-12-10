@@ -95,6 +95,27 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
                 throw new RuntimeException(ex);
             }
             this.dispose();
+        } else if (e.getSource() == botonAlpaca) {
+            this.dispose();
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+
+        }else if (e.getSource() == botonVicuña) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
+
+        }else if (e.getSource() == botonGuanaco) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
+
+        }else if (e.getSource() == botonLlama) {
+            new VentanaSeleccionAnimalAmigo(this.jugador);
+            this.dispose();
+
         }
+
     }
+
+    //Pasarle al animal el atributo de direccion de su imagen
+    //modificar manejo de datos relacionado con los animales
+    //2- ventana abstracta que muestre las imagenes
 }
