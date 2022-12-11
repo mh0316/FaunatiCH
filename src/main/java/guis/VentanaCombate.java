@@ -89,11 +89,11 @@ public class VentanaCombate extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
-            try {
-                new VentanaSeleccionDeZona(jugador).setVisible(true);
+            /*try {
+                new VentanaSeleccionDeZona(jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
-            }
+            }*/
             this.dispose();
         } else if (e.getSource() == botonPicotazo) {
             this.dispose();

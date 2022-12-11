@@ -63,7 +63,7 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
         botonSalir.addActionListener(this);
 
         botonRegistrarse = new JButton("Registrarse");
-        botonRegistrarse.setBounds(450,380, 100, 30);
+        botonRegistrarse.setBounds(440,380, 110, 30);
         botonRegistrarse.setHorizontalAlignment(SwingConstants.CENTER);
         fondo.add(botonRegistrarse);
         botonRegistrarse.setOpaque(true);

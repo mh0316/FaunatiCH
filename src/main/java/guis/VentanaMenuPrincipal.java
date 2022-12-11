@@ -1,7 +1,9 @@
 package guis;
 
+import dato.DatosAnimales;
 import dato.DatosJugadores;
 import dato.DatosPreguntas;
+import modelo.Animal;
 import modelo.Cuestionario;
 import modelo.Jugador;
 
@@ -10,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     FondoVentanaPrincipal fondo = new FondoVentanaPrincipal();
@@ -103,7 +106,9 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonStart){
             try {
-                new VentanaSeleccionDeZona(jugador).setVisible(true);
+                var animales = new ArrayList<Animal>();
+                DatosAnimales.leerArchivoAnimales(animales,"./src/main/resources/animales.txt");
+                new VentanaSeleccionDeZona(jugador,animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

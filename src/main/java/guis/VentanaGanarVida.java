@@ -81,19 +81,19 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
         fondo.add(enunciado);
 
         alternativaA = new JLabel("");
-        alternativaA.setBounds(130,230,300,100);
+        alternativaA.setBounds(130,230,350,100);
         alternativaA.setForeground(Color.WHITE);
         alternativaA.setFont(new Font("arial",Font.BOLD,15));
         fondo.add(alternativaA);
 
         alternativaB = new JLabel("");
-        alternativaB.setBounds(130,270,300,100);
+        alternativaB.setBounds(130,270,350,100);
         alternativaB.setForeground(Color.WHITE);
         alternativaB.setFont(new Font("arial",Font.BOLD,15));
         fondo.add(alternativaB);
 
         alternativaC = new JLabel("");
-        alternativaC.setBounds(130,310,300,100);
+        alternativaC.setBounds(130,310,350,100);
         alternativaC.setForeground(Color.WHITE);
         alternativaC.setFont(new Font("arial",Font.BOLD,15));
         fondo.add(alternativaC);

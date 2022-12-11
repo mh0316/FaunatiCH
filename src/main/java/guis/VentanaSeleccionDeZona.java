@@ -1,6 +1,6 @@
 package guis;
 
-import modelo.ConjuntoJugadores;
+import modelo.Animal;
 import modelo.Jugador;
 
 import javax.swing.*;
@@ -8,18 +8,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VentanaSeleccionDeZona extends JFrame implements ActionListener {
+
     FondoVentanaSeleccionZona fondo = new FondoVentanaSeleccionZona();
-    Jugador jugador;
+    private Jugador jugador;
+    private final ArrayList<Animal> animales;
     public JPanel panel;
     private JButton botonZonaNorte;
     private JButton botonZonaCentro;
     private JButton botonZonaSur;
     private JButton botonVolver;
 
-    public VentanaSeleccionDeZona(Jugador jugador) throws IOException {
+    public VentanaSeleccionDeZona(Jugador jugador, ArrayList<Animal> animales) throws IOException {
         this.jugador = jugador;
+        this.animales = animales;
         this.setTitle("Selección de Zonas");
         this.setSize(700,500);
         this.setLocationRelativeTo(null);
@@ -93,17 +97,17 @@ public class VentanaSeleccionDeZona extends JFrame implements ActionListener {
             this.dispose();
         } else if (e.getSource() == botonZonaNorte) {
             try {
-                new VentanaAnimalesZonaNorte(jugador).setVisible(true);
+                new VentanaAnimalesZonaNorte(jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             this.dispose();
         } else if (e.getSource() == botonZonaCentro){
-            new VentanaAnimalesZonaCentro(jugador).setVisible(true);
+            new VentanaAnimalesZonaCentro(jugador, animales).setVisible(true);
             this.dispose();
         } else if (e.getSource() == botonZonaSur) {
             try {
-                new VentanaAnimalesZonaSur(jugador).setVisible(true);
+                new VentanaAnimalesZonaSur(jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

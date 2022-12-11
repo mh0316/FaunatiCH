@@ -1,5 +1,6 @@
 package guis;
 
+import dato.DatosAnimales;
 import modelo.Animal;
 import modelo.AnimalNoEncontradoException;
 import modelo.Jugador;
@@ -9,9 +10,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListener {
     private Jugador jugador;
+    private Animal animalZona;
 
     private JLabel vida;
     private JLabel imagenAnimal;
@@ -26,8 +29,10 @@ public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListen
 
 
 
-    public VentanaSeleccionAnimalAmigo(Jugador jugador) {
+    public VentanaSeleccionAnimalAmigo(Jugador jugador, Animal animalZona) {
         this.jugador = jugador;
+        this.animalZona = animalZona;
+
         this.setContentPane(new JLabel(new ImageIcon("./src/main/resources/FondoVentanaSeleccionAnimal(MOD).jpeg")));
 
         this.setTitle("Selección animal para combate");
@@ -74,12 +79,20 @@ public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListen
         } else if(e.getSource() == volverBtn) {
             this.dispose();
             try {
-                new VentanaSeleccionDeZona(this.jugador).setVisible(true);
+                var animales = new ArrayList<Animal>();
+                DatosAnimales.leerArchivoAnimales(animales, "./src/main/resources/animales.txt");
+                new VentanaSeleccionDeZona(this.jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         } else if (e.getSource() == seleccionarBtn) {
-            new VentanaCombate(this.jugador);
+            try {
+                new VentanaCombateBeta(this.jugador,
+                        Animal.buscarAnimalPorNombre(comboBoxAnimales.getSelectedItem().toString(), this.jugador.getAnimales()),
+                        this.animalZona).setVisible(true);
+            } catch (AnimalNoEncontradoException ex) {
+                throw new RuntimeException(ex);
+            }
             this.dispose();
         }
     }
