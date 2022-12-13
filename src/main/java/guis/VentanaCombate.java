@@ -1,5 +1,6 @@
 package guis;
 
+import modelo.Animal;
 import modelo.Jugador;
 
 import javax.swing.*;
@@ -7,10 +8,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VentanaCombate extends JFrame implements ActionListener {
     FondoVentanaCombate fondo = new FondoVentanaCombate();
-    Jugador jugador;
+    private Jugador jugador;
+    private ArrayList<Animal> animales;
     private JPanel panel;
     private JButton botonPicotazo;
     private JButton botonExtenderAlas;
@@ -18,8 +21,9 @@ public class VentanaCombate extends JFrame implements ActionListener {
     private JButton botonHuirVolando;
     private JButton botonVolver;
 
-    public VentanaCombate(Jugador jugador){
+    public VentanaCombate(Jugador jugador, ArrayList<Animal> animales){
         this.jugador = jugador;
+        this.animales = animales;
         this.setSize(700,500);
         this.setLocationRelativeTo(null);
         this.fondo.setLayout(null);
@@ -90,7 +94,7 @@ public class VentanaCombate extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaSeleccionDeZona(jugador).setVisible(true);
+                new VentanaSeleccionDeZona(jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -99,7 +103,7 @@ public class VentanaCombate extends JFrame implements ActionListener {
             this.dispose();
             new VentanaAtaque().setVisible(true);
             this.dispose();
-            new VentanaCombate(jugador).setVisible(true);
+            new VentanaCombate(jugador,animales).setVisible(true);
         }
     }
 }

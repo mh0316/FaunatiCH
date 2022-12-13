@@ -1,5 +1,6 @@
 package guis;
 
+import modelo.Animal;
 import modelo.Jugador;
 
 import javax.swing.*;
@@ -7,18 +8,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VentanaAnimalesZonaCentro extends JFrame implements ActionListener {
     FondoVentanaAnimalesZonaCentro fondo = new FondoVentanaAnimalesZonaCentro();
-    Jugador jugador;
+    private Jugador jugador;
+    private ArrayList<Animal> animales;
     private JPanel panel;
     private JButton botonZorroCulpeo;
     private JButton botonAguilaMora;
     private JButton botonPuma;
     private JButton botonVolver;
 
-    public VentanaAnimalesZonaCentro(Jugador jugador){
+    public VentanaAnimalesZonaCentro(Jugador jugador, ArrayList<Animal> animales){
         this.jugador = jugador;
+        this.animales = animales;
         this.setSize(700,500);
         this.setLocationRelativeTo(null);
         this.fondo.setLayout(null);
@@ -80,13 +84,20 @@ public class VentanaAnimalesZonaCentro extends JFrame implements ActionListener 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaSeleccionDeZona(jugador).setVisible(true);
+                new VentanaSeleccionDeZona(jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             this.dispose();
-        } else if(e.getSource() == botonPuma) {
-            new VentanaCombate(jugador).setVisible(true);
+        } else if(e.getSource() == botonZorroCulpeo) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(5));
+            this.dispose();
+        }
+        else if(e.getSource() == botonAguilaMora) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(7));
+            this.dispose();
+        }else if(e.getSource() == botonPuma) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(6));
             this.dispose();
         }
     }

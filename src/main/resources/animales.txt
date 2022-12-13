@@ -1,0 +1,11 @@
+1;Condor;30;Picotazo;Embestida;Extender Alas;5;3;3;condor.png
+2;Alpaca;30;Escupitazo;Patada;Mordida;5;3;4;alpaca.png
+3;Vicuña;30;Mordizco;Patada;Ataque random;5;3;4;vicuña.png
+4;Guanaco;30;Escupo;Patada;Ataque random;5;3;4;guanaco.png
+5;Llama;30;Escupo;Silbar;Ataque random;5;3;4;llama.png
+6;Zorro Culpeo;30;Mordedura;Patada;Ataque random;5;3;4;zorroCulpeo.png
+7;Puma;30;Mordizco;Embestida;Ataque random;5;3;4;puma.png
+8;Águila Mora;30;Garras;En Picada;Ataque random;5;3;4;aguilaMora.png
+9;Pingüino;30;Mordizo;Ataque random; Ataque random;2;3;5;pinguino.png
+10;Zorro Patagonico;30;Mordizo;Ataque random; Ataque random;2;3;5;zorroPatagonico.png
+11;Ñandu;31;Aleteo;Patada;Ataque random;7;4;4;ñandú.png

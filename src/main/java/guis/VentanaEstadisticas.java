@@ -1,5 +1,6 @@
 package guis;
 
+import modelo.Animal;
 import modelo.Jugador;
 
 import javax.swing.*;
@@ -13,6 +14,11 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
     Jugador jugador;
     private JPanel panel;
     private JButton botonVolver;
+
+    private JLabel parcheCuritas;
+    private JLabel animales;
+
+    private JComboBox comboBoxAnimales;
 
     public VentanaEstadisticas(Jugador jugador){
         this.jugador = jugador;
@@ -29,6 +35,37 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
     private void agregarPartes(){
         agregarBotones(fondo);
         añadirPanel();
+        agregarEtiquetas();
+        mostrarInformacion();
+        agregarComboBox();
+    }
+
+    private void agregarComboBox() {
+        comboBoxAnimales = new JComboBox<>();
+        JComboBox <String> comboBox = new JComboBox<String>();
+        comboBox.setBounds(400,300,250,30);
+        fondo.add(comboBox);
+
+        for (Animal a: this.jugador.getAnimales()) {
+            comboBox.addItem(a.getNombre());
+        }
+    }
+
+    private void agregarEtiquetas() {
+        parcheCuritas = new JLabel("");
+        parcheCuritas.setBounds(400,100,670,30);
+        parcheCuritas.setFont(new Font("arial",Font.BOLD,20));
+        fondo.add(parcheCuritas);
+
+        animales = new JLabel("");
+        animales.setBounds(400,130,150,300);
+        animales.setFont(new Font("arial",Font.BOLD,20));
+        fondo.add(animales);
+    }
+
+    public void mostrarInformacion() {
+        parcheCuritas.setText("<html>"+"Parche curitas: "+jugador.getParcheCuritas()+"<html>");
+        animales.setText("<html>"+"----Animales----"+"<html>");
     }
 
     private void añadirPanel(){
