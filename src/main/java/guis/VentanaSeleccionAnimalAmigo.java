@@ -87,7 +87,7 @@ public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListen
             }
         } else if (e.getSource() == seleccionarBtn) {
             try {
-                new VentanaCombateBeta(this.jugador,
+                new VentanaCombate(this.jugador,
                         Animal.buscarAnimalPorNombre(comboBoxAnimales.getSelectedItem().toString(), this.jugador.getAnimales()),
                         this.animalZona).setVisible(true);
             } catch (AnimalNoEncontradoException ex) {

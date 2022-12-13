@@ -65,23 +65,22 @@ public class Jugador {
     }
 
     public void agregarAnimal(Animal animal){
-        if(animalAgregado(animal)){
+        if(animalEsAmigo(animal)){
             System.out.println("El animal ya esta en su lista amigos");
         }else {
             animales.add(animal);
         }
     }
 
-    private boolean animalAgregado(Animal animal) {
+    private boolean animalEsAmigo(Animal animal) {
+        var esAmigo = false;
         for (Animal a: this.animales) {
-            if (animal.getId().equals(a.getId())){
-                return true;
-            }else {
-                return false;
+            if (animal.getId().equals(a.getId())) {
+                esAmigo = true;
+                break;
             }
         }
-        return false;
-        //TODO MEJORAR
+        return esAmigo;
     }
 
     public void agregarAnimal(ArrayList<Animal> listaAnimal){

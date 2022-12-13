@@ -2,22 +2,6 @@ package modelo;
 
 public class Juego {
 
-    public static void combatir(Animal animalJugador, Animal animalZona){
-        int vidaAnimalJugador = convertirStringAInt(animalJugador.getVida());
-        int vidaAnimalZona = convertirStringAInt(animalZona.getVida());
-        while (vidaAnimalZona >= 0 && vidaAnimalJugador >= 0){
-            //la ventana le pregunta que ataque deberia hacer el animal del jugador
-            //animalJugador.atacar(animalJugador.getAtaque1(),animalZona);
-            //se deberia actualizar la vida del animal zona en la ventana
-            //vidaAnimalZona.atacar(animalZona.getAtaque1(), animalJugador);
-
-            int x = 1;
-            //x.sumar(100);
-            System.out.println(x);
-
-
-        }
-    }
 
     public static int convertirStringAInt(String string){
         return Integer.parseInt(string);
@@ -36,13 +20,13 @@ public class Juego {
         animalJugador.setVida(String.valueOf(vida-ataqueRecibido));
     }
 
-    public static void usarParcheCurita(Animal animalJugador) {
-        var vidaActual = convertirStringAInt(animalJugador.getVida());
-        /*System.out.println("animalJugador = " + animalJugador.getVida());
-        System.out.println("vidaActual = " + vidaActual);
-        System.out.println("String.valueOf(vidaActual) = " + String.valueOf(vidaActual));*/
-        animalJugador.setVida(String.valueOf(vidaActual+7)); //+4
-        /*System.out.println("animalJugador xdxdxdxd= " + animalJugador.getVida());*/
+    public static void usarParcheCurita(Animal animalJugador, Jugador jugador) {
+        var numeroParcheCuritas = convertirStringAInt(jugador.getParcheCuritas());
+        if(numeroParcheCuritas > 0){
+            var vidaActual = convertirStringAInt(animalJugador.getVida());
+            animalJugador.setVida(String.valueOf(vidaActual+(3)));
+            jugador.setParcheCuritas(String.valueOf(numeroParcheCuritas-1));
+        }
     }
 
 
@@ -54,4 +38,3 @@ public class Juego {
         }
     }
 }
-

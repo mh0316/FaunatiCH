@@ -34,7 +34,7 @@ public class DatosJugadores {
 
     private static ArrayList<Animal> convetirIdAAnimal(String[] data, ArrayList<Animal> animalesDelJugador, ArrayList<Animal> animalesDelJuego) {
         System.out.println("................................................");
-        for (int i = 3; i < data.length; i++) {
+        for (int i = 4; i < data.length; i++) {
             for (Animal delJuego : animalesDelJuego) {
                 if (Integer.parseInt(data[i]) == Integer.parseInt(delJuego.getId())) {
                     animalesDelJugador.add(delJuego);
@@ -162,7 +162,4 @@ public class DatosJugadores {
         conjuntoJugadores.getJugadores().get(1).setParcheCuritas("1000");
         DatosJugadores.registrarDatos(conjuntoJugadores.getJugadores().get(1), "./src/main/resources/conjuntoJugadores.txt");
     }*/
-
-
-
 }

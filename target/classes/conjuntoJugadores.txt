@@ -1,5 +1,6 @@
-nico;210241507;xd103;6;6;6;6;6;6;5;5;1;2;3;4;8;6;7;7;7
-silvia;104553559;silvipass;1000;3;3;3;3;3;3;1
+nico;210241507;xd103;4;1;2;4;5
+silvia;104553559;silvipass;1000;1
 jaime;206664851;jaim3pas;0;1
 alexis;10623518k;lepeg0;0;1
 camar0n;8784532k;camar0n;0;1
+marcelo;208860909;chelo22;0;1

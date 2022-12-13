@@ -27,13 +27,12 @@ public class DatosAnimales {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         var animalesDelJuego = new ArrayList<Animal>();
 
         DatosAnimales.leerArchivoAnimales(animalesDelJuego, "./src/main/resources/animales.txt");
         for (Animal delJuego : animalesDelJuego) {
             System.out.println(delJuego.getId()+"  "+delJuego.getNombre() + " " + delJuego.getVida());
         }
-
-
-}}
+    }*/
+}
