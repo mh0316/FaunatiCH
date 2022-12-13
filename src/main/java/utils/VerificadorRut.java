@@ -23,6 +23,19 @@ public class VerificadorRut {
         return rut;
     }
 
+    private static boolean contieneSimbolos(String rut){
+        var rutLimpio = limpiarRut(rut);
+        if (rut.equals(rutLimpio)){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+
+
+
+
 
     private static int convertirDigitoVerificadorAInt(String digitoVerificador) {
         int digitoVerificadorUsuario;
@@ -76,18 +89,22 @@ public class VerificadorRut {
     }
 
     public static boolean validarRut(String input) {
-        input = limpiarRut(input);
-        String rutSinDigito = obtenerRutSinDigitoVerificador(input);
-        String digitoVerificador = obtenerDigitoVerificador(input);
-        int rut = verificarNumeroDeRut(rutSinDigito);
-        char[] rutChar = convertirIntAArreglo(rut);
-        char[] rutInvertido = invertirRut(rutChar);
-        int[] cadenaParaMultiplicar = crearCadenaParaMultiplicar(rutInvertido);
-        int multiplicacionCadenas = multiplicarArreglos(cadenaParaMultiplicar, rutInvertido);
-        int resultadoDigitoVerificador = calcularDigitoVerificador(multiplicacionCadenas);
-        int digitoVerificadorUsuario = convertirDigitoVerificadorAInt(digitoVerificador);
+        if (input.equals(limpiarRut(input))){
+            input = limpiarRut(input);
 
-        return digitoVerificadorUsuario == resultadoDigitoVerificador;
+            String rutSinDigito = obtenerRutSinDigitoVerificador(input);
+            String digitoVerificador = obtenerDigitoVerificador(input);
+            int rut = verificarNumeroDeRut(rutSinDigito);
+            char[] rutChar = convertirIntAArreglo(rut);
+            char[] rutInvertido = invertirRut(rutChar);
+            int[] cadenaParaMultiplicar = crearCadenaParaMultiplicar(rutInvertido);
+            int multiplicacionCadenas = multiplicarArreglos(cadenaParaMultiplicar, rutInvertido);
+            int resultadoDigitoVerificador = calcularDigitoVerificador(multiplicacionCadenas);
+            int digitoVerificadorUsuario = convertirDigitoVerificadorAInt(digitoVerificador);
+            return (digitoVerificadorUsuario == resultadoDigitoVerificador);
+        }else {
+            return false;
+        }
     }
 
     private static int multiplicarArreglos(int[] arregloParaMultiplicar, char[] rutInvertido) {

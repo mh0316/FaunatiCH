@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class VentanaCombate extends Ventana implements ActionListener {
+    private boolean jugadorHizoUltimaJugada = false;
 
     private JLabel imagenAnimalJugador;
     private JLabel imagenAnimalZona;
@@ -81,9 +82,42 @@ public class VentanaCombate extends Ventana implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (jugadorHizoUltimaJugada){
+            ///
+            if (e.getSource() == ataque1Btn || e.getSource() == ataque2Btn || e.getSource() == ataque3Btn || e.getSource() == usarParchecuritaBtn){
+                JOptionPane.showMessageDialog(this, "Para seguir el combate presiona continuar!");
+            } else if (e.getSource() == continuarBtn) {
+                Juego.recibirAtaque(animalJugador, animalZona);
+                this.jugadorHizoUltimaJugada = false;
+            }
+            ///
+
+        }else {
+            if (e.getSource() == ataque1Btn){
+                Juego.atacar(animalJugador.getAtaque1(), animalZona);
+
+            } else if (e.getSource() == ataque2Btn) {
+                Juego.atacar(animalJugador.getAtaque2(), animalZona);
+                //JOptionPane.showMessageDialog(this, animalZona.getVida());
+            } else if (e.getSource() == ataque3Btn) {
+                Juego.atacar(animalJugador.getAtaque3(), animalZona);
+                //JOptionPane.showMessageDialog(this, animalZona.getVida());
+            }else if (e.getSource() == usarParchecuritaBtn){
+                if (!jugador.getParcheCuritas().equals("0")){
+                    Juego.usarParcheCurita(animalJugador, jugador);
+                }else{
+                    JOptionPane.showMessageDialog(this, "No te quedan parchecuritas D: \nPerdiste el turno!");
+
+                }
+
+            } else if (e.getSource() == continuarBtn) {
+                JOptionPane.showMessageDialog(this, "Es tu turno de realizar un ataque!");
+            }
+            this.jugadorHizoUltimaJugada = true;
+        }
 
 
-        if (e.getSource() == ataque1Btn){
+        /*if (e.getSource() == ataque1Btn){
             Juego.atacar(animalJugador.getAtaque1(), animalZona);
 
 
@@ -97,7 +131,8 @@ public class VentanaCombate extends Ventana implements ActionListener {
             Juego.usarParcheCurita(animalJugador, jugador);
         } else if (e.getSource() == continuarBtn) {
             Juego.recibirAtaque(animalJugador, animalZona);
-        }
+            this.jugadorHizoUltimaJugada = false;
+        }*/
 
         //vidaAnimalZona.setText("Vida "+animalZona.getNombre()+": "+animalZona.getVida());
 
