@@ -1,109 +1,140 @@
 package guis;
 
+import dato.DatosJugadores;
 import modelo.Animal;
+import modelo.Juego;
 import modelo.Jugador;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 
-public class VentanaCombate extends JFrame implements ActionListener {
-    FondoVentanaCombate fondo = new FondoVentanaCombate();
+public class VentanaCombate extends Ventana implements ActionListener {
+
+    private JLabel imagenAnimalJugador;
+    private JLabel imagenAnimalZona;
+    private JLabel vidaAnimalJugador;
+    private JLabel vidaAnimalZona;
+
+
+    private JLabel recuadroInformativo;
+
+    private JButton ataque1Btn;
+    private JButton ataque2Btn;
+    private JButton ataque3Btn;
+    private JButton usarParchecuritaBtn;
+    private JButton continuarBtn;
     private Jugador jugador;
-    private ArrayList<Animal> animales;
-    private JPanel panel;
-    private JButton botonPicotazo;
-    private JButton botonExtenderAlas;
-    private JButton botonMasPuntosDeVida;
-    private JButton botonHuirVolando;
-    private JButton botonVolver;
+    private Animal animalJugador;
+    private Animal animalZona;
 
-    public VentanaCombate(Jugador jugador, ArrayList<Animal> animales){
+    public VentanaCombate(Jugador jugador, Animal animalJugador, Animal animalZona){
+        this.setContentPane(new JLabel(new ImageIcon("./src/main/resources/FondoVentanCombate(MOD).png")));
+
         this.jugador = jugador;
-        this.animales = animales;
-        this.setSize(700,500);
-        this.setLocationRelativeTo(null);
-        this.fondo.setLayout(null);
-        this.getContentPane().add(fondo);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setResizable(false);
-        agregarPartes();
+        this.animalJugador = animalJugador;
+        this.animalZona = animalZona;
+
+        this.setTitle("Combate");
+
+        vidaAnimalJugador = this.generarEtiquetaBlanca("",500,270,190,20,"arial",15);
+        vidaAnimalZona = this.generarEtiquetaBlanca("",500,250,190,20,"arial",15);
+
+        imagenAnimalJugador = this.generarEtiqueta("", 150, 50, 200, 250);
+        imagenAnimalZona = this.generarEtiqueta("", 490, -35, 200, 250);
+
+        recuadroInformativo = this.generarEtiquetaBlanca("",15,250,300,200,"arial",25);
+
+
+        ataque1Btn = this.generarBoton("",355,330,150,20);
+        ataque1Btn.addActionListener(this);
+
+        ataque2Btn = this.generarBoton("",355,380,150,20);
+        ataque2Btn.addActionListener(this);
+
+        ataque3Btn = this.generarBoton("",535,380,150,20);
+        ataque3Btn.addActionListener(this);
+
+        usarParchecuritaBtn = this.generarBoton("Usar Parchecurita",535,330,150,20);
+        usarParchecuritaBtn.addActionListener(this);
+
+        continuarBtn = this.generarBoton("Continuar",390,420,150,20);
+        continuarBtn.addActionListener(this);
+
+        mostrarInformacionInformacion();
     }
 
-    private void agregarPartes(){
-        agregarBotones(fondo);
-        agregarPanel();
-    }
+    public void mostrarInformacionInformacion() {
+        imagenAnimalJugador.setIcon(new ImageIcon("./src/main/resources/"+animalJugador.getImagen()));
+        imagenAnimalZona.setIcon(new ImageIcon("./src/main/resources/"+animalZona.getImagen()));
 
-    private void agregarPanel(){
-        panel = new JPanel();
-        panel.setLayout(null);
-    }
+        vidaAnimalJugador.setText("Vida "+animalJugador.getNombre()+": "+animalJugador.getVida());
+        vidaAnimalZona.setText("Vida "+animalZona.getNombre()+": "+animalZona.getVida());
 
-    public void agregarBotones(FondoVentanaCombate fondo){
-        botonPicotazo = new JButton("Picotazo");
-        botonPicotazo.setBounds(370,315,120,30);
-        botonPicotazo.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonPicotazo);
-        botonPicotazo.setOpaque(true);
-        botonPicotazo.setBackground(Color.white);
-        botonPicotazo.setForeground(Color.black);
-        botonPicotazo.addActionListener(this);
+        recuadroInformativo.setText("<html>"+"¿Qué ataque debería hacer "+animalJugador.getNombre()+"?"+"<html>");
 
-        botonExtenderAlas = new JButton("Extender Alas");
-        botonExtenderAlas.setBounds(370,400,120,30);
-        botonExtenderAlas.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonExtenderAlas);
-        botonExtenderAlas.setOpaque(true);
-        botonExtenderAlas.setBackground(Color.white);
-        botonExtenderAlas.setForeground(Color.black);
-        botonExtenderAlas.addActionListener(this);
-
-        botonMasPuntosDeVida = new JButton("Más puntos de vida");
-        botonMasPuntosDeVida.setBounds(520,315,150,30);
-        botonMasPuntosDeVida.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonMasPuntosDeVida);
-        botonMasPuntosDeVida.setOpaque(true);
-        botonMasPuntosDeVida.setBackground(Color.white);
-        botonMasPuntosDeVida.setForeground(Color.black);
-        botonMasPuntosDeVida.addActionListener(this);
-
-        botonHuirVolando = new JButton("Huir Volando");
-        botonHuirVolando.setBounds(540,400,120,30);
-        botonHuirVolando.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonHuirVolando);
-        botonHuirVolando.setOpaque(true);
-        botonHuirVolando.setBackground(Color.white);
-        botonHuirVolando.setForeground(Color.black);
-        botonHuirVolando.addActionListener(this);
-
-        botonVolver = new JButton("Volver");
-        botonVolver.setBounds(20,20,100,30);
-        botonVolver.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonVolver);
-        botonVolver.setOpaque(true);
-        botonVolver.setBackground(Color.ORANGE);
-        botonVolver.setForeground(Color.BLACK);
-        botonVolver.addActionListener(this);
+        ataque1Btn.setText(animalJugador.getNombreAtaque1());
+        ataque2Btn.setText(animalJugador.getNombreAtaque2());
+        ataque3Btn.setText(animalJugador.getNombreAtaque3());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == botonVolver){
+
+
+        if (e.getSource() == ataque1Btn){
+            Juego.atacar(animalJugador.getAtaque1(), animalZona);
+
+
+        } else if (e.getSource() == ataque2Btn) {
+            Juego.atacar(animalJugador.getAtaque2(), animalZona);
+            //JOptionPane.showMessageDialog(this, animalZona.getVida());
+        } else if (e.getSource() == ataque3Btn) {
+            Juego.atacar(animalJugador.getAtaque3(), animalZona);
+            //JOptionPane.showMessageDialog(this, animalZona.getVida());
+        }else if (e.getSource() == usarParchecuritaBtn){
+            Juego.usarParcheCurita(animalJugador, jugador);
+        } else if (e.getSource() == continuarBtn) {
+            Juego.recibirAtaque(animalJugador, animalZona);
+        }
+
+        //vidaAnimalZona.setText("Vida "+animalZona.getNombre()+": "+animalZona.getVida());
+
+        /*try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException ex) {
+            System.out.println("Falló el temporizador");;
+        }*/
+        mostrarInformacionInformacion();
+
+        //TODO REFACTORIZAR CON OPERADOR TERNARIO
+        if (!Juego.comprobarSiAnimalSigueVivo(animalZona)){
+            JOptionPane.showMessageDialog(this, "Ganaste, se ha agregado "+animalZona.getNombre()+
+                    "\n a tu coleccion de amigos");
+            jugador.agregarAnimal(this.animalZona);
+            DatosJugadores.registrarDatos(jugador, "./src/main/resources/conjuntoJugadores.txt");
             try {
-                new VentanaSeleccionDeZona(jugador, animales).setVisible(true);
+                new VentanaMenuPrincipal(jugador).setVisible(true);
+                this.dispose();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            this.dispose();
-        } else if (e.getSource() == botonPicotazo) {
-            this.dispose();
-            new VentanaAtaque().setVisible(true);
-            this.dispose();
-            new VentanaCombate(jugador,animales).setVisible(true);
+        } else if (!Juego.comprobarSiAnimalSigueVivo(animalJugador)) {
+            JOptionPane.showMessageDialog(this, "Perdiste, prueba obtener mas parche curitas");
+            try {
+                new VentanaMenuPrincipal(jugador).setVisible(true);
+                this.dispose();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
+
+        //Necesitamos crear un metodo del jugador o de la clase juego que compruebe si el jugador ya tiene un animal en
+        //su lista de animales, si ya lo tiene no es posible agregar el animal (denuevo)
+
+        //extras
+        //en ventana hacer inutilizable los botones de atque y parchecuritas si ya los uso una vez, hasta que aprete continuar
+        //o usar un JOptionPane que detenga el flujo y este muestra el ataque del animal enemigo
     }
 }

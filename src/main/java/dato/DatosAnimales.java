@@ -34,7 +34,5 @@ public class DatosAnimales {
         for (Animal delJuego : animalesDelJuego) {
             System.out.println(delJuego.getId()+"  "+delJuego.getNombre() + " " + delJuego.getVida());
         }
-
-
-
-    }}
+    }
+}

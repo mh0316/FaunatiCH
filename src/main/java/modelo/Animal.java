@@ -131,4 +131,19 @@ public class Animal {
     public String toString_Id() {
         return id;
     }
+
+
+    public String ataqueRandom() {
+        var numeroRandom = (int) (Math.random()*(10-1)) + 1;
+        if (numeroRandom == 1){
+            return ataque1;
+        } else if (numeroRandom == 2) {
+            return ataque2;
+        }else {
+            return ataque3;
+        }
+
+    }
+
+
 }

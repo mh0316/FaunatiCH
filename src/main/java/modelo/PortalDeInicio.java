@@ -9,12 +9,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PortalDeInicio {
-    public static void mostrarTextoDeBienvenida() {
-        System.out.println("BIENVENIDO/A A FAUNATICH!");
-        System.out.println("Este juego te ayudará a aprender sobre la fauna chilena de una manera muy entretenida.\n");
-    }
-
-
     public static void mostrarOpcionesPortalInicio(ConjuntoJugadores conjuntoJugadores) throws JugadorNoEncontradoException {
         System.out.println("""
                 FAUNATICH.

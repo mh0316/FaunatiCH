@@ -165,7 +165,6 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         }else if (e.getSource() == botonRegistrar && cajasDeTextoVacias()){
             JOptionPane.showMessageDialog(this,"Por favor, no deje campos de texto vacíos");
             limpiarCajasDeTexto();
-
         } else if(e.getSource() == botonRegistrar && VerificadorNombre.validarNombre(String.valueOf(cajaDeTextoNombre.getText()))
                 && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContraseña(cajaDeTextoContrasena.getText())) {
             DatosJugadores.registrarDatos(PortalDeInicio.crearCuentaParaVentana(cajaDeTextoNombre.getText(),
