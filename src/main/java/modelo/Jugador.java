@@ -65,7 +65,23 @@ public class Jugador {
     }
 
     public void agregarAnimal(Animal animal){
-        animales.add(animal);
+        if(animalAgregado(animal)){
+            System.out.println("El animal ya esta en su lista amigos");
+        }else {
+            animales.add(animal);
+        }
+    }
+
+    private boolean animalAgregado(Animal animal) {
+        for (Animal a: this.animales) {
+            if (animal.getId().equals(a.getId())){
+                return true;
+            }else {
+                return false;
+            }
+        }
+        return false;
+        //TODO MEJORAR
     }
 
     public void agregarAnimal(ArrayList<Animal> listaAnimal){
@@ -89,6 +105,7 @@ public class Jugador {
         }
         return String.valueOf(nombresDeAnimalesUsuario);
     }
+
 
 
 
