@@ -15,8 +15,8 @@ public class VentanaAnimalesZonaSur extends JFrame implements ActionListener {
     private Jugador jugador;
     private ArrayList<Animal> animales;
     private JPanel panel;
-    private JButton botonPingüino;
-    private JButton botonÑandu;
+    private JButton botonPinguino;
+    private JButton botonNiandu;
     private JButton botonZorroPatagonico;
     private JButton botonVolver;
 
@@ -43,23 +43,23 @@ public class VentanaAnimalesZonaSur extends JFrame implements ActionListener {
     }
 
     public void agregarBotones(FondoVentanaAnimalesZonaSur fondo){
-        botonPingüino = new JButton("Pingüino");
-        botonPingüino.setBounds(160,120,110,30);
-        botonPingüino.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonPingüino);
-        botonPingüino.setOpaque(true);
-        botonPingüino.setBackground(Color.white);
-        botonPingüino.setForeground(Color.black);
-        botonPingüino.addActionListener(this);
+        botonPinguino = new JButton("Pingüino");
+        botonPinguino.setBounds(160,120,110,30);
+        botonPinguino.setHorizontalAlignment(SwingConstants.CENTER);
+        fondo.add(botonPinguino);
+        botonPinguino.setOpaque(true);
+        botonPinguino.setBackground(Color.white);
+        botonPinguino.setForeground(Color.black);
+        botonPinguino.addActionListener(this);
 
-        botonÑandu = new JButton("Ñandú");
-        botonÑandu.setBounds(140,330,110,30);
-        botonÑandu.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonÑandu);
-        botonÑandu.setOpaque(true);
-        botonÑandu.setBackground(Color.white);
-        botonÑandu.setForeground(Color.black);
-        botonÑandu.addActionListener(this);
+        botonNiandu = new JButton("Ñandú");
+        botonNiandu.setBounds(140,330,110,30);
+        botonNiandu.setHorizontalAlignment(SwingConstants.CENTER);
+        fondo.add(botonNiandu);
+        botonNiandu.setOpaque(true);
+        botonNiandu.setBackground(Color.white);
+        botonNiandu.setForeground(Color.black);
+        botonNiandu.addActionListener(this);
 
         botonZorroPatagonico = new JButton("Zorro Patagónico");
         botonZorroPatagonico.setBounds(460,100,150,30);
@@ -89,11 +89,11 @@ public class VentanaAnimalesZonaSur extends JFrame implements ActionListener {
                 throw new RuntimeException(ex);
             }
             this.dispose();
-        } else if(e.getSource() == botonPingüino) {
+        } else if(e.getSource() == botonPinguino) {
             new VentanaSeleccionAnimalAmigo(this.jugador,animales.get(8));
             this.dispose();
         }
-        else if(e.getSource() == botonÑandu) {
+        else if(e.getSource() == botonNiandu) {
             new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(10));
             this.dispose();
         }else if(e.getSource() == botonZorroPatagonico) {

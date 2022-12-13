@@ -23,20 +23,6 @@ public class VerificadorRut {
         return rut;
     }
 
-    private static boolean contieneSimbolos(String rut){
-        var rutLimpio = limpiarRut(rut);
-        if (rut.equals(rutLimpio)){
-            return false;
-        }else {
-            return true;
-        }
-    }
-
-
-
-
-
-
     private static int convertirDigitoVerificadorAInt(String digitoVerificador) {
         int digitoVerificadorUsuario;
 

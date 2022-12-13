@@ -18,7 +18,7 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
     private JPanel panel;
     private JButton botonAlpaca;
     private JButton botonGuanaco;
-    private JButton botonVicuña;
+    private JButton botonVicunia;
     private JButton botonLlama;
     private JButton botonVolver;
 
@@ -31,15 +31,15 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
         this.getContentPane().add(fondo);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
-        añadirPartes();
+        aniadirPartes();
     }
 
-    private void añadirPartes(){
+    private void aniadirPartes(){
         agregarBotones(fondo);
-        añadirPanel();
+        aniadirPanel();
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }
@@ -63,14 +63,14 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
         botonGuanaco.setForeground(Color.black);
         botonGuanaco.addActionListener(this);
 
-        botonVicuña = new JButton("Vicuña");
-        botonVicuña.setBounds(500,100,110,30);
-        botonVicuña.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonVicuña);
-        botonVicuña.setOpaque(true);
-        botonVicuña.setBackground(Color.white);
-        botonVicuña.setForeground(Color.black);
-        botonVicuña.addActionListener(this);
+        botonVicunia = new JButton("Vicuña");
+        botonVicunia.setBounds(500,100,110,30);
+        botonVicunia.setHorizontalAlignment(SwingConstants.CENTER);
+        fondo.add(botonVicunia);
+        botonVicunia.setOpaque(true);
+        botonVicunia.setBackground(Color.white);
+        botonVicunia.setForeground(Color.black);
+        botonVicunia.addActionListener(this);
 
         botonLlama = new JButton("Llama");
         botonLlama.setBounds(500,280,100,30);
@@ -104,7 +104,7 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
             this.dispose();
             new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(1));
 
-        }else if (e.getSource() == botonVicuña) {
+        }else if (e.getSource() == botonVicunia) {
             new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(2));
             this.dispose();
 

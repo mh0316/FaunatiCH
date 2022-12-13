@@ -42,33 +42,24 @@ public class Animal {
     }
 
 
-    public void setId(String id) {
-        this.id = id;
-    }
+
 
     public String getNombreAtaque1() {
         return nombreAtaque1;
     }
 
-    public void setNombreAtaque1(String nombreAtaque1) {
-        this.nombreAtaque1 = nombreAtaque1;
-    }
+
 
     public String getNombreAtaque2() {
         return nombreAtaque2;
     }
 
-    public void setNombreAtaque2(String nombreAtaque2) {
-        this.nombreAtaque2 = nombreAtaque2;
-    }
+
 
     public String getNombreAtaque3() {
         return nombreAtaque3;
     }
 
-    public void setNombreAtaque3(String nombreAtaque3) {
-        this.nombreAtaque3 = nombreAtaque3;
-    }
 
     public String getImagen() {
         return imagen;
@@ -86,9 +77,7 @@ public class Animal {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
 
     public String getVida() {
         return vida;
@@ -102,34 +91,21 @@ public class Animal {
         return ataque1;
     }
 
-    public void setAtaque1(String ataque1) {
-        this.ataque1 = ataque1;
-    }
+
 
     public String getAtaque2() {
         return ataque2;
     }
 
-    public void setAtaque2(String ataque2) {
-        this.ataque2 = ataque2;
-    }
 
     public String getAtaque3() {
         return ataque3;
     }
 
-    public void setAtaque3(String ataque3) {
-        this.ataque3 = ataque3;
-    }
 
     public static Animal crearAnimalInicial(){
         return new Animal("1","Condor","30","5","3","3",
                 "Picotazo","Embestida","Extender Alas","condor.png");
-    }
-
-
-    public String toString_Id() {
-        return id;
     }
 
 
@@ -144,6 +120,5 @@ public class Animal {
         }
 
     }
-
 
 }

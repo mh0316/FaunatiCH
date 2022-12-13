@@ -17,6 +17,7 @@ public class Juego {
     public static void recibirAtaque(Animal animalJugador, Animal animalZona) {
         var vida = convertirStringAInt(animalJugador.getVida());
         var ataqueRecibido = convertirStringAInt(animalZona.ataqueRandom());
+
         animalJugador.setVida(String.valueOf(vida-ataqueRecibido));
     }
 
@@ -31,10 +32,6 @@ public class Juego {
 
 
     public static boolean comprobarSiAnimalSigueVivo(Animal animal) {
-        if (convertirStringAInt(animal.getVida()) > 0){
-            return true;
-        }else {
-            return false;
-        }
+        return convertirStringAInt(animal.getVida()) > 0;
     }
 }

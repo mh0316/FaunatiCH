@@ -38,12 +38,12 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
 
     private void agregarPartes(){
         agregarBotones(fondo);
-        añadirPanel();
-        añadirEtiquetas();
+        aniadirPanel();
+        aniadirEtiquetas();
         mostrarInformacion();
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }
@@ -74,7 +74,7 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
         botonAlternativaC.addActionListener(this);
     }
 
-    public void añadirEtiquetas(){
+    public void aniadirEtiquetas(){
         enunciado = new JLabel("");
         enunciado.setBounds(70,30,480,180);
         enunciado.setFont(new Font("arial",Font.BOLD,25));

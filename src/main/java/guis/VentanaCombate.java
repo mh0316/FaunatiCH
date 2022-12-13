@@ -9,9 +9,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class VentanaCombate extends Ventana implements ActionListener {
-    private boolean jugadorHizoUltimaJugada = false;
+    private boolean esTurnoJugador = true;
 
     private JLabel imagenAnimalJugador;
     private JLabel imagenAnimalZona;
@@ -73,7 +74,16 @@ public class VentanaCombate extends Ventana implements ActionListener {
         vidaAnimalJugador.setText("Vida "+animalJugador.getNombre()+": "+animalJugador.getVida());
         vidaAnimalZona.setText("Vida "+animalZona.getNombre()+": "+animalZona.getVida());
 
-        recuadroInformativo.setText("<html>"+"¿Qué ataque debería hacer "+animalJugador.getNombre()+"?"+"<html>");
+        if (this.esTurnoJugador){
+            recuadroInformativo.setText("<html>"+"¿Qué ataque debería hacer "+animalJugador.getNombre()+"?"+"<html>");
+        }else {
+            try {
+                TimeUnit.MILLISECONDS.sleep(1800);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            recuadroInformativo.setText("<html>"+"Turno de "+animalZona.getNombre()+"<html>");
+        }
 
         ataque1Btn.setText(animalJugador.getNombreAtaque1());
         ataque2Btn.setText(animalJugador.getNombreAtaque2());
@@ -82,26 +92,17 @@ public class VentanaCombate extends Ventana implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (jugadorHizoUltimaJugada){
+        if (this.esTurnoJugador){
             ///
-            if (e.getSource() == ataque1Btn || e.getSource() == ataque2Btn || e.getSource() == ataque3Btn || e.getSource() == usarParchecuritaBtn){
-                JOptionPane.showMessageDialog(this, "Para seguir el combate presiona continuar!");
-            } else if (e.getSource() == continuarBtn) {
-                Juego.recibirAtaque(animalJugador, animalZona);
-                this.jugadorHizoUltimaJugada = false;
-            }
-            ///
-
-        }else {
             if (e.getSource() == ataque1Btn){
                 Juego.atacar(animalJugador.getAtaque1(), animalZona);
 
             } else if (e.getSource() == ataque2Btn) {
                 Juego.atacar(animalJugador.getAtaque2(), animalZona);
-                //JOptionPane.showMessageDialog(this, animalZona.getVida());
+
             } else if (e.getSource() == ataque3Btn) {
                 Juego.atacar(animalJugador.getAtaque3(), animalZona);
-                //JOptionPane.showMessageDialog(this, animalZona.getVida());
+
             }else if (e.getSource() == usarParchecuritaBtn){
                 if (!jugador.getParcheCuritas().equals("0")){
                     Juego.usarParcheCurita(animalJugador, jugador);
@@ -113,37 +114,25 @@ public class VentanaCombate extends Ventana implements ActionListener {
             } else if (e.getSource() == continuarBtn) {
                 JOptionPane.showMessageDialog(this, "Es tu turno de realizar un ataque!");
             }
-            this.jugadorHizoUltimaJugada = true;
+            this.esTurnoJugador = false;
+
+
+        }else {
+
+            if (e.getSource() == ataque1Btn || e.getSource() == ataque2Btn || e.getSource() == ataque3Btn || e.getSource() == usarParchecuritaBtn){
+                JOptionPane.showMessageDialog(this, "Para seguir el combate presiona continuar!");
+            } else if (e.getSource() == continuarBtn) {
+                Juego.recibirAtaque(animalJugador, animalZona);
+                this.esTurnoJugador = true;
+            }
+
         }
 
 
-        /*if (e.getSource() == ataque1Btn){
-            Juego.atacar(animalJugador.getAtaque1(), animalZona);
-
-
-        } else if (e.getSource() == ataque2Btn) {
-            Juego.atacar(animalJugador.getAtaque2(), animalZona);
-            //JOptionPane.showMessageDialog(this, animalZona.getVida());
-        } else if (e.getSource() == ataque3Btn) {
-            Juego.atacar(animalJugador.getAtaque3(), animalZona);
-            //JOptionPane.showMessageDialog(this, animalZona.getVida());
-        }else if (e.getSource() == usarParchecuritaBtn){
-            Juego.usarParcheCurita(animalJugador, jugador);
-        } else if (e.getSource() == continuarBtn) {
-            Juego.recibirAtaque(animalJugador, animalZona);
-            this.jugadorHizoUltimaJugada = false;
-        }*/
-
-        //vidaAnimalZona.setText("Vida "+animalZona.getNombre()+": "+animalZona.getVida());
-
-        /*try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException ex) {
-            System.out.println("Falló el temporizador");;
-        }*/
+        
         mostrarInformacionInformacion();
 
-        //TODO REFACTORIZAR CON OPERADOR TERNARIO
+        
         if (!Juego.comprobarSiAnimalSigueVivo(animalZona)){
             JOptionPane.showMessageDialog(this, "Ganaste, se ha agregado "+animalZona.getNombre()+
                     "\n a tu coleccion de amigos");
@@ -165,11 +154,6 @@ public class VentanaCombate extends Ventana implements ActionListener {
             }
         }
 
-        //Necesitamos crear un metodo del jugador o de la clase juego que compruebe si el jugador ya tiene un animal en
-        //su lista de animales, si ya lo tiene no es posible agregar el animal (denuevo)
 
-        //extras
-        //en ventana hacer inutilizable los botones de atque y parchecuritas si ya los uso una vez, hasta que aprete continuar
-        //o usar un JOptionPane que detenga el flujo y este muestra el ataque del animal enemigo
     }
 }

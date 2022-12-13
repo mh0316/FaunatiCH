@@ -34,7 +34,7 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
 
     private void agregarPartes(){
         agregarBotones(fondo);
-        añadirPanel();
+        aniadirPanel();
         agregarEtiquetas();
         mostrarInformacion();
         agregarComboBox();
@@ -42,7 +42,7 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
 
     private void agregarComboBox() {
         comboBoxAnimales = new JComboBox<>();
-        JComboBox <String> comboBox = new JComboBox<String>();
+        JComboBox <String> comboBox = new JComboBox<>();
         comboBox.setBounds(400,300,250,30);
         fondo.add(comboBox);
 
@@ -68,7 +68,7 @@ public class VentanaEstadisticas extends JFrame implements ActionListener {
         animales.setText("<html>"+"----Animales----"+"<html>");
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }

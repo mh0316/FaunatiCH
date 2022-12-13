@@ -35,16 +35,16 @@ public class VentanaSeleccionDeZona extends JFrame implements ActionListener {
     }
 
     private void agregarPartes(){
-        añadirBotones(fondo);
-        añadirPanel();
+        aniadirBotones(fondo);
+        aniadirPanel();
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }
 
-    public void añadirBotones(FondoVentanaSeleccionZona fondo){
+    public void aniadirBotones(FondoVentanaSeleccionZona fondo){
         botonZonaNorte = new JButton();
         botonZonaNorte.setText("ZONA NORTE");
         botonZonaNorte.setBounds(115,65,130,50);

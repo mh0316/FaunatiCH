@@ -60,7 +60,7 @@ public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListen
 
     public void mostrarInformacionAnimal() {
 
-        Animal a = null;
+        Animal a;
         try {
             a = Animal.buscarAnimalPorNombre(comboBoxAnimales.getSelectedItem().toString(), this.jugador.getAnimales());
         } catch (AnimalNoEncontradoException e) {

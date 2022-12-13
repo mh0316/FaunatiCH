@@ -2,14 +2,9 @@ package utils;
 
 public class VerificadorContrasena {
     public static boolean verificarContrasena(String contrasena){
-        if(esAlfaNumerico(contrasena) && !esEspacioVacio(contrasena) && esLongitudCorrecta(contrasena)){
-            return true;
-        }else {
-            return false;
-        }
+        return esAlfaNumerico(contrasena) && !esEspacioVacio(contrasena) && esLongitudCorrecta(contrasena);
     }
 
-    //TODO reparar que valide correctamente que sea alfanumerico, actualmente acepta todo
     public static boolean esAlfaNumerico(String s) {
         return s != null && s.matches("^[a-zA-Z0-9]*$");
     }
@@ -19,10 +14,6 @@ public class VerificadorContrasena {
     }
 
     private static boolean esLongitudCorrecta(String contrasena){
-        if(contrasena.length() > 10 || contrasena.length() < 5){
-            return false;
-        }else {
-            return true;
-        }
+        return contrasena.length() <= 10 && contrasena.length() >= 5;
     }
 }

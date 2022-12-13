@@ -46,8 +46,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
     private void agregarPanel(){
         panel = new JPanel();
         panel.setLayout(null);
-        //panel.setBackground(Color.BLUE);
-        //this.getContentPane().add(panel);
+
     }
 
     public void agregarBotones(FondoVentanaPrincipal fondo){

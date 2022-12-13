@@ -18,13 +18,4 @@ public class Cuestionario {
         return this.preguntas.get(nPregunta);
     }
 
-
-    /*public Pregunta obtenerUnaPregunta() {
-        int nPregunta = (int) (Math.random() * this.cuestionario.size() + 1);
-        return cuestionario.get(nPregunta);
-    }*/
-
-
-
-
 }

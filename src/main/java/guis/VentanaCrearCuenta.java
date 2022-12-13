@@ -1,7 +1,6 @@
 package guis;
 
 import dato.DatosJugadores;
-import modelo.Jugador;
 import modelo.PortalDeInicio;
 import utils.VerificadorContrasena;
 import utils.VerificadorNombre;
@@ -45,11 +44,11 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
 
     private void agregarPartes(){
         agregarBotones(fondo);
-        añadirPanel();
-        añadirEtiquetas();
+        aniadirPanel();
+        aniadirEtiquetas();
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }
@@ -76,7 +75,7 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         agregarCajasDeTexto();
     }
 
-    public void añadirEtiquetas(){
+    public void aniadirEtiquetas(){
         etiquetaNombre = new JLabel("Ingrese un nombre:");
         etiquetaNombre.setBounds(330,200,480,30);
         etiquetaNombre.setFont(new Font("arial",Font.BOLD,15));
@@ -154,8 +153,6 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         cajaDeTextoContrasena.setText("");
     }
 
-    public boolean verificarEspaciosEnCajasDeTexto(){
-        return (cajaDeTextoNombre.getText().contains(" ") && cajaDeTextoRut.getText().contains(" ") && cajaDeTextoContrasena.getText().contains(" "));}
 
     @Override
     public void actionPerformed(ActionEvent e) {
