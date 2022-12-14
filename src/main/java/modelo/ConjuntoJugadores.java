@@ -24,7 +24,7 @@ public class ConjuntoJugadores {
         return false;
     }
 
-    private boolean jugadorExiste(String rut) {
+    public boolean jugadorExiste(String rut) {
 
         //for (Jugador j: this.jugadores) {
         //    if(j.getRut().equals(rut)) {
@@ -51,17 +51,34 @@ public class ConjuntoJugadores {
         //throw new JugadorNoEncontradoException();
 
         if(!jugadorExiste(rut)) {
-            throw new JugadorNoEncontradoException(rut);
+            throw new JugadorNoEncontradoException();
         }
 
         return jugadores.stream().filter(jugador -> jugador.getRut().equals(rut))
                 .findFirst().get();
     }
 
+   public int buscarPosicionJugador(String rut) throws JugadorNoEncontradoException {
+       for (int i = 0; i < this.jugadores.size(); i++) {
+           if (this.jugadores.get(i).getRut().equals(rut)){
+               return i;
+           }
+       }
+       throw new JugadorNoEncontradoException();
+   }
+
     //Verificar si será
     public boolean esContrasenaCorrecta(){
         return true;
     }
+
+
+    public void actualizarDatosJugador(Jugador jugador) throws JugadorNoEncontradoException {
+        int posicion = buscarPosicionJugador(jugador.getRut());
+        this.jugadores.remove(posicion);
+        this.jugadores.add(posicion, jugador);
+    }
+
 
 
 

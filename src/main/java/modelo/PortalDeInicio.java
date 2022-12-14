@@ -41,15 +41,26 @@ public class PortalDeInicio {
         String contrasena = pedirContraseña();
         var animalinicial = Animal.crearAnimalInicial();
         var animales = new ArrayList<Animal>(); animales.add(animalinicial);
-        Jugador jugador = new Jugador(nombre, rut, contrasena, animales);
+        var parcheCurita = "0";
+        Jugador jugador = new Jugador(nombre, rut, contrasena, parcheCurita, animales);
 
         if (conjuntoJugadores.agregarJugador(jugador)) {
             //TODO agregar direccion relativa como en linux ./carpeta
-            DatosJugadores.registrarDatos(jugador, "C:\\Users\\npach\\IdeaProjects\\JuegoFaunatich\\conjuntoJugadores.txt");
+            DatosJugadores.registrarDatos(jugador, "./src/main/resources/conjuntoJugadores.txt");
+            System.out.println("Se ha registrado correctamente");
         } else {
             System.out.println("Esta cuenta ya existe");
 
         }
+    }
+
+    public static Jugador crearCuentaParaVentana(String  nombre, String rut, String contrasena) {
+
+        var animalinicial = Animal.crearAnimalInicial();
+        var animales = new ArrayList<Animal>(); animales.add(animalinicial);
+        var parcheCurita = "0";
+        return new Jugador(nombre, rut, contrasena, parcheCurita, animales);
+
     }
 
 
