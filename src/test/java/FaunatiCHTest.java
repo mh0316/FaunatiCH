@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Test;
 import utils.VerificadorContrasena;
 import utils.VerificadorNombre;
 import utils.VerificadorRut;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
