@@ -1,0 +1,10 @@
+¿Cuál es la altura promedio de la Alpaca?;B;70-80cm;85-95cm;85-95m
+¿Qué tipo de animal es la Vicuña?;A;Herbívoro;Carnívoro;insectívoro
+¿En qué tipos de ambiente vive el Guanaco?;C;Ambiente árido;Ambiente semiárido;Ambientes áridos y semiáridos
+¿Qué hace una llama para defenderse?;A;Lanza un escupo;Patea;Gruñe
+La alimentación del zorro culpeo está basada en:;B;Aves;Aves y mamíferos;Roedores
+Un dato sobre el puma es que:;C;Puede medir hasta 2 metros;El macho es más pequeño y liviano;Habita en toda América
+La siguiente descripción "Actividad diurna, se alimenta de mamíferos pequeños, la hembra pesa mucho más que el macho" corresponde a:;B;Halcón;Águila Mora;Águila calva
+La temperatura promedio interna de un pingüino fluctúa en los:;A;40°;45°;35°
+El Ñandú es un ave exclusivamente:;C;Norteamericana;Centroamericana;Sudamericana
+Seleccione la alternativa correcta sobre el zorro patagónico:;C;Tiene contextura física muy robusta;Habita en bosques;Habita en bosques, montañas, paderas, etc
