@@ -1,14 +1,20 @@
 package modelo;
 
 import dato.DatosJugadores;
-import utils.VerificadorContrasena;
-import utils.VerificadorNombre;
-import utils.VerificadorRut;
+import dato.VerificadorContrasenia;
+import dato.VerificadorNombre;
+import dato.VerificadorRut;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PortalDeInicio {
+    public static void mostrarTextoDeBienvenida() {
+        System.out.println("BIENVENIDO/A A FAUNATICH!");
+        System.out.println("Este juego te ayudará a aprender sobre la fauna chilena de una manera muy entretenida.\n");
+    }
+
+
     public static void mostrarOpcionesPortalInicio(ConjuntoJugadores conjuntoJugadores) throws JugadorNoEncontradoException {
         System.out.println("""
                 FAUNATICH.
@@ -34,8 +40,7 @@ public class PortalDeInicio {
         String rut = pedirRut();
         String contrasena = pedirContraseña();
         var animalinicial = Animal.crearAnimalInicial();
-        var animales = new ArrayList<Animal>();
-        animales.add(animalinicial);
+        var animales = new ArrayList<Animal>(); animales.add(animalinicial);
         var parcheCurita = "0";
         Jugador jugador = new Jugador(nombre, rut, contrasena, parcheCurita, animales);
 
@@ -49,11 +54,10 @@ public class PortalDeInicio {
         }
     }
 
-    public static Jugador crearCuentaParaVentana(String nombre, String rut, String contrasena) {
+    public static Jugador crearCuentaParaVentana(String  nombre, String rut, String contrasena) {
 
         var animalinicial = Animal.crearAnimalInicial();
-        var animales = new ArrayList<Animal>();
-        animales.add(animalinicial);
+        var animales = new ArrayList<Animal>(); animales.add(animalinicial);
         var parcheCurita = "0";
         return new Jugador(nombre, rut, contrasena, parcheCurita, animales);
 
@@ -86,7 +90,7 @@ public class PortalDeInicio {
         System.out.print("Ingrese una contraseña: ");
         String contrasena = ingresarDatos();
 
-        if (VerificadorContrasena.verificarContraseña(contrasena)) {
+        if (VerificadorContrasenia.verificarContrasenia(contrasena)) {
             return contrasena;
         }
         System.out.println("Error, la contraseña no es válida, inténtelo nuevamente. ");
@@ -137,24 +141,5 @@ public class PortalDeInicio {
             }
         } while (true);
         return entrada;
-    }
-
-    public static boolean validarContrasenaCorrecta(ConjuntoJugadores conjuntoJugadores, String rut, String contrasenia) { //borré el throw considerar para futuros errores
-        try {
-            var jugadorRegistrado = conjuntoJugadores.buscarJugadorPorRut(rut);
-            if (jugadorRegistrado.getContrasenia().equals(contrasenia)) {
-                //MenuJuego.mostrarMenu(jugadorRegistrado);
-                System.out.println(contrasenia);
-                //TODO agregar metodo que lleve al juego
-                return true;
-            } else {
-                System.out.println("Contraseña incorrecta intente iniciar sesion nuevamente");
-                return false;
-            }
-        } catch (Exception JugadorNoEncontradoException) {
-            System.out.println("No existe un usuario registrado con este rut, intente nuevamente");
-        }
-        return false;
-
     }
 }

@@ -65,43 +65,14 @@ public class Jugador {
     }
 
     public void agregarAnimal(Animal animal){
-        if(animalEsAmigo(animal)){
-            System.out.println("El animal ya esta en su lista amigos");
-        }else {
-            animales.add(animal);
-        }
+        animales.add(animal);
     }
 
-    private boolean animalEsAmigo(Animal animal) {
-        var esAmigo = false;
-        for (Animal a: this.animales) {
-            if (animal.getId().equals(a.getId())) {
-                esAmigo = true;
-                break;
-            }
-        }
-        return esAmigo;
-    }
-
-    /*public void agregarAnimal(ArrayList<Animal> listaAnimal){
+    public void agregarAnimal(ArrayList<Animal> listaAnimal){
         this.animales = listaAnimal;
-    }*/
-
-    public void agregarUnParcheCuritas() {
-        int numeroDeParchecuritas = Integer.parseInt(this.parcheCuritas) + 1;
-        this.parcheCuritas = String.valueOf(numeroDeParchecuritas);
     }
 
-    public String obtenerNombresAnimales() {
-        StringBuilder nombresDeAnimalesUsuario = new StringBuilder();
-        for (int i = 0; i < this.animales.size() ; i++) {
-            if (i != this.animales.size() - 1 ){
-                nombresDeAnimalesUsuario = new StringBuilder(nombresDeAnimalesUsuario + this.animales.get(i).getNombre()+" ");
 
-            }else {
-                nombresDeAnimalesUsuario = new StringBuilder(nombresDeAnimalesUsuario + this.animales.get(i).getNombre());
-            }
-        }
-        return String.valueOf(nombresDeAnimalesUsuario);
-    }
+
+
 }

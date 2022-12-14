@@ -34,7 +34,7 @@ public class DatosJugadores {
 
     private static ArrayList<Animal> convetirIdAAnimal(String[] data, ArrayList<Animal> animalesDelJugador, ArrayList<Animal> animalesDelJuego) {
         System.out.println("................................................");
-        for (int i = 4; i < data.length; i++) {
+        for (int i = 3; i < data.length; i++) {
             for (Animal delJuego : animalesDelJuego) {
                 if (Integer.parseInt(data[i]) == Integer.parseInt(delJuego.getId())) {
                     animalesDelJugador.add(delJuego);
@@ -55,6 +55,10 @@ public class DatosJugadores {
             }
             FileWriter fw = new FileWriter(file, true); // true permite anxar contenido al archivo en vez de borrar lo que existe
             BufferedWriter bw = new BufferedWriter(fw);
+
+
+
+
             if (!lineaVacia) {
                 bw.newLine();
             }
@@ -78,7 +82,7 @@ public class DatosJugadores {
 
 
             var conjuntoJugadores = new ConjuntoJugadores();
-            DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
+            DatosJugadores.leerArchivoJugador(conjuntoJugadores, "src/main/resources/conjuntoJugadores.txt");
 
             if (conjuntoJugadores.jugadorExiste(jugador.getRut())){
                 FileWriter fw = new FileWriter(file); // true permite anxar contenido al archivo en vez de borrar lo que existe
@@ -89,6 +93,7 @@ public class DatosJugadores {
                 /*for (Jugador j: conjuntoJugadores.getJugadores()) {
                     bw.write(j.toString());
                     bw.newLine(); //TODO REPARAR
+
                 }*/
                 for (int i = 0; i < conjuntoJugadores.getJugadores().size(); i++) {
                     bw.write(conjuntoJugadores.getJugadores().get(i).toString());
@@ -109,7 +114,7 @@ public class DatosJugadores {
 
 
 
-            //sino cierro jamás será escrito en el txt
+             //sino cierro jamás será escrito en el txt
             //S
             return true;
         } catch (Exception e) {
@@ -130,6 +135,7 @@ public class DatosJugadores {
         var j = conjuntoJugadores.getJugadores().get(1);
         j.agregarAnimal(animales.get(0));
         DatosJugadores.registrarDatos(j, "src/main/resources/conjuntoJugadores.txt");
+
     }
 */
 /*
@@ -147,19 +153,26 @@ public class DatosJugadores {
       DatosJugadores.leerArchivoJugador(conjuntoJugadores,"./src/main/resources/conjuntoJugadores.txt" );
       conjuntoJugadores.getJugadores().get(1).agregarAnimal(animales.get(1));
       DatosJugadores.registrarDatos(conjuntoJugadores.getJugadores().get(1), "./src/main/resources/conjuntoJugadores.txt");
+
+
+
       */
 /*ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
       leerArchivoJugador(conjuntoJugadores,"./src/main/resources/conjuntoJugadores.txt" );
       for (Jugador j: conjuntoJugadores.getJugadores()) {
           System.out.println(j);
-      }//
+      }*//*
+
   }
 */
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
-        DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
-        conjuntoJugadores.getJugadores().get(1).setParcheCuritas("1000");
+        DatosJugadores.leerArchivoJugador(conjuntoJugadores, "C:\\Users\\npach\\IdeaProjects\\FaunatiCH\\src\\main\\resources\\conjuntoJugadores.txt");
+        conjuntoJugadores.getJugadores().get(1).setParcheCuritas("3");
         DatosJugadores.registrarDatos(conjuntoJugadores.getJugadores().get(1), "./src/main/resources/conjuntoJugadores.txt");
-    }*/
+    }
+
+
+
 }

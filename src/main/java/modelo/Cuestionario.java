@@ -13,14 +13,15 @@ public class Cuestionario {
         return preguntas;
     }
 
-    public Pregunta obtenerPregunta(){
-        int nPregunta = (int) (Math.random() * this.preguntas.size());
-        return this.preguntas.get(nPregunta);
-    }
 
 
-    /*public Pregunta obtenerUnaPregunta() {
+
+    /*public Pregunta getCuestionario() {
         int nPregunta = (int) (Math.random() * this.cuestionario.size() + 1);
         return cuestionario.get(nPregunta);
     }*/
+
+
+
+
 }

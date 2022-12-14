@@ -1,6 +1,6 @@
 package modelo;
 
-import utils.VerificadorRut;
+import dato.VerificadorRut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,14 +58,14 @@ public class ConjuntoJugadores {
                 .findFirst().get();
     }
 
-    public int buscarPosicionJugador(String rut) throws JugadorNoEncontradoException {
-        for (int i = 0; i < this.jugadores.size(); i++) {
-            if (this.jugadores.get(i).getRut().equals(rut)){
-                return i;
-            }
-        }
-        throw new JugadorNoEncontradoException();
-    }
+   public int buscarPosicionJugador(String rut) throws JugadorNoEncontradoException {
+       for (int i = 0; i < this.jugadores.size(); i++) {
+           if (this.jugadores.get(i).getRut().equals(rut)){
+               return i;
+           }
+       }
+       throw new JugadorNoEncontradoException();
+   }
 
     //Verificar si será
     public boolean esContrasenaCorrecta(){
