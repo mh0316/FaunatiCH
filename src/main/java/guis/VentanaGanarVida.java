@@ -31,7 +31,7 @@ public class VentanaGanarVida extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         agregarPartes();
     }

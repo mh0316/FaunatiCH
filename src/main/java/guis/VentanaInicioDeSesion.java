@@ -104,8 +104,8 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
             if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea salir del juego?",
                     "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {System.exit(0);}
         }else if (e.getSource() == botonAceptar && cajasDeTextoVacias()){
-            JOptionPane.showMessageDialog(this,"Por favor, no deje campos de texto vacíos");
             Sonido.reproducirSonido();
+            JOptionPane.showMessageDialog(this,"Por favor, no deje campos de texto vacíos");
             limpiarCajasDeTexto();
         }else if(e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
                 VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) &&
@@ -120,20 +120,21 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
 
             this.dispose();
         } else if(e.getSource() == botonAceptar && (!VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
-            JOptionPane.showMessageDialog(this, "ERROR, ingrese los datos correctamente");
             Sonido.reproducirSonido();
+            JOptionPane.showMessageDialog(this, "ERROR, ingrese los datos correctamente");
             limpiarCajasDeTexto();
         } else if (e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
                 VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) && !conjuntoJugadores.jugadorExiste(cajaDeTextoRut.getText())) {
-            JOptionPane.showMessageDialog(this, "ERROR, Este usuario no se encuentra registrado");
             Sonido.reproducirSonido();
+            JOptionPane.showMessageDialog(this, "ERROR, Este usuario no se encuentra registrado");
+
 
             limpiarCajasDeTexto();
         } else if (e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
                 VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) &&
                 !PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores,cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText())) {
-            JOptionPane.showMessageDialog(this, "ERROR, ha ingresado una contraseña incorrecta");
             Sonido.reproducirSonido();
+            JOptionPane.showMessageDialog(this, "ERROR, ha ingresado una contraseña incorrecta");
             limpiarCajasDeTexto();
 
         } else if(e.getSource() == botonRegistrarse) {

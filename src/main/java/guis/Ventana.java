@@ -15,11 +15,10 @@ public abstract class Ventana extends JFrame {
     public Ventana() {
         this.setLayout(null);
         this.setSize(700,500);
-        /*this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setResizable(true); //poner en false
+        this.setResizable(false);
     }
 
     protected JTextField generarCampoDeTexto(int x, int y, int ancho, int largo) {

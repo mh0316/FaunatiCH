@@ -4,6 +4,7 @@ import dato.DatosJugadores;
 import modelo.Animal;
 import modelo.Juego;
 import modelo.Jugador;
+import utils.Sonido;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -61,7 +62,7 @@ public class VentanaCombate extends Ventana implements ActionListener {
         usarParchecuritaBtn = this.generarBoton("Usar Parchecurita",535,330,150,20);
         usarParchecuritaBtn.addActionListener(this);
 
-        continuarBtn = this.generarBoton("Continuar",390,420,150,20);
+        continuarBtn = this.generarBoton("Continuar",450,420,150,20);
         continuarBtn.addActionListener(this);
 
         mostrarInformacionInformacion();
@@ -93,7 +94,7 @@ public class VentanaCombate extends Ventana implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.esTurnoJugador){
-            ///
+
             if (e.getSource() == ataque1Btn){
                 Juego.atacar(animalJugador.getAtaque1(), animalZona);
 
@@ -114,20 +115,20 @@ public class VentanaCombate extends Ventana implements ActionListener {
             } else if (e.getSource() == continuarBtn) {
                 JOptionPane.showMessageDialog(this, "Es tu turno de realizar un ataque!");
             }
-            this.esTurnoJugador = false;
 
+            this.esTurnoJugador = false;
 
         }else {
 
             if (e.getSource() == ataque1Btn || e.getSource() == ataque2Btn || e.getSource() == ataque3Btn || e.getSource() == usarParchecuritaBtn){
                 JOptionPane.showMessageDialog(this, "Para seguir el combate presiona continuar!");
             } else if (e.getSource() == continuarBtn) {
+                Sonido.reproducirSonido();
                 Juego.recibirAtaque(animalJugador, animalZona);
                 this.esTurnoJugador = true;
             }
 
         }
-
 
         
         mostrarInformacionInformacion();
@@ -153,7 +154,6 @@ public class VentanaCombate extends Ventana implements ActionListener {
                 throw new RuntimeException(ex);
             }
         }
-
 
     }
 }
