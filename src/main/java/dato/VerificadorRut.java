@@ -1,30 +1,28 @@
 package dato;
 
 public class VerificadorRut {
-
-    private static String obtenerDigitoVerificador(String rut) {
-        return rut.substring(rut.length() - 1);
+    private static String limpiarRut(String input) {
+        input = input.replaceAll("\\p{Punct}", "");
+        return input;
     }
 
-    public static String obtenerRutSinDigitoVerificador(String rut) {
+    public static String obtenerRutSinDigito(String rut) {
         return rut.substring(0, rut.length() - 1);
     }
 
-    private static int verificarNumeroDeRut(String rutSinDigitoVerificador) {
+    private static int verificarNumeroRut(String rutSinDigito) {
         try {
-            return Integer.parseInt(rutSinDigitoVerificador);
+            return Integer.parseInt(rutSinDigito);
         } catch (NumberFormatException e) {
             return 1;
         }
     }
 
-    private static String limpiarRut(String rut) {
-        rut = rut.replaceAll("\\p{Punct}", "");
-        return rut;
+    private static String obtenerDigito(String rut) {
+        return rut.substring(rut.length() - 1);
     }
 
-
-    private static int convertirDigitoVerificadorAInt(String digitoVerificador) {
+    private static int convertirDigitoAInt(String digitoVerificador) {
         int digitoVerificadorUsuario;
 
         if (digitoVerificador.equalsIgnoreCase("k")) {
@@ -49,7 +47,6 @@ public class VerificadorRut {
         char[] rutInvertido = new char[rutChar.length];
 
         for (int i = rutChar.length - 1, j = 0; i >= 0; i--, j++) {
-
             rutInvertido[j] = rutChar[i];
         }
 
@@ -58,61 +55,57 @@ public class VerificadorRut {
 
     private static int[] crearCadenaParaMultiplicar(char[] rutInvertido) {
         int[] cadenaParaMultiplicar = new int[rutInvertido.length];
-        int numMultiplicador = 2;
+        int numeroMultiplicador = 2;
 
         for (int i = 0; i < rutInvertido.length; i++) {
-            if (numMultiplicador < 8) {
-                cadenaParaMultiplicar[i] = numMultiplicador;
-                numMultiplicador++;
-
+            if (numeroMultiplicador < 8) {
+                cadenaParaMultiplicar[i] = numeroMultiplicador;
+                numeroMultiplicador++;
             } else {
-                numMultiplicador = 2;
+                numeroMultiplicador = 2;
                 i--;
-
             }
         }
 
         return cadenaParaMultiplicar;
     }
 
-    public static boolean validarRut(String input) {
-        input = limpiarRut(input);
-        String rutSinDigito = obtenerRutSinDigitoVerificador(input);
-        String digitoVerificador = obtenerDigitoVerificador(input);
-        int rut = verificarNumeroDeRut(rutSinDigito);
-        char[] rutChar = convertirIntAArreglo(rut);
-        char[] rutInvertido = invertirRut(rutChar);
-        int[] cadenaParaMultiplicar = crearCadenaParaMultiplicar(rutInvertido);
-        int multiplicacionCadenas = multiplicarArreglos(cadenaParaMultiplicar, rutInvertido);
-        int resultadoDigitoVerificador = calcularDigitoVerificador(multiplicacionCadenas);
-        int digitoVerificadorUsuario = convertirDigitoVerificadorAInt(digitoVerificador);
-
-        return digitoVerificadorUsuario == resultadoDigitoVerificador;
-    }
-
-    private static int multiplicarArreglos(int[] arregloParaMultiplicar, char[] rutInvertido) {
-        int multiplicacionDeArreglos = 0;
+    private static int multiplicarCadenas(int[] cadenaParaMultiplicar, char[] rutInvertido) {
+        int multiplicacionCadenas = 0;
 
         for (int i = 0; i < rutInvertido.length; i++) {
             int digitoRutAMultiplicar = convertirCharAInt(rutInvertido[i]);
-            int auxMultiplicacion = arregloParaMultiplicar[i] * digitoRutAMultiplicar;
-            multiplicacionDeArreglos += auxMultiplicacion;
+            int auxMultiplicacion = cadenaParaMultiplicar[i] * digitoRutAMultiplicar;
+            multiplicacionCadenas += auxMultiplicacion;
         }
 
-        return multiplicacionDeArreglos;
+        return multiplicacionCadenas;
     }
-
-
-    private static int convertirCharAInt(char caracterRutInvertido) {
-        String digitoString = String.valueOf(caracterRutInvertido);
-        return Integer.parseInt(digitoString);
-    }
-
 
     private static int calcularDigitoVerificador(int multiplicacionCadenas) {
         int division = multiplicacionCadenas / 11;
         int multiplicacionFinal = division * 11;
 
         return 11 - (multiplicacionCadenas - multiplicacionFinal);
+    }
+
+    private static int convertirCharAInt(char caracterRutInvertido) {
+        String digitoString = String.valueOf(caracterRutInvertido);
+        return Integer.parseInt(digitoString);
+    }
+
+    public static boolean validarRut(String input) {
+        input = limpiarRut(input);
+        String rutSinDigito = obtenerRutSinDigito(input);
+        String digitoVerificador = obtenerDigito(input);
+        int rut = verificarNumeroRut(rutSinDigito);
+        char[] rutChar = convertirIntAArreglo(rut);
+        char[] rutInvertido = invertirRut(rutChar);
+        int[] cadenaParaMultiplicar = crearCadenaParaMultiplicar(rutInvertido);
+        int multiplicacionCadenas = multiplicarCadenas(cadenaParaMultiplicar, rutInvertido);
+        int resultadoDigitoVerificador = calcularDigitoVerificador(multiplicacionCadenas);
+        int digitoVerificadorUsuario = convertirDigitoAInt(digitoVerificador);
+
+        return digitoVerificadorUsuario == resultadoDigitoVerificador;
     }
 }
