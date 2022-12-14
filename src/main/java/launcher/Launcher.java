@@ -7,5 +7,6 @@ public class Launcher {
     public static void main(String[] args) throws JugadorNoEncontradoException {
         VentanaInicioDeSesion ventanaInicioDeSesion = new VentanaInicioDeSesion();
         ventanaInicioDeSesion.setVisible(true);
+
     }
 }
