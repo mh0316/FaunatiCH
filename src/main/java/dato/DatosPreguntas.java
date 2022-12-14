@@ -26,14 +26,4 @@ public class DatosPreguntas {
         }
     }
 
-    public static void main(String[] args) {
-        var cuestionario = new Cuestionario();
-        DatosPreguntas.leerArchivoCuestionario(cuestionario,"./src/main/resources/cuestionario.txt");
-
-        for (Pregunta pregunta: cuestionario.getPreguntas()) {
-            System.out.println(pregunta.getEnunciado());
-        }
-    }
 }
-
-

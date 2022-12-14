@@ -10,7 +10,7 @@ import java.io.IOException;
 public class FondoVentanaSeleccionZona extends JPanel {
     @Override
     public void paint(Graphics g) {
-        File archivo1 = new File("D:\\Marcelo 2022\\UFRO\\Ingeniería civil informática\\Segundo Semestre 2022\\Asignaturas\\Programación\\Imágenes proyecto grupal\\Fondo Seleccion Zona.jpeg");
+        File archivo1 = new File("./src/main/resources/FondoSeleccionZona.jpeg");
         BufferedImage bufferedImage = null;
 
         try {

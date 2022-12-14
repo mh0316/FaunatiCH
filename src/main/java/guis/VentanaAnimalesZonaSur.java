@@ -1,25 +1,33 @@
 package guis;
 
+import modelo.Animal;
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VentanaAnimalesZonaSur extends JFrame implements ActionListener {
     FondoVentanaAnimalesZonaSur fondo = new FondoVentanaAnimalesZonaSur();
+    private Jugador jugador;
+    private ArrayList<Animal> animales;
     private JPanel panel;
-    private JButton botonPingüino;
-    private JButton botonÑandu;
+    private JButton botonPinguino;
+    private JButton botonNiandu;
     private JButton botonZorroPatagonico;
     private JButton botonVolver;
 
-    public VentanaAnimalesZonaSur() throws IOException {
-        setSize(700,500);
-        setLocationRelativeTo(null);
-        fondo.setLayout(null);
+    public VentanaAnimalesZonaSur(Jugador jugador, ArrayList<Animal> animales) throws IOException {
+        this.jugador = jugador;
+        this.animales = animales;
+        this.setSize(700,500);
+        this.setLocationRelativeTo(null);
+        this.fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         agregarPartes();
     }
@@ -35,23 +43,23 @@ public class VentanaAnimalesZonaSur extends JFrame implements ActionListener {
     }
 
     public void agregarBotones(FondoVentanaAnimalesZonaSur fondo){
-        botonPingüino = new JButton("Pingüino");
-        botonPingüino.setBounds(160,120,110,30);
-        botonPingüino.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonPingüino);
-        botonPingüino.setOpaque(true);
-        botonPingüino.setBackground(Color.white);
-        botonPingüino.setForeground(Color.black);
-        botonPingüino.addActionListener(this);
+        botonPinguino = new JButton("Pingüino");
+        botonPinguino.setBounds(160,120,110,30);
+        botonPinguino.setHorizontalAlignment(SwingConstants.CENTER);
+        fondo.add(botonPinguino);
+        botonPinguino.setOpaque(true);
+        botonPinguino.setBackground(Color.white);
+        botonPinguino.setForeground(Color.black);
+        botonPinguino.addActionListener(this);
 
-        botonÑandu = new JButton("Ñandú");
-        botonÑandu.setBounds(140,330,110,30);
-        botonÑandu.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonÑandu);
-        botonÑandu.setOpaque(true);
-        botonÑandu.setBackground(Color.white);
-        botonÑandu.setForeground(Color.black);
-        botonÑandu.addActionListener(this);
+        botonNiandu = new JButton("Ñandú");
+        botonNiandu.setBounds(140,330,110,30);
+        botonNiandu.setHorizontalAlignment(SwingConstants.CENTER);
+        fondo.add(botonNiandu);
+        botonNiandu.setOpaque(true);
+        botonNiandu.setBackground(Color.white);
+        botonNiandu.setForeground(Color.black);
+        botonNiandu.addActionListener(this);
 
         botonZorroPatagonico = new JButton("Zorro Patagónico");
         botonZorroPatagonico.setBounds(460,100,150,30);
@@ -76,10 +84,20 @@ public class VentanaAnimalesZonaSur extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaSeleccionDeZona().setVisible(true);
+                new VentanaSeleccionDeZona(jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+            this.dispose();
+        } else if(e.getSource() == botonPinguino) {
+            new VentanaSeleccionAnimalAmigo(this.jugador,animales.get(8));
+            this.dispose();
+        }
+        else if(e.getSource() == botonNiandu) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(10));
+            this.dispose();
+        }else if(e.getSource() == botonZorroPatagonico) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(9));
             this.dispose();
         }
     }

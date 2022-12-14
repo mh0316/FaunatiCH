@@ -1,5 +1,7 @@
 package guis;
 
+import dato.DatosJugadores;
+import modelo.PortalDeInicio;
 import utils.VerificadorContrasena;
 import utils.VerificadorNombre;
 import utils.VerificadorRut;
@@ -42,11 +44,11 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
 
     private void agregarPartes(){
         agregarBotones(fondo);
-        añadirPanel();
-        añadirEtiquetas();
+        aniadirPanel();
+        aniadirEtiquetas();
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }
@@ -73,7 +75,7 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         agregarCajasDeTexto();
     }
 
-    public void añadirEtiquetas(){
+    public void aniadirEtiquetas(){
         etiquetaNombre = new JLabel("Ingrese un nombre:");
         etiquetaNombre.setBounds(330,200,480,30);
         etiquetaNombre.setFont(new Font("arial",Font.BOLD,15));
@@ -151,8 +153,6 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         cajaDeTextoContrasena.setText("");
     }
 
-    public boolean verificarEspaciosEnCajasDeTexto(){
-        return (cajaDeTextoNombre.getText().contains(" ") && cajaDeTextoRut.getText().contains(" ") && cajaDeTextoContrasena.getText().contains(" "));}
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -165,7 +165,12 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
 
         } else if(e.getSource() == botonRegistrar && VerificadorNombre.validarNombre(String.valueOf(cajaDeTextoNombre.getText()))
                   && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
-            JOptionPane.showMessageDialog(this,"USUARIO REGISTRADO");
+            DatosJugadores.registrarDatos(PortalDeInicio.crearCuentaParaVentana(cajaDeTextoNombre.getText(),
+                    cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt");
+            System.out.println(DatosJugadores.registrarDatos(PortalDeInicio.crearCuentaParaVentana(cajaDeTextoNombre.getText(),
+                    cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt"));
+
+            JOptionPane.showMessageDialog(this,"USUARIO REGISTRADO :)");
             this.dispose();
             new VentanaInicioDeSesion().setVisible(true);
         } else if(e.getSource() == botonRegistrar && (!VerificadorNombre.validarNombre(cajaDeTextoNombre.getText()) ||

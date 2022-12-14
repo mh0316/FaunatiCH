@@ -1,36 +1,45 @@
 package guis;
 
+import modelo.Animal;
+import modelo.Jugador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
     FondoVentanaAnimalesZonaNorte fondo = new FondoVentanaAnimalesZonaNorte();
+    private Jugador jugador;
+    private ArrayList<Animal> animales;
+
     private JPanel panel;
     private JButton botonAlpaca;
     private JButton botonGuanaco;
-    private JButton botonVicuña;
+    private JButton botonVicunia;
     private JButton botonLlama;
     private JButton botonVolver;
 
-    public VentanaAnimalesZonaNorte() throws IOException {
-        setSize(700,500);
-        setLocationRelativeTo(null);
-        fondo.setLayout(null);
+    public VentanaAnimalesZonaNorte(Jugador jugador, ArrayList<Animal> animales) throws IOException {
+        this.jugador = jugador;
+        this.animales = animales;
+        this.setSize(700,500);
+        this.setLocationRelativeTo(null);
+        this.fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
-        añadirPartes();
+        aniadirPartes();
     }
 
-    private void añadirPartes(){
+    private void aniadirPartes(){
         agregarBotones(fondo);
-        añadirPanel();
+        aniadirPanel();
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }
@@ -54,14 +63,14 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
         botonGuanaco.setForeground(Color.black);
         botonGuanaco.addActionListener(this);
 
-        botonVicuña = new JButton("Vicuña");
-        botonVicuña.setBounds(500,100,110,30);
-        botonVicuña.setHorizontalAlignment(SwingConstants.CENTER);
-        fondo.add(botonVicuña);
-        botonVicuña.setOpaque(true);
-        botonVicuña.setBackground(Color.white);
-        botonVicuña.setForeground(Color.black);
-        botonVicuña.addActionListener(this);
+        botonVicunia = new JButton("Vicuña");
+        botonVicunia.setBounds(500,100,110,30);
+        botonVicunia.setHorizontalAlignment(SwingConstants.CENTER);
+        fondo.add(botonVicunia);
+        botonVicunia.setOpaque(true);
+        botonVicunia.setBackground(Color.white);
+        botonVicunia.setForeground(Color.black);
+        botonVicunia.addActionListener(this);
 
         botonLlama = new JButton("Llama");
         botonLlama.setBounds(500,280,100,30);
@@ -86,11 +95,32 @@ public class VentanaAnimalesZonaNorte extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == botonVolver){
             try {
-                new VentanaSeleccionDeZona().setVisible(true);
+                new VentanaSeleccionDeZona(jugador, animales).setVisible(true);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             this.dispose();
+        } else if (e.getSource() == botonAlpaca) {
+            this.dispose();
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(1));
+
+        }else if (e.getSource() == botonVicunia) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(2));
+            this.dispose();
+
+        }else if (e.getSource() == botonGuanaco) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(3));
+            this.dispose();
+
+        }else if (e.getSource() == botonLlama) {
+            new VentanaSeleccionAnimalAmigo(this.jugador, animales.get(4));
+            this.dispose();
+
         }
+
     }
+
+    //Pasarle al animal el atributo de direccion de su imagen
+    //modificar manejo de datos relacionado con los animales
+    //2- ventana abstracta que muestre las imagenes
 }

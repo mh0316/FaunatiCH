@@ -1,0 +1,320 @@
+@startuml
+
+title __FAUNATICH's Class Diagram__\n
+
+  namespace dato {
+    class dato.DatosAnimales {
+    }
+  }
+  
+
+  namespace dato {
+    class dato.DatosAnimales {
+    }
+  }
+  
+
+  namespace dato {
+    class dato.DatosAnimales {
+    }
+  }
+  
+
+  namespace dato {
+    class dato.DatosJugadores {
+    }
+  }
+  
+
+  namespace dato {
+    class dato.DatosPreguntas {
+    }
+  }
+  
+
+  namespace dato {
+    class dato.DatosPreguntas {
+    }
+  }
+  
+
+  namespace dato {
+    class dato.DatosPreguntas {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaAnimalesZonaCentro {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaAnimalesZonaNorte {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaAnimalesZonaSur {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaCrearCuenta {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaEstadisticas {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaGanarVida {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaInicioSesion {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaPrincipal {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.FondoVentanaSeleccionZona {
+    }
+  }
+  
+
+  namespace guis {
+    abstract class guis.Ventana {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaAnimalesZonaCentro {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaAnimalesZonaNorte {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaAnimalesZonaSur {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaCombate {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaCrearCuenta {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaEstadisticas {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaGanarVida {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaInicioDeSesion {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaMenuPrincipal {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaSeleccionAnimalAmigo {
+    }
+  }
+  
+
+  namespace guis {
+    class guis.VentanaSeleccionDeZona {
+    }
+  }
+  
+
+  namespace launcher {
+    class launcher.Launcher {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.Animal {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.AnimalNoEncontradoException {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.ConjuntoJugadores {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.Cuestionario {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.Juego {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.Jugador {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.JugadorNoEncontradoException {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.PortalDeInicio {
+    }
+  }
+  
+
+  namespace modelo {
+    class modelo.Pregunta {
+    }
+  }
+  
+
+  namespace utils {
+    class utils.Sonido {
+    }
+  }
+  
+
+  namespace utils {
+    class utils.VerificadorContrasena {
+    }
+  }
+  
+
+  namespace utils {
+    class utils.VerificadorNombre {
+    }
+  }
+  
+
+  namespace utils {
+    class utils.VerificadorRut {
+    }
+  }
+  
+
+  guis.FondoVentanaAnimalesZonaCentro -up-|> javax.swing.JPanel
+  guis.FondoVentanaAnimalesZonaNorte -up-|> javax.swing.JPanel
+  guis.FondoVentanaAnimalesZonaSur -up-|> javax.swing.JPanel
+  guis.FondoVentanaCrearCuenta -up-|> javax.swing.JPanel
+  guis.FondoVentanaEstadisticas -up-|> javax.swing.JPanel
+  guis.FondoVentanaGanarVida -up-|> javax.swing.JPanel
+  guis.FondoVentanaInicioSesion -up-|> javax.swing.JPanel
+  guis.FondoVentanaPrincipal -up-|> javax.swing.JPanel
+  guis.FondoVentanaSeleccionZona -up-|> javax.swing.JPanel
+  guis.Ventana -up-|> javax.swing.JFrame
+  guis.VentanaAnimalesZonaCentro .up.|> java.awt.event.ActionListener
+  guis.VentanaAnimalesZonaCentro -up-|> javax.swing.JFrame
+  guis.VentanaAnimalesZonaCentro o-- guis.FondoVentanaAnimalesZonaCentro : fondo
+  guis.VentanaAnimalesZonaCentro o-- modelo.Jugador : jugador
+  guis.VentanaAnimalesZonaNorte .up.|> java.awt.event.ActionListener
+  guis.VentanaAnimalesZonaNorte -up-|> javax.swing.JFrame
+  guis.VentanaAnimalesZonaNorte o-- guis.FondoVentanaAnimalesZonaNorte : fondo
+  guis.VentanaAnimalesZonaNorte o-- modelo.Jugador : jugador
+  guis.VentanaAnimalesZonaSur .up.|> java.awt.event.ActionListener
+  guis.VentanaAnimalesZonaSur -up-|> javax.swing.JFrame
+  guis.VentanaAnimalesZonaSur o-- guis.FondoVentanaAnimalesZonaSur : fondo
+  guis.VentanaAnimalesZonaSur o-- modelo.Jugador : jugador
+  guis.VentanaCombate .up.|> java.awt.event.ActionListener
+  guis.VentanaCombate -up-|> guis.Ventana
+  guis.VentanaCombate o-- modelo.Animal : animalJugador
+  guis.VentanaCombate o-- modelo.Animal : animalZona
+  guis.VentanaCombate o-- modelo.Jugador : jugador
+  guis.VentanaCrearCuenta .up.|> java.awt.event.ActionListener
+  guis.VentanaCrearCuenta -up-|> javax.swing.JFrame
+  guis.VentanaCrearCuenta o-- guis.FondoVentanaCrearCuenta : fondo
+  guis.VentanaEstadisticas .up.|> java.awt.event.ActionListener
+  guis.VentanaEstadisticas -up-|> javax.swing.JFrame
+  guis.VentanaEstadisticas o-- guis.FondoVentanaEstadisticas : fondo
+  guis.VentanaEstadisticas o-- modelo.Jugador : jugador
+  guis.VentanaGanarVida .up.|> java.awt.event.ActionListener
+  guis.VentanaGanarVida -up-|> javax.swing.JFrame
+  guis.VentanaGanarVida o-- guis.FondoVentanaGanarVida : fondo
+  guis.VentanaGanarVida o-- modelo.Jugador : jugador
+  guis.VentanaGanarVida o-- modelo.Pregunta : pregunta
+  guis.VentanaInicioDeSesion .up.|> java.awt.event.ActionListener
+  guis.VentanaInicioDeSesion -up-|> javax.swing.JFrame
+  guis.VentanaInicioDeSesion o-- guis.FondoVentanaInicioSesion : fondo
+  guis.VentanaMenuPrincipal .up.|> java.awt.event.ActionListener
+  guis.VentanaMenuPrincipal -up-|> javax.swing.JFrame
+  guis.VentanaMenuPrincipal o-- guis.FondoVentanaPrincipal : fondo
+  guis.VentanaMenuPrincipal o-- modelo.Jugador : jugador
+  guis.VentanaSeleccionAnimalAmigo .up.|> java.awt.event.ActionListener
+  guis.VentanaSeleccionAnimalAmigo -up-|> guis.Ventana
+  guis.VentanaSeleccionAnimalAmigo o-- modelo.Animal : animalZona
+  guis.VentanaSeleccionAnimalAmigo o-- modelo.Jugador : jugador
+  guis.VentanaSeleccionDeZona .up.|> java.awt.event.ActionListener
+  guis.VentanaSeleccionDeZona -up-|> javax.swing.JFrame
+  guis.VentanaSeleccionDeZona o-- guis.FondoVentanaSeleccionZona : fondo
+  guis.VentanaSeleccionDeZona o-- modelo.Jugador : jugador
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

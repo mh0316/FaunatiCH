@@ -1,5 +1,10 @@
 package guis;
 
+import dato.DatosJugadores;
+import modelo.ConjuntoJugadores;
+import modelo.JugadorNoEncontradoException;
+import modelo.PortalDeInicio;
+import utils.Sonido;
 import utils.VerificadorContrasena;
 import utils.VerificadorRut;
 
@@ -24,17 +29,17 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.fondo.setLayout(null);
         this.getContentPane().add(fondo);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         agregarPartes();
     }
 
     private void agregarPartes(){
         agregarBotones(fondo);
-        añadirPanel();
+        aniadirPanel();
     }
 
-    private void añadirPanel(){
+    private void aniadirPanel(){
         panel = new JPanel();
         panel.setLayout(null);
     }
@@ -59,7 +64,7 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
         botonSalir.addActionListener(this);
 
         botonRegistrarse = new JButton("Registrarse");
-        botonRegistrarse.setBounds(450,380, 100, 30);
+        botonRegistrarse.setBounds(440,380, 110, 30);
         botonRegistrarse.setHorizontalAlignment(SwingConstants.CENTER);
         fondo.add(botonRegistrarse);
         botonRegistrarse.setOpaque(true);
@@ -92,26 +97,54 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        ConjuntoJugadores conjuntoJugadores = new ConjuntoJugadores();
+        DatosJugadores.leerArchivoJugador(conjuntoJugadores,"./src/main/resources/conjuntoJugadores.txt");
+
         if(e.getSource() == botonSalir){
             if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro/a que desea salir del juego?",
                     "Confirmación de cierre", JOptionPane.YES_NO_OPTION) == JOptionPane.ERROR_MESSAGE) {System.exit(0);}
         }else if (e.getSource() == botonAceptar && cajasDeTextoVacias()){
+            Sonido.reproducirSonido();
             JOptionPane.showMessageDialog(this,"Por favor, no deje campos de texto vacíos");
             limpiarCajasDeTexto();
-        } else if(e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
-            JOptionPane.showMessageDialog(this,"USUARIO ACEPTADO");
-            this.dispose();
+        }else if(e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
+                VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) &&
+                PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores,cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText())) {
             try {
-                new VentanaMenuPrincipal().setVisible(true);
-            } catch (IOException ex) {
+                var jugador = conjuntoJugadores.buscarJugadorPorRut(cajaDeTextoRut.getText());
+                JOptionPane.showMessageDialog(this,"USUARIO ACEPTADO"+"\nBienvenido "+jugador.getNombre());
+                new VentanaMenuPrincipal(jugador).setVisible(true);
+            } catch (JugadorNoEncontradoException | IOException ex) {
                 throw new RuntimeException(ex);
             }
+
+            this.dispose();
         } else if(e.getSource() == botonAceptar && (!VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
-            JOptionPane.showMessageDialog(this,"ERROR, ingrese los datos correctamente");
+            Sonido.reproducirSonido();
+            JOptionPane.showMessageDialog(this, "ERROR, ingrese los datos correctamente");
             limpiarCajasDeTexto();
+        } else if (e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
+                VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) && !conjuntoJugadores.jugadorExiste(cajaDeTextoRut.getText())) {
+            Sonido.reproducirSonido();
+            JOptionPane.showMessageDialog(this, "ERROR, Este usuario no se encuentra registrado");
+
+
+            limpiarCajasDeTexto();
+        } else if (e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
+                VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) &&
+                !PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores,cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText())) {
+            Sonido.reproducirSonido();
+            JOptionPane.showMessageDialog(this, "ERROR, ha ingresado una contraseña incorrecta");
+            limpiarCajasDeTexto();
+
         } else if(e.getSource() == botonRegistrarse) {
             this.dispose();
             new VentanaCrearCuenta().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(this, "ERROR, Estas haciendo algo mal :/ " +
+                    "ingresa los datos correctamente\n");
+            Sonido.reproducirSonido();
+            limpiarCajasDeTexto();
         }
     }
 }

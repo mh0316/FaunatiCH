@@ -1,6 +1,6 @@
 package modelo;
 
-import dato.DatosAnimales;
+
 
 import java.util.ArrayList;
 
@@ -65,14 +65,29 @@ public class Jugador {
     }
 
     public void agregarAnimal(Animal animal){
-        animales.add(animal);
+        if(animalEsAmigo(animal)){
+            System.out.println("El animal ya esta en su lista amigos");
+        }else {
+            animales.add(animal);
+        }
     }
 
-    public void agregarAnimal(ArrayList<Animal> listaAnimal){
-        this.animales = listaAnimal;
+    private boolean animalEsAmigo(Animal animal) {
+        var esAmigo = false;
+        for (Animal a: this.animales) {
+            if (animal.getId().equals(a.getId())) {
+                esAmigo = true;
+                break;
+            }
+        }
+        return esAmigo;
     }
 
 
+    public void agregarUnParcheCuritas() {
+        int numeroDeParchecuritas = Integer.parseInt(this.parcheCuritas) + 1;
+        this.parcheCuritas = String.valueOf(numeroDeParchecuritas);
+    }
 
 
 }
