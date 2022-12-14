@@ -12,7 +12,4 @@ public class Launcher {
         PortalDeInicio.mostrarTextoDeBienvenida();
         PortalDeInicio.mostrarOpcionesPortalInicio(conjuntoJugadores);
     }
-
-
-
 }
