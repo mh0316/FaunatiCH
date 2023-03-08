@@ -8,4 +8,6 @@ public class Launcher {
         VentanaInicioDeSesion ventanaInicioDeSesion = new VentanaInicioDeSesion();
         ventanaInicioDeSesion.setVisible(true);
     }
+
+
 }
