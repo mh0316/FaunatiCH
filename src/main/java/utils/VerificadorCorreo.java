@@ -14,15 +14,4 @@ public class VerificadorCorreo {
 
         return mather.find();
     }
-
-    /*private static boolean verificarCorreo(Matcher mather){
-
-        if (mather.find() == true) {
-            System.out.println("El email ingresado es válido.");
-        } else {
-            System.out.println("El email ingresado es inválido.");
-        }
-        return mather.find();
-    }*/
-
 }

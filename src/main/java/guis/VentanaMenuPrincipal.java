@@ -83,7 +83,7 @@ public class VentanaMenuPrincipal extends JFrame implements ActionListener {
 
         botonSalir = new JButton();
         botonSalir.setText("Cerrar sesión");
-        botonSalir.setBounds(575,10,120,23);
+        botonSalir.setBounds(555,10,120,23);
         botonSalir.setHorizontalAlignment(SwingConstants.CENTER);
         fondo.add(botonSalir);
         botonSalir.setOpaque(true);

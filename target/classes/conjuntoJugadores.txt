@@ -1,6 +1,7 @@
-nico23;210241507;xd103;0;1
+nico23;n.pacheco02@ufromail.cl;xd103;0;1
 chaloxd;chalo.xd@feis.cl;un2345;0;1
 chela;cristal@cerveza.cl;ptakriko2;0;1
 rfdsx;1@gmail.com;dsf34;0;1
 dsffds;algo@algo.algo;sh324;0;1
 dsffdsf;ananin@tem.ki;djsf3;0;1
+marcelo;m.henriquez11@ufromail.cl;olaqac;0;1

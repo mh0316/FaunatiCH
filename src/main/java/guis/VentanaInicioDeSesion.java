@@ -77,7 +77,7 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
 
     public void agregarCajasDeTexto(){
         cajaDeTextoCorreo = new JTextField();
-        cajaDeTextoCorreo.setBounds(430,210,130,30);
+        cajaDeTextoCorreo.setBounds(410,210,180,30);
         fondo.add(cajaDeTextoCorreo);
 
         cajaDeTextoContrasena = new JPasswordField();
