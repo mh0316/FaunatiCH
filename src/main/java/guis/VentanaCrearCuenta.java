@@ -3,8 +3,9 @@ package guis;
 import dato.DatosJugadores;
 import modelo.PortalDeInicio;
 import utils.VerificadorContrasena;
+import utils.VerificadorCorreo;
 import utils.VerificadorNombre;
-import utils.VerificadorRut;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,13 +16,13 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
     FondoVentanaCrearCuenta fondo = new FondoVentanaCrearCuenta();
     private JPanel panel;
     private JTextField cajaDeTextoNombre;
-    private JTextField cajaDeTextoRut;
+    private JTextField cajaDeTextoCorreo;
     private JTextField cajaDeTextoContrasena;
     private JLabel etiquetaNombre;
-    private JLabel etiquetaRut;
+    private JLabel etiquetaCorreo;
     private JLabel etiquetaContrasena;
-    private JLabel etiquetaInstruccionesIngresoRut1;
-    private JLabel etiquetaInstruccionesIngresoRut2;
+    private JLabel etiquetaInstruccionesIngresoCorreo1;
+    private JLabel etiquetaInstruccionesIngresoCorreo2;
     private JLabel etiquetaInstruccionesIngresoContrasena1;
     private JLabel etiquetaInstruccionesIngresoContrasena2;
     private JLabel etiquetaInstruccionesIngresoContrasena3;
@@ -81,10 +82,10 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         etiquetaNombre.setFont(new Font("arial",Font.BOLD,15));
         fondo.add(etiquetaNombre);
 
-        etiquetaRut = new JLabel("Ingrese su rut:");
-        etiquetaRut.setBounds(330,240,480,30);
-        etiquetaRut.setFont(new Font("arial",Font.BOLD,15));
-        fondo.add(etiquetaRut);
+        etiquetaCorreo = new JLabel("Ingrese su correo:");
+        etiquetaCorreo.setBounds(330,240,480,30);
+        etiquetaCorreo.setFont(new Font("arial",Font.BOLD,15));
+        fondo.add(etiquetaCorreo);
 
         etiquetaContrasena = new JLabel("Ingrese una contraseña:");
         etiquetaContrasena.setBounds(330,280,480,30);
@@ -97,17 +98,17 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         etiquetaInstruccionesIngresoNombre1.setFont(new Font("arial",Font.BOLD,10));
         fondo.add(etiquetaInstruccionesIngresoNombre1);
 
-        etiquetaInstruccionesIngresoRut1 = new JLabel();
-        etiquetaInstruccionesIngresoRut1.setText("A continuación deberá ingresar su rut, sin puntos ni guión");
-        etiquetaInstruccionesIngresoRut1.setBounds(330,70,480,30);
-        etiquetaInstruccionesIngresoRut1.setFont(new Font("arial",Font.BOLD,10));
-        fondo.add(etiquetaInstruccionesIngresoRut1);
+        etiquetaInstruccionesIngresoCorreo1 = new JLabel();
+        etiquetaInstruccionesIngresoCorreo1.setText("A continuación deberá ingresar su correo ");
+        etiquetaInstruccionesIngresoCorreo1.setBounds(330,70,480,30);
+        etiquetaInstruccionesIngresoCorreo1.setFont(new Font("arial",Font.BOLD,10));
+        fondo.add(etiquetaInstruccionesIngresoCorreo1);
 
-        etiquetaInstruccionesIngresoRut2 = new JLabel();
-        etiquetaInstruccionesIngresoRut2.setText("y con dígito verificador.");
-        etiquetaInstruccionesIngresoRut2.setBounds(330,90,480,30);
-        etiquetaInstruccionesIngresoRut2.setFont(new Font("arial",Font.BOLD,10));
-        fondo.add(etiquetaInstruccionesIngresoRut2);
+        etiquetaInstruccionesIngresoCorreo2 = new JLabel();
+        etiquetaInstruccionesIngresoCorreo2.setText("");
+        etiquetaInstruccionesIngresoCorreo2.setBounds(330,90,480,30);
+        etiquetaInstruccionesIngresoCorreo2.setFont(new Font("arial",Font.BOLD,10));
+        fondo.add(etiquetaInstruccionesIngresoCorreo2);
 
         etiquetaInstruccionesIngresoContrasena1 = new JLabel();
         etiquetaInstruccionesIngresoContrasena1.setText("Seguido de esto deberá ingresar una contraseña, la cual");
@@ -133,9 +134,9 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
         cajaDeTextoNombre.setBounds(520,200,130,30);
         fondo.add(cajaDeTextoNombre);
 
-        cajaDeTextoRut = new JTextField();
-        cajaDeTextoRut.setBounds(520,240,130,30);
-        fondo.add(cajaDeTextoRut);
+        cajaDeTextoCorreo = new JTextField();
+        cajaDeTextoCorreo.setBounds(520,240,130,30);
+        fondo.add(cajaDeTextoCorreo);
 
         cajaDeTextoContrasena = new JTextField();
         cajaDeTextoContrasena.setBounds(520,280,130,30);
@@ -143,13 +144,13 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
     }
 
     public boolean cajasDeTextoVacias() {
-        return cajaDeTextoNombre.getText().equals("") || cajaDeTextoRut.getText().equals("") ||
+        return cajaDeTextoNombre.getText().equals("") || cajaDeTextoCorreo.getText().equals("") ||
                 cajaDeTextoContrasena.getText().equals("");
     }
 
     public void limpiarCajasDeTexto() {
         cajaDeTextoNombre.setText("");
-        cajaDeTextoRut.setText("");
+        cajaDeTextoCorreo.setText("");
         cajaDeTextoContrasena.setText("");
     }
 
@@ -164,17 +165,17 @@ public class VentanaCrearCuenta extends JFrame implements ActionListener {
             limpiarCajasDeTexto();
 
         } else if(e.getSource() == botonRegistrar && VerificadorNombre.validarNombre(String.valueOf(cajaDeTextoNombre.getText()))
-                  && VerificadorRut.validarRut(cajaDeTextoRut.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
+                && VerificadorCorreo.verificarCorreo(cajaDeTextoCorreo.getText()) && VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText())) {
             DatosJugadores.registrarDatos(PortalDeInicio.crearCuentaParaVentana(cajaDeTextoNombre.getText(),
-                    cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt");
+                    cajaDeTextoCorreo.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt");
             System.out.println(DatosJugadores.registrarDatos(PortalDeInicio.crearCuentaParaVentana(cajaDeTextoNombre.getText(),
-                    cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt"));
+                    cajaDeTextoCorreo.getText(),cajaDeTextoContrasena.getText()),"./src/main/resources/conjuntoJugadores.txt"));
 
             JOptionPane.showMessageDialog(this,"USUARIO REGISTRADO :)");
             this.dispose();
             new VentanaInicioDeSesion().setVisible(true);
         } else if(e.getSource() == botonRegistrar && (!VerificadorNombre.validarNombre(cajaDeTextoNombre.getText()) ||
-                !VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
+                !VerificadorCorreo.verificarCorreo(cajaDeTextoCorreo.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
             JOptionPane.showMessageDialog(this,"ERROR, ingrese los datos correctamente");
             limpiarCajasDeTexto();
         }

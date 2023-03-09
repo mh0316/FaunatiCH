@@ -6,7 +6,7 @@ import modelo.JugadorNoEncontradoException;
 import modelo.PortalDeInicio;
 import utils.Sonido;
 import utils.VerificadorContrasena;
-import utils.VerificadorRut;
+import utils.VerificadorCorreo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class VentanaInicioDeSesion extends JFrame implements ActionListener {
     FondoVentanaInicioSesion fondo = new FondoVentanaInicioSesion();
     private JPanel panel;
-    private JTextField cajaDeTextoRut;
+    private JTextField cajaDeTextoCorreo;
     private JPasswordField cajaDeTextoContrasena;
     private JButton botonAceptar;
     private JButton botonSalir;
@@ -76,9 +76,9 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
     }
 
     public void agregarCajasDeTexto(){
-        cajaDeTextoRut = new JTextField();
-        cajaDeTextoRut.setBounds(430,210,130,30);
-        fondo.add(cajaDeTextoRut);
+        cajaDeTextoCorreo = new JTextField();
+        cajaDeTextoCorreo.setBounds(430,210,130,30);
+        fondo.add(cajaDeTextoCorreo);
 
         cajaDeTextoContrasena = new JPasswordField();
         cajaDeTextoContrasena.setBounds(430,280,130,30);
@@ -86,12 +86,12 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
     }
 
     public boolean cajasDeTextoVacias() {
-        return cajaDeTextoRut.getText().equals("") || cajaDeTextoContrasena.getText().equals("");
+        return cajaDeTextoCorreo.getText().equals("") || cajaDeTextoContrasena.getText().equals("");
     }
 
 
     public void limpiarCajasDeTexto() {
-        cajaDeTextoRut.setText("");
+        cajaDeTextoCorreo.setText("");
         cajaDeTextoContrasena.setText("");
     }
 
@@ -107,11 +107,11 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
             Sonido.reproducirSonido();
             JOptionPane.showMessageDialog(this,"Por favor, no deje campos de texto vacíos");
             limpiarCajasDeTexto();
-        }else if(e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
+        }else if(e.getSource() == botonAceptar && VerificadorCorreo.verificarCorreo(cajaDeTextoCorreo.getText()) &&
                 VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) &&
-                PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores,cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText())) {
+                PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores, cajaDeTextoCorreo.getText(),cajaDeTextoContrasena.getText())) {
             try {
-                var jugador = conjuntoJugadores.buscarJugadorPorRut(cajaDeTextoRut.getText());
+                var jugador = conjuntoJugadores.buscarJugadorPorRut(cajaDeTextoCorreo.getText());
                 JOptionPane.showMessageDialog(this,"USUARIO ACEPTADO"+"\nBienvenido "+jugador.getNombre());
                 new VentanaMenuPrincipal(jugador).setVisible(true);
             } catch (JugadorNoEncontradoException | IOException ex) {
@@ -119,20 +119,20 @@ public class VentanaInicioDeSesion extends JFrame implements ActionListener {
             }
 
             this.dispose();
-        } else if(e.getSource() == botonAceptar && (!VerificadorRut.validarRut(cajaDeTextoRut.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
+        } else if(e.getSource() == botonAceptar && (!VerificadorCorreo.verificarCorreo(cajaDeTextoCorreo.getText()) || !VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()))) {
             Sonido.reproducirSonido();
             JOptionPane.showMessageDialog(this, "ERROR, ingrese los datos correctamente");
             limpiarCajasDeTexto();
-        } else if (e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
-                VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) && !conjuntoJugadores.jugadorExiste(cajaDeTextoRut.getText())) {
+        } else if (e.getSource() == botonAceptar && VerificadorCorreo.verificarCorreo(cajaDeTextoCorreo.getText()) &&
+                VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) && !conjuntoJugadores.jugadorExiste(cajaDeTextoCorreo.getText())) {
             Sonido.reproducirSonido();
             JOptionPane.showMessageDialog(this, "ERROR, Este usuario no se encuentra registrado");
 
 
             limpiarCajasDeTexto();
-        } else if (e.getSource() == botonAceptar && VerificadorRut.validarRut(cajaDeTextoRut.getText()) &&
+        } else if (e.getSource() == botonAceptar && VerificadorCorreo.verificarCorreo(cajaDeTextoCorreo.getText()) &&
                 VerificadorContrasena.verificarContrasena(cajaDeTextoContrasena.getText()) &&
-                !PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores,cajaDeTextoRut.getText(),cajaDeTextoContrasena.getText())) {
+                !PortalDeInicio.validarContrasenaCorrecta(conjuntoJugadores, cajaDeTextoCorreo.getText(),cajaDeTextoContrasena.getText())) {
             Sonido.reproducirSonido();
             JOptionPane.showMessageDialog(this, "ERROR, ha ingresado una contraseña incorrecta");
             limpiarCajasDeTexto();

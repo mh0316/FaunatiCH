@@ -9,7 +9,7 @@ import java.io.IOException;
 public class FondoVentanaInicioSesion extends JPanel{
     @Override
     public void paint (Graphics g){
-        File archivo = new File("./src/main/resources/FondoVentanaInicioSesion.jpeg");
+        File archivo = new File("src/main/resources/FondoInicioSesion.jpeg");
         BufferedImage bufferedImage = null;
         try {
             bufferedImage = ImageIO.read((archivo));

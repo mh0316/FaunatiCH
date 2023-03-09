@@ -249,7 +249,7 @@ title __FAUNATICH's Class Diagram__\n
   
 
   namespace utils {
-    class utils.VerificadorRut {
+    class utils.VerificadorCorreo {
     }
   }
   

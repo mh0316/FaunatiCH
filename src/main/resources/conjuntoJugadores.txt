@@ -1,7 +1,6 @@
-nico23;210241507;xdfs1;0;1
-jaime;206664851;jaim3pas;1;1;2
-alexis;10623518k;lepeg0;0;1
-camar0n;8784532k;camar0n;0;1
-marcelo;208860909;chelo22;0;1
-oscar;201030382;oscar22;0;1
-silvia;104553559;silv10;0;1
+nico23;210241507;xd103;0;1
+chaloxd;chalo.xd@feis.cl;un2345;0;1
+chela;cristal@cerveza.cl;ptakriko2;0;1
+rfdsx;1@gmail.com;dsf34;0;1
+dsffds;algo@algo.algo;sh324;0;1
+dsffdsf;ananin@tem.ki;djsf3;0;1

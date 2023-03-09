@@ -7,16 +7,16 @@ import java.util.ArrayList;
 public class Jugador {
 
     private String nombre;
-    private String rut;
+    private String correoElectrico;
     private String contrasenia;
 
     private String parcheCuritas;
     private ArrayList<Animal> animales;
 
 
-    public Jugador(String nombre, String rut, String contrasenia, String parcheCuritas, ArrayList<Animal> animales) {
+    public Jugador(String nombre, String correoElectronico, String contrasenia, String parcheCuritas, ArrayList<Animal> animales) {
         this.nombre = nombre;
-        this.rut = rut;
+        this.correoElectrico = correoElectronico;
         this.contrasenia = contrasenia;
         this.parcheCuritas = parcheCuritas;
         this.animales = animales;
@@ -26,8 +26,8 @@ public class Jugador {
         return nombre;
     }
 
-    public String getRut() {
-        return rut;
+    public String getCorreoElectrico() {
+        return correoElectrico;
     }
 
     public String getContrasenia() {
@@ -48,7 +48,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return nombre+";"+rut+";"+contrasenia+";"+parcheCuritas+";"+obtenerIdsAnimales();
+        return nombre+";"+ correoElectrico +";"+contrasenia+";"+parcheCuritas+";"+obtenerIdsAnimales();
     }
 
     private String obtenerIdsAnimales() {

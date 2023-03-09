@@ -58,7 +58,7 @@ public class DatosJugadores {
             var conjuntoJugadores = new ConjuntoJugadores();
             DatosJugadores.leerArchivoJugador(conjuntoJugadores, "./src/main/resources/conjuntoJugadores.txt");
 
-            if (conjuntoJugadores.jugadorExiste(jugador.getRut())){
+            if (conjuntoJugadores.jugadorExiste(jugador.getCorreoElectrico())){
                 FileWriter fw = new FileWriter(file); // true permite anxar contenido al archivo en vez de borrar lo que existe
                 BufferedWriter bw = new BufferedWriter(fw);
                 conjuntoJugadores.actualizarDatosJugador(jugador); //actualizar datos jugador debe borrar el jugador del arraylist y agregar el nuevo con los datos modificados
