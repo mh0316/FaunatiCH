@@ -16,7 +16,7 @@ public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListen
     private Jugador jugador;
     private Animal animalZona;
 
-    private JLabel vida;
+    private JLabel etiquetaVidaAnimal;
     private JLabel imagenAnimal;
     private JButton informacionBtn;
 
@@ -51,7 +51,7 @@ public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListen
         informacionBtn = this.generarBoton("Ver animal", 100, 370, 150, 30);
         informacionBtn.addActionListener(this);
 
-        vida = this.generarEtiquetaBlanca("", 180, 130, 30, 20,"arial", 20);
+        etiquetaVidaAnimal = this.generarEtiquetaBlanca("", 180, 130, 30, 20,"arial", 20);
         imagenAnimal = this.generarEtiqueta("", 400, 60, 200, 250);
 
 
@@ -66,7 +66,7 @@ public class VentanaSeleccionAnimalAmigo extends Ventana implements ActionListen
         } catch (AnimalNoEncontradoException e) {
             throw new RuntimeException(e);
         }
-        vida.setText(a.getVida());
+        etiquetaVidaAnimal.setText(a.getVida());
         imagenAnimal.setIcon(new ImageIcon("./src/main/resources/"+a.getImagen()));
 
 
